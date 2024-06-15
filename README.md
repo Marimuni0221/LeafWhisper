@@ -1,5 +1,5 @@
 ### 画面遷移図
-Figma：https://www.figma.com/design/ncVnonAehn7mboKRKmKwrH/LeafWhisper?node-id=0-1&t=Ju8snNJny9aU9zWx-1
+Figma：https://www.figma.com/design/ncVnonAehn7mboKRKmKwrH/LeafWhisper?node-id=0-1&t=gEt8qP1X9njYsoxO-1
 
 ■サービス概要
 日本茶に関する情報を集約した、日本茶に関する商品やカフェの検索・レビューを提供出来るアプリです。
@@ -44,13 +44,11 @@ Xでのシェア機能を主に活用し、幅広く日本茶に興味がある�
 * お気に入りリスト確認機能
 
 ■ 機能の実装方針予定
-* ランキング機能
 * パスワードリセット機能
 * ゲストログイン機能
 * 多言語対応機能（英語）
 * 検索オートコンプリート機能
 * 日本茶に関するQ＆A機能
-* 管理機能
 * お問い合わせ、利用規約、プライバシーポリシー
 
 ■ 使用予定の技術
