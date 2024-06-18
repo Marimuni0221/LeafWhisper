@@ -1,7 +1,7 @@
 ### 画面遷移図
 Figma：https://www.figma.com/design/ncVnonAehn7mboKRKmKwrH/LeafWhisper?node-id=0-1&t=gEt8qP1X9njYsoxO-1
 
-ER図：https://gyazo.com/ce44221770cdd42acc6a01c87cc3f7b9
+ER図：https://gyazo.com/d558819bdf81dcd1684d9b4a8484a9fd
 
 ■サービス概要
 日本茶に関する情報を集約した、日本茶に関する商品やカフェの検索・レビューを提供出来るアプリです。
