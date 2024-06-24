@@ -40,8 +40,10 @@ Xでのシェア機能を主に活用し、幅広く日本茶に興味がある�
 * 商品検索機能
 * 商品詳細確認機能
 * 日本茶専門カフェ検索機能（Google Maps APIを使用）
+* 日本茶専門カフェ詳細確認機能
 * SNS(X)へのシェア機能
 * レビュー投稿機能
+* レビュー編集機能
 * お気に入り追加機能
 * お気に入りリスト確認機能
 
@@ -54,9 +56,9 @@ Xでのシェア機能を主に活用し、幅広く日本茶に興味がある�
 * お問い合わせ、利用規約、プライバシーポリシー
 
 ■ 使用予定の技術
-* フロントエンド - tailwindCSS/Javascript（可能であれば、reactを導入してみたいが検討中）
+* フロントエンド - tailwindCSS/DaisyUI/Hotwire/Javascript
 * バックエンド　-　Ruby 3.3.1/Rails 7.1.3.3
 * データベース - PostgreSQL
 * 環境構築 - Docker
-* インフラ - Vercal/Render/Amazon S3
+* インフラ - Render/Amazon S3
 * API - 楽天市場商品検索API/Google Maps API
