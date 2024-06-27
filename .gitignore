@@ -7,6 +7,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 .DS_Store
 
@@ -17,6 +18,8 @@
 .DS_Store
 
 >>>>>>> 4d9e2a6 (docker環境構築)
+=======
+>>>>>>> a4023e8 (readmeの内容の間違いを修正しました)
 # Ignore bundler config.
 /.bundle
 
@@ -49,6 +52,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .DS_Store
 =======
 >>>>>>> 787980a (一時的に.gitignoreを無視しないようにしました)
@@ -57,3 +61,6 @@
 >>>>>>> eb08d09 (readmeの内容の間違いを修正しました)
 =======
 >>>>>>> 4d9e2a6 (docker環境構築)
+=======
+.DS_Store
+>>>>>>> a4023e8 (readmeの内容の間違いを修正しました)
