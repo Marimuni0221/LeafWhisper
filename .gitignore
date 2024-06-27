@@ -4,6 +4,11 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+<<<<<<< HEAD
+=======
+.DS_Store
+
+>>>>>>> 787980a (一時的に.gitignoreを無視しないようにしました)
 # Ignore bundler config.
 /.bundle
 
@@ -33,4 +38,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+<<<<<<< HEAD
 .DS_Store
+=======
+>>>>>>> 787980a (一時的に.gitignoreを無視しないようにしました)
