@@ -5,10 +5,13 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 .DS_Store
 
 >>>>>>> 787980a (一時的に.gitignoreを無視しないようにしました)
+=======
+>>>>>>> eb08d09 (readmeの内容の間違いを修正しました)
 # Ignore bundler config.
 /.bundle
 
@@ -39,6 +42,10 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 <<<<<<< HEAD
+<<<<<<< HEAD
 .DS_Store
 =======
 >>>>>>> 787980a (一時的に.gitignoreを無視しないようにしました)
+=======
+.DS_Store
+>>>>>>> eb08d09 (readmeの内容の間違いを修正しました)
