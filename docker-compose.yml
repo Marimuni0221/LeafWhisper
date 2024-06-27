@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: leaf_whisper
+      POSTGRES_PASSWORD: pomchan1858
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USERNAME: leaf_whisper
+      DATABASE_PASSWORD: pomchan1858
+      SECRET_KEY_BASE: 4941a33cd419c87261d5ecf6eb723f390095957fe218902eb1d0d88bf29d12e5ce0876642f39269de3b675407ee6ef577345d4ff358c90a1b24a5db6d5d94ae4
