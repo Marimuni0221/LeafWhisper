@@ -57,7 +57,7 @@ Xでのシェア機能を主に活用し、幅広く日本茶に興味がある�
 
 ■ 使用予定の技術
 * フロントエンド - tailwindCSS/DaisyUI/Hotwire/Javascript
-* バックエンド　-　Ruby 3.3.1/Rails 7.1.3.3
+* バックエンド　-　Ruby 3.3.3/Rails 7.1.3.3
 * データベース - PostgreSQL
 * 環境構築 - Docker
 * インフラ - Render/Amazon S3
