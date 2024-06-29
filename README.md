@@ -1,4 +1,3 @@
-
 ### 画面遷移図
 Figma：https://www.figma.com/design/ncVnonAehn7mboKRKmKwrH/LeafWhisper?node-id=0-1&t=gEt8qP1X9njYsoxO-1
 
