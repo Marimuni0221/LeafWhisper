@@ -6,6 +6,7 @@ services:
     environment:
       POSTGRES_USER: leaf_whisper
       POSTGRES_PASSWORD: pomchan1858
+      POSTGRES_DB: leaf_whisper_production
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
