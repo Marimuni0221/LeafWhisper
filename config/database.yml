@@ -21,6 +21,7 @@ default: &default
   username: leaf_whisper
   password: pomchan1858
   host: db
+  port: 5432
 
 development:
   <<: *default
@@ -82,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: leaf_whisper_production
-  username: leaf_whisper
-  password: pomchan1858
+  url: <%= ENV['DATABASE_URL'] %>
