@@ -7,5 +7,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+<<<<<<< HEAD
+  root "static_pages#top"
+=======
   root "home#index"
+>>>>>>> main
 end
