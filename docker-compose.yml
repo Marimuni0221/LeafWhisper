@@ -26,6 +26,7 @@ services:
       DATABASE_NAME: leaf_whisper_development
       SECRET_KEY_BASE: 4941a33cd419c87261d5ecf6eb723f390095957fe218902eb1d0d88bf29d12e5ce0876642f39269de3b675407ee6ef577345d4ff358c90a1b24a5db6d5d94ae4
       WEB_CONCURRENCY: 2
+    user: "501:1000" 
     networks:
       - leafwhisper_network
       
