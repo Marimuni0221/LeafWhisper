@@ -21,6 +21,7 @@ default: &default
   username: leaf_whisper
   password: pomchan1858
   host: db
+  port: 5432
 
 development:
   <<: *default
