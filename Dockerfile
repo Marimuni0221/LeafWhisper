@@ -54,7 +54,10 @@ COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
-RUN groupadd -g 1000 railsgroup && useradd -u 501 -g railsgroup -ms /bin/bash rails && chown -R rails:railsgroup /rails
+# Create user and group
+RUN groupadd -g 1000 mariegroup && \
+    useradd -u 501 -g mariegroup -ms /bin/bash rails && \
+    chown -R rails:mariegroup /rails
 
 USER rails
 
