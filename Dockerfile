@@ -54,9 +54,18 @@ COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
+<<<<<<< Updated upstream
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
+=======
+# Create user and group
+RUN groupadd -g 1000 mariegroup && \
+    useradd -u 501 -g mariegroup -ms /bin/bash rails && \
+    chown -R rails:mariegroup /rails
+
+USER rails
+>>>>>>> Stashed changes
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
