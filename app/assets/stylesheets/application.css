@@ -13,5 +13,6 @@
  *= require_tree .
  *= require_self
  */
-
- @import "application.tailwind";
+*= require application.tailwind
+*= require top
+*= require_self

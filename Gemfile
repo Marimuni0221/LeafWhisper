@@ -28,6 +28,10 @@ gem "jbuilder"
 
 gem 'aws-sdk-s3'
 
+gem 'slim-rails'
+
+gem "html2slim", github: "slim-template/html2slim"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
