@@ -32,6 +32,7 @@ gem 'slim-rails'
 
 gem "html2slim", github: "slim-template/html2slim"
 
+gem 'devise'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
