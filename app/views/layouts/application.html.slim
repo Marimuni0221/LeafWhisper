@@ -9,6 +9,9 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   body
+
+    header .py-6
+      .container.mx-auto.
     - if notice
       p.notice = notice
     - if alert  
