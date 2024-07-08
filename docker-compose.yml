@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:latest
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: leaf_whisper
       POSTGRES_PASSWORD: pomchan1858
@@ -20,6 +20,7 @@ services:
     depends_on:
       - db
     environment:
+      RAILS_ENV: development
       DATABASE_HOST: db
       DATABASE_USERNAME: leaf_whisper
       DATABASE_PASSWORD: pomchan1858
