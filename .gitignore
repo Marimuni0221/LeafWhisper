@@ -64,3 +64,6 @@
 =======
 .DS_Store
 >>>>>>> a4023e8 (readmeの内容の間違いを修正しました)
+
+/app/assets/builds/*
+!/app/assets/builds/.keep

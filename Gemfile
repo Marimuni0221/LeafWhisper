@@ -48,7 +48,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-gem 'net-pop', '~> 0.1.2', github: 'ruby/net-pop'
+gem "net-pop", github: "ruby/net-pop"
 gem 'net-protocol', '>= 0'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
@@ -75,3 +75,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "tailwindcss-rails", "~> 2.6"
