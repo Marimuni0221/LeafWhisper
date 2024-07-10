@@ -5,12 +5,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <header class="py-6">
-      <div class="container mx-auto"></div>
+    <header class="py-6 bg-green-500">
+      <div class="container mx-auto flex justify-between items-cneter ">
+        <div class="text-lg font-bold">LeafWhisper</div>
+        <div>
+          <a href="#sign-up">新規登録</a>
+          <a href="#sign-in">ログイン</a>
+          <a href="#menu">メニュー</a>
+        </div>
+        <div class="md:hidden">
+
+        </div>
+      </div>
     </header>
 
     <% if notice %>
