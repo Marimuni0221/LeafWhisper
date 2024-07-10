@@ -5,35 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
-    <header class="py-6 bg-green-500">
-      <div class="container mx-auto flex justify-between items-cneter ">
-        <div class="text-lg font-bold">LeafWhisper</div>
-        <div>
-          <a href="#sign-up">新規登録</a>
-          <a href="#sign-in">ログイン</a>
-          <a href="#menu">メニュー</a>
-        </div>
-        <div class="md:hidden">
-
-        </div>
-      </div>
-    </header>
-
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
-
+  <body class="bg-base-100 text-neutral">
     <%= render 'shared/header' %>
+    <section class="hero text-center py-20 bg-base-100">
+      <div class="container mx-auto">
+        <h1 class="text-6xl font-bold text-primary">日本茶の世界へようこそ</h1>
+        <p class="text-2xl text-neutral mt-4">LeafWhisperでお茶の真髄を体験してください</p>
+        <a href="#learn-more" class="mt-8 inline-block bg-accent text-white py-3 px-6 rounded hover:bg-accent-focus">もっと詳しく</a>
+      </div>
+    </section>
     <%= yield %>
-    <%= render 'shared/footer' %>
+    <% render 'shared/footer' %>
   </body>
 </html>
