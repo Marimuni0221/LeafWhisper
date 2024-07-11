@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* 「field_with_errors.」にCSSをあてる */
+  .field_with_errors {
+    @apply contents;
+  }
+}
+
 /*
 
 @layer components {
