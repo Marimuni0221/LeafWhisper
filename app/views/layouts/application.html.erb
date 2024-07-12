@@ -17,6 +17,14 @@
         <a href="#learn-more" class="mt-8 inline-block bg-accent text-white py-3 px-6 rounded hover:bg-accent-focus">もっと詳しく</a>
       </div>
     </section>
+    <div class="container mx-auto">
+      <% if notice %>
+        <p><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p><%= alert %></p>
+      <% end %>
+    </div>
     <%= yield %>
     <%= render 'shared/footer' %>
   </body>
