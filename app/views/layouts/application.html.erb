@@ -8,16 +8,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="flex justify-between bg-slate-950 text-neutral">
-    <%= render 'shared/header' %>
-    <section class="hero text-center py-20 bg-base-100">
-      <div class="container mx-auto">
-        <h1 class="text-6xl bg-primary">日本茶の世界へようこそ</h1>
-        <p class="text-2xl text-neutral mt-4">LeafWhisperでお茶の真髄を体験してください</p>
-        <a href="#learn-more" class="mt-8 inline-block bg-accent text-white py-3 px-6 rounded hover:bg-accent-focus">もっと詳しく</a>
-      </div>
-    </section>
+  <body class="bg-base-100 text-neutral">
+    <%# ヘッダーの表示 %>
+    <div class="w-full">
+      <%= render 'shared/header' %>
+    </div>
     <%= yield %>
+    <%# フッターの表示 %>
     <%= render 'shared/footer' %>
   </body>
 </html>
