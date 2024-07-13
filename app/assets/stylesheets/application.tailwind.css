@@ -9,6 +9,14 @@
   }
 }
 
+.menu-horizontal {
+  @apply flex flex-row list-none p-0;
+}
+
+.menu-horizontal li {
+  @apply mr-4; /* Tailwind CSS で 1rem は 'mr-4' に相当します */
+}
+
 /*
 
 @layer components {
