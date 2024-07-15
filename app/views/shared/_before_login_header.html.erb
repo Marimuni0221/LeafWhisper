@@ -1,11 +1,12 @@
-<%# ナビゲーションバー(ログイン後) %>
+<%# ナビゲーションバー(ログイン前) %>
 <header class="navbar bg-primary">
   <div class="flex-1">
     <%= link_to 'LeafWhisper', root_path, class: "btn btn-ghost text-xl font-bold" %>
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
-      <li><%= link_to 'ログアウト', destroy_user_session_path %></li>
+      <li><%= link_to '新規登録', new_user_registration_path %></li>
+      <li><%= link_to 'ログイン', new_user_session_path%></li>
       <li><a>メニュー</a></li>
     </ul>
   </div>
