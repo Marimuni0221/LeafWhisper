@@ -42,7 +42,8 @@
     </div>
 
     <p class="mt-4 text-sm text-center text-gray-500">
-      アカウントをお持ちではない方は<a href="#" class="text-blue-500 hover:underline">こちら</a>
-    </p>
+      アカウントをお持ちではない方は<%= link_to 'こちら', new_user_registration_path, class: "text-blue-500 hover:underline"  %>
   </div>
-</div>  
+</div>
+
+<%= render "devise/shared/links" %>

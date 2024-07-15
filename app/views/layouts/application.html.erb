@@ -11,7 +11,11 @@
   <body class="bg-base-100 text-neutral">
     <%# ヘッダーの表示 %>
     <div class="w-full">
-      <%= render 'shared/header' %>
+      <% if user_signed_in? %>
+        <%= render 'shared/header' %>
+      <% else %>
+        <%= render 'shared/before_login_header' %>
+      <% end %>  
     </div>
     <%= yield %>
     <%# フッターの表示 %>
