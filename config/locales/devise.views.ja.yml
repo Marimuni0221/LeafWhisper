@@ -1,6 +1,8 @@
 ja:
   activerecord:
     attributes:
+      models:
+        user: ユーザー
       user:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
@@ -25,8 +27,22 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
-    models:
-      user: ユーザー
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: 'メールアドレスを入力してください。'
+              invalid: 'メールアドレスに「@」を挿入してください。'
+            password:
+              blank: 'パスワードを入力してください。'
+              confirmation: 'パスワードが一致しません。確認用パスワードをもう一度入力してください。'
+            password_confirmation:
+              confirmation: 'パスワードが一致しません。確認用パスワードをもう一度入力してください。'
+      messages:
+        confirmation: 'パスワードが一致しません。確認用パスワードをもう一度入力してください。'
+  models:
+    user: ユーザー     
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
@@ -139,5 +155,5 @@ ja:
       not_found: は見つかりませんでした。
       not_locked: はロックされていません。
       not_saved:
-        one: エラーが発生したため %{resource} は保存されませんでした。
+        one: エラーが発生したため %{resource}は保存されませんでした。
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
