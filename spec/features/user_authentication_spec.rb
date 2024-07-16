@@ -5,6 +5,7 @@ describe 'ユーザー認証機能', type: :feature do
   context 'ユーザー新規登録時' do
     it 'ユーザー登録成功時' do
       visit new_user_registration_path
+      fill_in 'ニックネーム', with: 'nickname'
       fill_in 'Eメール', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認用）', with: 'password'
@@ -15,6 +16,7 @@ describe 'ユーザー認証機能', type: :feature do
 
     it '不正なメールアドレス使用時' do
       visit new_user_registration_path
+      fill_in 'ニックネーム', with: 'nickname'
       fill_in 'Eメール', with: 'invalid_email'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認用）', with: 'password'
@@ -26,6 +28,7 @@ describe 'ユーザー認証機能', type: :feature do
 
     it '一致しないパスワード入力時' do
       visit new_user_registration_path
+      fill_in 'ニックネーム', with: 'nickname'
       fill_in 'Eメール', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認用）', with: 'differentpassword'
