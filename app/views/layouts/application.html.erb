@@ -17,6 +17,8 @@
         <%= render 'shared/before_login_header' %>
       <% end %>  
     </div>
+    <%# フラッシュメッセージの表示 %>
+      <%= render 'shared/flash_message' %>
     <%= yield %>
     <%# フッターの表示 %>
     <%= render 'shared/footer' %>
