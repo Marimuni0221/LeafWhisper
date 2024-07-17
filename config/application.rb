@@ -15,7 +15,7 @@ module LeafWhisper
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
     
-    # deviseの日本語化設定
+    # アプリケーションの日本語化設定
     config.i18n.default_locale = :ja
     # Configuration for the application, engines, and railties goes here.
     #
