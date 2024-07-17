@@ -17,6 +17,14 @@
   @apply mr-4; /* Tailwind CSS で 1rem は 'mr-4' に相当します */
 }
 
+.alert-notice {
+  @apply bg-green-100 text-green-800 p-4 rounded-lg shadow-md mb-4;
+}
+
+.alert-alert {
+  @apply bg-red-100 text-red-800 p-4 rounded-lg shadow-md mb-4;
+}
+
 /*
 
 @layer components {
