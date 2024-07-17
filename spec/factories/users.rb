@@ -1,5 +1,5 @@
 FactoryBot.define do
-  facoty :user do 
+  factory :user do 
     name { "nickname" }
     email { "test@example.com" }
     password { "password" }
