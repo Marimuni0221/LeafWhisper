@@ -1,43 +1,67 @@
-<h2><%= t('.title', resource: devise_i18n_fix_model_name_case(resource.model_name.human, i18n_key: 'registrations.edit.title')) %></h2>
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center mb-6"><%= t('.edit_your_account') %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      
+      <div class="field flex flex-col items-center mb-4">
+        <div class="relative">         
+          <% avatar_url = current_user.decorate.display_avatar_url %>
+          <%= image_tag avatar_url, class: 'w-32 rounded-full', size: '100x100' %>
+          <div class="absolute bottom-0 right-0 rounded-full bg-transparent p-2 shadow-md cursor-pointer transform translate-x-2 translate-y-2" onclick="document.querySelector('#user_avatar').click()">
+            <i class="fa-solid fa-pen" style="color: #74C0FC;"></i>
+          </div>
+        </div>  
+        <%= f.file_field :avatar, id: "user_avatar", style: "display: none;", autofocus: true, autocomplete: "avatar", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
+        <%= f.hidden_field :avatar_cache %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="field flex flex-col mb-4">
+        <%= f.label :name, "ニックネーム", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "nickname", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
+      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
-  <% end %>
+      <div class="field flex flex-col mb-4">
+        <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
+      </div>
+      
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div class="mb-4 text-sm text-gray-700"><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+      <div class="field flex flex-col mb-4">
+        <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+        <% if @minimum_password_length %>
+          <em class="text-xs text-gray-500"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
+      </div>
+
+      <div class="field flex flex-col mb-4">
+        <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
+      </div>
+
+      <div class="field flex flex-col mb-4">
+        <%= f.label :current_password, class: "block text-sm font-medium text-gray-700" %> 
+        <em class="text-xs text-gray-500"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></em>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit t('.update'), class: "w-full py-2 px-4 bg-secondary text-white font-bold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+      </div>
     <% end %>
+
+    <div class="text-center mt-4">
+      <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure'), turbo_confirm: t('.are_you_sure') }, method: :delete, class: "text-blue-500 hover:underline" %>
+    </div>
+
+    <div class="text-center mt-4">
+      <%= link_to t('devise.shared.links.back'), :back, class: "text-indigo-500 hover:underline" %>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t('.update') %>
-  </div>
-<% end %>
-
-<h3><%= t('.cancel_my_account') %></h3>
-
-<div><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure'), turbo_confirm: t('.are_you_sure') }, method: :delete %></div>
-
-<%= link_to t('devise.shared.links.back'), :back %>
