@@ -41,6 +41,8 @@ gem 'devise-i18n-views'
 gem 'rails-i18n'
 
 gem 'draper'
+
+gem 'carrierwave', '~> 2.0'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
