@@ -4,6 +4,8 @@
     <%= link_to 'LeafWhisper', root_path, class: "btn btn-ghost text-xl font-bold" %>
   </div>
   <div class="flex-none">
+    <%= render 'products/search_form', q: @q, url: search_products_path %>
+
     <ul class="menu menu-horizontal px-1 items-center">
       <li class="font-bold">ようこそ<%= current_user.display_name %>さん！</li>
       <li><%= link_to '編集', edit_user_registration_path %></li>

@@ -1,0 +1,10 @@
+<h2>検索結果</h2>
+<% if @products.present? %>
+  <ul>
+    <% @products.each do |product| %>
+      <li><%= product.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>該当する商品が見つかりませんでした。</p>
+<% end %>
