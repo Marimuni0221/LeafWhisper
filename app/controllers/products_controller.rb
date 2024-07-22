@@ -10,7 +10,8 @@ class ProductsController < ApplicationController
     @products = @products.page(params[:page])
 
     # 検索結果にデコレーターを適用
-    @products = ProductDecorator.decorate_collection(@q.result, price_range: params.dig(:q, :price_range))
+    @products = PaginatingDecorator.decorate(@products)
+
 
     # アクションのレスポンスをリクエストの形式に基づいて分岐させる設定
     respond_to do |format|
