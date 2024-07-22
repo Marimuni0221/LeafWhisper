@@ -2,15 +2,15 @@
   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
     <h2 class="text-2xl font-bold text-center mb-6"><%= t('.edit_your_account') %></h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       
       <div class="field flex flex-col items-center mb-4">
         <div class="relative">         
           <% avatar_url = current_user.decorate.display_avatar_url %>
-          <%= image_tag avatar_url, class: 'w-32 rounded-full', size: '100x100' %>
-          <div class="absolute bottom-0 right-0 rounded-full bg-transparent p-2 shadow-md cursor-pointer transform translate-x-2 translate-y-2" onclick="document.querySelector('#user_avatar').click()">
-            <i class="fa-solid fa-pen" style="color: #74C0FC;"></i>
+          <%= image_tag avatar_url, class: 'w-32 h-32 rounded-full', size: '100x100' %>
+          <div class="absolute bottom-0 right-0 mb-2 mr-2 rounded-full bg-transparent p-2 shadow-md cursor-pointer transform translate-x-1/2 translate-y-1/2" onclick="document.querySelector('#user_avatar').click()">
+            <i class="bg-transparent fa-solid fa-arrow-up-from-bracket"></i>
           </div>
         </div>  
         <%= f.file_field :avatar, id: "user_avatar", style: "display: none;", autofocus: true, autocomplete: "avatar", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>

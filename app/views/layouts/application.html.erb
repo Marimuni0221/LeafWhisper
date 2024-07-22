@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous">
   </head>
   <body class="bg-base-100 text-neutral flex flex-col min-h-screen">
-    <div class="flex-grow pb-24">
+    
       <%# ヘッダーの表示 %>
       <div class="w-full">
         <% if user_signed_in? %>
@@ -20,10 +20,11 @@
         <% end %>  
       </div>
       <%# フラッシュメッセージの表示 %>
+      <div class="flex-grow"> 
         <%= render 'shared/flash_message' %>
-      <%= yield %>
-    </div>
-    <%# フッターの表示 %>
-    <%= render 'shared/footer' %>
+        <%= yield %>
+      </div>
+      <%# フッターの表示 %>
+      <%= render 'shared/footer' %>
   </body>
 </html>
