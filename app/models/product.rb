@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  validates :item_code, presence: true, uniqueness: true
+  
   scope :price_range, -> (range) {
     case range
     when 'under_500'
