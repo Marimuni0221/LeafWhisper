@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def show
-    @product = find_product_in_session(params[:id])
+    @product = Product.find_by(item_code: params[:id])
   end
 
   def search
