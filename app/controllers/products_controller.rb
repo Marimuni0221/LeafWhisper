@@ -1,4 +1,8 @@
 class ProductsController < ApplicationController
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def search
     @q = Product.ransack(params[:q] || {})
     @products = @q.result
