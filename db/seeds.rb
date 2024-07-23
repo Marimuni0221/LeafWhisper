@@ -21,8 +21,8 @@ end
 # 商品の作成
 products = [
   { name: 'Sample Product', description: 'This is a sample product.', price: 100.0 },
-  { name: 'Sample Matcha 1', description: 'This is a sample description for Matcha 1', price: 1000, item_url: 'https://example.com/item1', item_image_url: 'https://example.com/item1.jpg', category: 'tea' },
-  { name: 'Sample Matcha 2', description: 'This is a sample description for Matcha 2', price: 1500, item_url: 'https://example.com/item2', item_image_url: 'https://example.com/item2.jpg', category: 'tea' }
+  { name: 'Sample Matcha 1', description: 'This is a sample description for Matcha 1', price: 1000, item_url: 'https://example.com/item1', item_image_url: ActionController::Base.helpers.asset_path('matcha_powder.jpg'), category: 'tea' },
+  { name: 'Sample Matcha 2', description: 'This is a sample description for Matcha 2', price: 1500, item_url: 'https://example.com/item2', item_image_url: ActionController::Base.helpers.asset_path('matcha_powder.jpg'), category: 'tea' }
 ]
 
 products.each do |product|
