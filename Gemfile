@@ -48,6 +48,7 @@ gem 'ransack'
 
 gem 'kaminari'
 
+gem 'rakuten_web_service'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
