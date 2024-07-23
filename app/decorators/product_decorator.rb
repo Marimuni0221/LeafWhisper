@@ -1,6 +1,10 @@
 class ProductDecorator < Draper::Decorator
   delegate_all
 
+  def formatted_price
+    h.number_to_currency(object.price)
+  end
+
   def self.decorate_collection(products, context = {})
     products = products.price_range(context[:price_range]) if context[:price_range].present?
     super(products)
