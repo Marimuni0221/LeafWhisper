@@ -28,5 +28,13 @@ module LeafWhisper
     config.assets.enabled = true
     # アセットロードパスにアセットを追加する
     config.assets.paths << Rails.root.join('app', 'assets', 'images')
+
+    config.action_controller.default_protect_from_forgery = true
+
+    config.cache_store = :redis_cache_store, {
+      url: "redis://redis:6379/0/cache",
+      namespace: "cache",
+      expires_in: 90.minutes
+    }
   end
 end

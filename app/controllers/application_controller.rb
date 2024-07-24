@@ -18,4 +18,5 @@ class ApplicationController < ActionController::Base
   def set_search
     @q = Product.ransack(params[:q])    
   end
+
 end
