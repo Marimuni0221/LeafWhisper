@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController 
   def search
-    Rails.logger.debug("Session data size before setting: #{session.to_hash.to_s.bytesize}")
-    Rails.logger.debug("Session data content before setting: #{session.to_hash.inspect}")
     # ここでセッションの保存を無効にする
     request.session_options[:store] = false
 
@@ -33,8 +31,6 @@ class ProductsController < ApplicationController
 
     @products = ProductDecorator.decorate(@products)
 
-    Rails.logger.debug("Session data size after setting: #{session.to_hash.to_s.bytesize}")
-    Rails.logger.debug("Session data content after setting: #{session.to_hash.inspect}")
     # アクションのレスポンスをリクエストの形式に基づいて分岐させる設定
     respond_to do |format|
       format.turbo_stream
@@ -48,7 +44,14 @@ class ProductsController < ApplicationController
     # keywordが無効な場合、デフォルトのキーワードを使用
     keyword = '抹茶' if keyword.blank?
     
-    items = RakutenWebService::Ichiba::Item.search(keyword: keyword, page: page)
+    items = []
+    (1..7).each do |i| # 最大5ページまで取得する例
+      result = RakutenWebService::Ichiba::Item.search(keyword: keyword, page: i)
+      break if result === 0
+      result.each do |item|
+        items << item
+      end
+    end
 
     items.map do |item|
       Product.new(
@@ -57,7 +60,7 @@ class ProductsController < ApplicationController
         description: item['itemCaption'],
         price: item['itemPrice'],
         item_url: item['itemUrl'],
-        item_image_url: item['mediumImageUrls'].first['imageUrl'],
+        item_image_url: item['mediumImageUrls'].first,
         category: determine_category(item['itemName'], item['itemCaption'])
       )
     end
