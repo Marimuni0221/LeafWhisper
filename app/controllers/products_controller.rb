@@ -1,9 +1,10 @@
-class ProductsController < ApplicationController
-  def show
-    @product = Product.find_by(item_code: params[:id])
-  end
-
+class ProductsController < ApplicationController 
   def search
+    Rails.logger.debug("Session data size before setting: #{session.to_hash.to_s.bytesize}")
+    Rails.logger.debug("Session data content before setting: #{session.to_hash.inspect}")
+    # ここでセッションの保存を無効にする
+    request.session_options[:store] = false
+
     @q = Product.ransack(params[:q] || {})
     keyword = params[:q].present? ? params[:q][:name_or_description_cont] : '抹茶'
     category = params.dig(:q, :category_eq).to_sym if params.dig(:q, :category_eq).present?
@@ -31,6 +32,9 @@ class ProductsController < ApplicationController
     @products = PaginatingDecorator.decorate(@products)
 
     @products = ProductDecorator.decorate(@products)
+
+    Rails.logger.debug("Session data size after setting: #{session.to_hash.to_s.bytesize}")
+    Rails.logger.debug("Session data content after setting: #{session.to_hash.inspect}")
     # アクションのレスポンスをリクエストの形式に基づいて分岐させる設定
     respond_to do |format|
       format.turbo_stream
@@ -39,35 +43,7 @@ class ProductsController < ApplicationController
   end
 
   private
-
-  def find_product_in_session(item_code)
-    products = session[:products] || []
-    products.find { |product| product.id == item_code }
-  end
-
-  def fetch_product(item_code)
-    Rails.logger.debug("Fetching product with itemCode: #{item_code}")
-  begin
-    items = RakutenWebService::Ichiba::Item.search(itemCode: item_code)
-    item = items.first
-    Rails.logger.debug("Fetched item: #{item.inspect}")
-    return nil unless item
-
-    Product.new(
-      id: item_code,
-      name: item['itemName'],
-      description: item['itemCaption'],
-      price: item['itemPrice'],
-      item_url: item['itemUrl'],
-      item_image_url: item['mediumImageUrls'].first['imageUrl'],
-      category: determine_category(item['itemName'], item['itemCaption'])
-    )
-    rescue RakutenWebService::WrongParameter => e
-      Rails.logger.error("Rakuten API returned an error: #{e.message}")
-      nil
-    end  
-  end
-
+  
   def fetch_products(keyword, page)
     # keywordが無効な場合、デフォルトのキーワードを使用
     keyword = '抹茶' if keyword.blank?

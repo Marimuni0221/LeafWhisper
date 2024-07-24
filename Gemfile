@@ -50,7 +50,9 @@ gem 'kaminari'
 
 gem 'rakuten_web_service'
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem 'redis'
+gem 'redis-rails', '~> 5.0'
+gem 'redis-actionpack'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
