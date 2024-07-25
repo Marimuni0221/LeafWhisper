@@ -1,6 +1,11 @@
 class Product < ApplicationRecord
-  validates :item_code, presence: true, uniqueness: true
+  has_many :reviews, as: :reviewable
+
+  before_save :generate_url_hash
   
+  validates :name, presence: true
+  validates :item_url, presence: true, uniqueness: true
+
   scope :price_range, -> (range) {
     case range
     when 'under_500'
@@ -26,5 +31,11 @@ class Product < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     []
+  end
+
+  private
+
+  def generate_url_hash
+    self.url_hash = Digest::SHA256.hexdigest(item_url) if item_url_changed?
   end
 end
