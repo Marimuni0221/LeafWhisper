@@ -54,8 +54,9 @@ class ProductsController < ApplicationController
     end
 
     items.map do |item|
-      Product.new(
-        id: item['itemCode'],
+      url_hash = Digest::SHA256.hexdigest(item['itemUrl'])
+      product = Product.find_or_initialize_by(url_hash: url_hash)
+      product.update(
         name: item['itemName'],
         description: item['itemCaption'],
         price: item['itemPrice'],
@@ -63,6 +64,7 @@ class ProductsController < ApplicationController
         item_image_url: item['mediumImageUrls'].first,
         category: determine_category(item['itemName'], item['itemCaption'])
       )
+      product
     end
       
   end

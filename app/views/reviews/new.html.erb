@@ -1,0 +1,13 @@
+<%= form_with model: [@reviewable, @review], local: false do |form| %>
+  <div class="field">
+    <%= form.label :rating, "評価" %>
+    <%= form.select :rating, options_for_select([['★☆☆☆☆', 1], ['★★☆☆☆', 2], ['★★★☆☆', 3], ['★★★★☆', 4], ['★★★★★', 5]]) %>
+  </div>
+  <div class="field">
+    <%= form.label :content, "レビュー内容" %>
+    <%= form.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= form.submit "レビューを投稿" %>
+  </div>
+<% end %>
