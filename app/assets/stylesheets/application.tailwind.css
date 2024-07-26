@@ -25,6 +25,25 @@
   @apply bg-red-100 text-red-800 p-4 rounded-lg shadow-md mb-4;
 }
 
+/* カスタムスタイル */
+.text-4xl {
+  font-size: 2.25rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* ラジオボタンを非表示にし、ラベルのクリックを有効にする */
+input[type="radio"].hidden + label {
+  color: gray;
+}
+
+input[type="radio"].hidden:checked + label {
+  color: gold;
+}
+
+
 /*
 
 @layer components {

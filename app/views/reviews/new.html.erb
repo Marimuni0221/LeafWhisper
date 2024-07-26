@@ -1,13 +1,26 @@
-<%= form_with model: [@reviewable, @review], local: false do |form| %>
-  <div class="field">
-    <%= form.label :rating, "評価" %>
-    <%= form.select :rating, options_for_select([['★☆☆☆☆', 1], ['★★☆☆☆', 2], ['★★★☆☆', 3], ['★★★★☆', 4], ['★★★★★', 5]]) %>
+<div class="min-h-screen flex items-center justify-center bg-gray-100 py-10">
+  <div class="max-w-sm mx-auto bg-white p-6 rounded-lg shadow-lg w-full">
+    <h2 class="text-2xl font-bold mb-4 text-center">レビュー投稿</h2>
+    <p class="text-lg mb-4 text-center">商品のご感想はいかがでしたか？</p>
+    <%= form_with model: [@reviewable, @review], local: true, class: "space-y-4" do |form| %>
+      <div class="flex justify-center space-x-1">
+        <%= form.radio_button :rating, 1, id: "star1", class: "hidden" %>
+        <%= form.label :rating, "★", for: "star1", class: "text-4xl cursor-pointer star" %>
+        <%= form.radio_button :rating, 2, id: "star2", class: "hidden" %>
+        <%= form.label :rating, "★", for: "star2", class: "text-4xl cursor-pointer star" %>
+        <%= form.radio_button :rating, 3, id: "star3", class: "hidden" %>
+        <%= form.label :rating, "★", for: "star3", class: "text-4xl cursor-pointer star" %>
+        <%= form.radio_button :rating, 4, id: "star4", class: "hidden" %>
+        <%= form.label :rating, "★", for: "star4", class: "text-4xl cursor-pointer star" %>
+        <%= form.radio_button :rating, 5, id: "star5", class: "hidden" %>
+        <%= form.label :rating, "★", for: "star5", class: "text-4xl cursor-pointer star" %>
+      </div>
+      <div class="form-control">
+        <%= form.text_area :content, placeholder: "コメントを入力", class: "textarea textarea-bordered w-full h-32" %>
+      </div>
+      <div class="flex justify-center">
+        <%= form.submit "投稿する", class: "btn btn-secondary w-full" %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= form.label :content, "レビュー内容" %>
-    <%= form.text_area :content %>
-  </div>
-  <div class="actions">
-    <%= form.submit "レビューを投稿" %>
-  </div>
-<% end %>
+</div>
