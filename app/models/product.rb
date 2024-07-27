@@ -1,10 +1,14 @@
 class Product < ApplicationRecord
-  has_many :reviews, as: :reviewable
+  has_many :reviews, as: :reviewable, dependent: :destroy
 
   before_save :generate_url_hash
   
   validates :name, presence: true
-  validates :item_url, presence: true, uniqueness: true
+  validates :url_hash, presence: true, uniqueness: true
+  #validates :item_url, presence: true, uniqueness: true
+
+  before_validation :generate_url_hash, if: -> { item_url.present? && item_url_changed? }
+
 
   scope :price_range, -> (range) {
     case range
@@ -36,6 +40,6 @@ class Product < ApplicationRecord
   private
 
   def generate_url_hash
-    self.url_hash = Digest::SHA256.hexdigest(item_url) if item_url_changed?
+    self.url_hash = Digest::SHA256.hexdigest(item_url)
   end
 end

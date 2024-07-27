@@ -1,0 +1,4 @@
+<%= turbo_stream.append "reviews", partial: "reviews/review", locals: { review: @review } %>
+<%= turbo_stream.replace "review_form", partial: "reviews/form", locals: { reviewable: @reviewable, review: Review.new } %>
+<%= turbo_stream.prepend "flash", partial: "shared/flash_message", locals: { message: "レビューが投稿されました。" } %>
+<%= turbo_stream.after "review_form", partial: "reviews/success" %>

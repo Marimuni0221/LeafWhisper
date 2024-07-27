@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     if @review.save
       respond_to do |format|
-        format.html { redirect_to @reviewable, notice: 'レビューが投稿されました。' }
+        format.html { redirect_to search_products_path, notice: 'レビューが投稿されました。' }
         format.turbo_stream
       end
     else
@@ -20,14 +20,12 @@ class ReviewsController < ApplicationController
   end
 
   private
-  
-  def set_reviewable
-    @reviewable = find_reviewable
-  end
 
   def set_reviewable
-    @reviewable = Product.find_by(url_hash: params[:item_url])
+    Rails.logger.debug "params[:product_item_url]: #{params[:product_item_url]}"
+    @reviewable = Product.find_by(url_hash: params[:product_item_url])
     unless @reviewable
+      Rails.logger.debug "Product not found for item_url: #{params[:product_item_url]}"
       redirect_to root_path, alert: '商品が見つかりませんでした。'
     end
   end

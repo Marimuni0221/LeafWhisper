@@ -19,3 +19,23 @@ document.addEventListener('turbo:load', function() {
     });
   }); 
   
+document.addEventListener('DOMContentLoaded', () => {
+  window.openModal = () => {
+    document.getElementById('reviewModal').classList.remove('hidden');
+  };
+
+  window.closeModal = () => {
+    document.getElementById('reviewModal').classList.add('hidden');
+  };
+
+  // 閉じるボタンのイベントリスナー
+  document.addEventListener('click', function(event) {
+    if (event.target.id === 'close-modal') {
+      const modal = event.target.closest('.fixed.inset-0');
+      if (modal) {
+        window.location.href = '/products/search'; // ここでリダイレクト先のURLを指定
+      }
+    }
+  });
+});
+
