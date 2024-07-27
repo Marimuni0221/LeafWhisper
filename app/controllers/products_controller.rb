@@ -31,10 +31,6 @@ class ProductsController < ApplicationController
     @products = PaginatingDecorator.decorate(@products)
 
     @products = ProductDecorator.decorate(@products)
-    
-    # `@reviewable`を設定
-    @reviewable = @products.first if @products.any?
-    @review = Review.new(reviewable: @reviewable, user: current_user)
 
     # アクションのレスポンスをリクエストの形式に基づいて分岐させる設定
     respond_to do |format|

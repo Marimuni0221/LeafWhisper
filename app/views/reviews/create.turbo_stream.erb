@@ -1,4 +1,4 @@
-<%= turbo_stream.append "reviews", partial: "reviews/review", locals: { review: @review } %>
+<%= turbo_stream.append "reviews_#{@reviewable.url_hash}", partial: "reviews/review", locals: { review: @review } %>
 <%= turbo_stream.replace "modalContent" do %>
   <div class="text-center">
     <h2 class="text-2xl font-bold mb-4">レビューが投稿されました</h2>
