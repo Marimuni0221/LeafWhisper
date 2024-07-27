@@ -2,6 +2,7 @@
 <header class="navbar bg-primary">
   <div class="flex-1">
     <%= link_to 'LeafWhisper', root_path, class: "btn btn-ghost text-xl font-bold" %>
+    <%= render 'products/search_form', q: @q, url: search_products_path %>
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
