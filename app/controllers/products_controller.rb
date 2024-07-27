@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController 
+  require 'digest'
   def search
     # ここでセッションの保存を無効にする
     request.session_options[:store] = false
@@ -30,6 +31,10 @@ class ProductsController < ApplicationController
     @products = PaginatingDecorator.decorate(@products)
 
     @products = ProductDecorator.decorate(@products)
+    
+    # `@reviewable`を設定
+    @reviewable = @products.first if @products.any?
+    @review = Review.new(reviewable: @reviewable, user: current_user)
 
     # アクションのレスポンスをリクエストの形式に基づいて分岐させる設定
     respond_to do |format|
@@ -56,14 +61,24 @@ class ProductsController < ApplicationController
     items.map do |item|
       url_hash = Digest::SHA256.hexdigest(item['itemUrl'])
       product = Product.find_or_initialize_by(url_hash: url_hash)
-      product.update(
+
+      Rails.logger.debug "Found or initialized product: #{product.inspect}"
+
+      product.assign_attributes(
         name: item['itemName'],
         description: item['itemCaption'],
         price: item['itemPrice'],
         item_url: item['itemUrl'],
         item_image_url: item['mediumImageUrls'].first,
-        category: determine_category(item['itemName'], item['itemCaption'])
+        category: determine_category(item['itemName'], item['itemCaption']),
+        url_hash: url_hash
       )
+      Rails.logger.debug "Before save: #{product.inspect}"
+      if product.save
+        Rails.logger.debug "After save: #{product.inspect}"
+      else
+        Rails.logger.debug "Save failed: #{product.errors.full_messages.join(', ')}"
+      end
       product
     end
       
