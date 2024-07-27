@@ -1,4 +1,9 @@
 <%= turbo_stream.append "reviews", partial: "reviews/review", locals: { review: @review } %>
-<%= turbo_stream.replace "review_form", partial: "reviews/form", locals: { reviewable: @reviewable, review: Review.new } %>
+<%= turbo_stream.replace "modalContent" do %>
+  <div class="text-center">
+    <h2 class="text-2xl font-bold mb-4">レビューが投稿されました</h2>
+    <p class="mb-4">ご協力ありがとうございます！</p>
+    <button id="close-modal" class="bg-green-500 text-gray-500 font-bold py-2 px-4 rounded">閉じる</button>
+  </div>
+<% end %>
 <%= turbo_stream.prepend "flash", partial: "shared/flash_message", locals: { message: "レビューが投稿されました。" } %>
-<%= turbo_stream.after "review_form", partial: "reviews/success" %>

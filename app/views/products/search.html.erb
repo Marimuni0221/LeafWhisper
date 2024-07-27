@@ -8,10 +8,13 @@
 <!-- レビューモーダル -->
 <div id="reviewModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
   <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
-    <h2 class="text-2xl font-bold mb-4 text-center">レビュー投稿</h2>
-    <p class="text-lg mb-4 text-center">商品のご感想はいかがでしたか？</p>
     <div id="modalContent">
+      <h2 class="text-2xl font-bold mb-4 text-center">レビュー投稿</h2>
+      <p class="text-lg mb-4 text-center">商品のご感想はいかがでしたか？</p>
       <%= render 'reviews/form', reviewable: @reviewable, review: Review.new %>
-    </div>
+      <div class="flex justify-center mt-4">
+        <button id="close-modal" class="text-gray-500 hover:text-gray-700">今はしない</button>
+      </div>
+    </div>  
   </div>
 </div>

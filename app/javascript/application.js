@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 閉じるボタンのイベントリスナー
   document.addEventListener('click', function(event) {
     if (event.target.id === 'close-modal') {
-      const modal = event.target.closest('.fixed.inset-0');
+      const modal = document.getElementById('reviewModal');
       if (modal) {
-        window.location.href = '/products/search'; // ここでリダイレクト先のURLを指定
+        modal.classList.add('hidden');
       }
     }
   });
