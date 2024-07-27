@@ -1,7 +1,11 @@
 <div class="review bg-white shadow-md rounded-md p-4 mb-4">
   <div class="rating mb-2">
-    <% review.rating.times do %>
-      ★
+    <% if review.rating.present? %>
+      <% review.rating.times do %>
+        ★
+      <% end %>
+    <% else %>
+      評価がありません
     <% end %>
   </div>
   <div class="content mb-2">

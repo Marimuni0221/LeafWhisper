@@ -4,6 +4,10 @@ class ReviewsController < ApplicationController
 
   def new
     @review = @reviewable.reviews.new
+    respond_to do |format|
+      format.html { render partial: 'reviews/form', layout: false, locals: { reviewable: @reviewable, review: @review } } 
+      format.turbo_stream # Turbo Stream形式でのレンダリング
+    end
   end
 
   def create
@@ -15,7 +19,7 @@ class ReviewsController < ApplicationController
         format.turbo_stream
       end
     else
-      render :new
+      render :new, layout: false
     end 
   end
 
