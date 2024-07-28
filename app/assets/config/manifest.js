@@ -5,4 +5,5 @@
 //= link_tree ../builds
 //= link favicon.png
 //= link favicon.ico
+//= link application.css
 //= link application.tailwind.css
