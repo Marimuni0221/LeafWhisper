@@ -8,7 +8,7 @@
       <div class="field flex flex-col items-center mb-4">
         <div class="relative">         
           <% avatar_url = current_user.decorate.display_avatar_url %>
-          <%= image_tag avatar_url, class: 'w-32 h-32 rounded-full', size: '100x100' %>
+          <%= image_tag avatar_url, class: 'w-32 h-32 rounded-full', size: '150x150' %>
           <div class="absolute bottom-0 right-0 mb-2 mr-2 rounded-full bg-transparent p-2 shadow-md cursor-pointer transform translate-x-1/2 translate-y-1/2" onclick="document.querySelector('#user_avatar').click()">
             <i class="bg-transparent fa-solid fa-arrow-up-from-bracket"></i>
           </div>
