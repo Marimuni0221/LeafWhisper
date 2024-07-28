@@ -34,6 +34,9 @@
   cursor: pointer;
 }
 
+.custom-bg-position {
+  object-position: right bottom !important;
+}
 /* ラジオボタンを非表示にし、ラベルのクリックを有効にする */
 input[type="radio"].hidden + label {
   color: gray;
