@@ -97,10 +97,9 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-  config.cache_store = :redis_cache_store, { 
-    url: "redis://localhost:6379/0/cache",
-    namespace: "cache",
-    expires_in: 90.minutes
-  }
+  #
+  
+  config.cache_store = :memory_store
+  Rails.application.config.session_store :active_record_store, key: '_leaf_whisper_session', secure: Rails.env.production?
   config.active_record.cache_versioning = false
 end
