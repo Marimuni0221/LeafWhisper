@@ -3,7 +3,10 @@ Figma：https://www.figma.com/design/ncVnonAehn7mboKRKmKwrH/LeafWhisper?node-id=
 
 ER図：https://gyazo.com/649349f6a3776a559edfea72ae011eb6
 
-■サービス概要
+■　サービスURl
+https://leafwhisper.onrender.com
+
+■　サービス概要
 抹茶に関する情報を集約した、抹茶に関する商品やカフェの検索・レビューを提供出来るアプリです。
 抹茶好きな方や、抹茶に関心がある方が情報を共有することによって交流する事も出来ます。
 
