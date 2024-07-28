@@ -5,3 +5,4 @@
 //= link favicon.png
 //= link favicon.ico
 //= link application.tailwind.css
+//= link application.css
