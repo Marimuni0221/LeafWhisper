@@ -1,6 +1,7 @@
 <%# ナビゲーションバー(ログイン前) %>
 <header class="navbar bg-primary">
   <div class="flex-1">
+    <img src="<%= asset_path('favicon.ico') %>" alt="LeafWhisper Logo">
     <%= link_to 'LeafWhisper', root_path, class: "btn btn-ghost text-xl font-bold" %>
     <%= render 'products/search_form', q: @q, url: search_products_path %>
   </div>
