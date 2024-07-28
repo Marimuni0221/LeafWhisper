@@ -1,11 +1,17 @@
-<main class="hero text-center py-20 bg-base-100"> 
-  <%# 画像コンテナ %>
-  <div class="w-full mbｰ4">
-    <%= image_tag 'tea5.jpg', alt: 'image' %>
-  </div>
-  <%# テキストコンテナ %>
-  <div class="container mx-auto mt-8 text-white">
-    <h1 class="text-6xl">Welcome to LeafWhisper</h1>
-    <p class="text-2xl text-neutral mt-4">日本茶をもっと身近に、もっと楽しく</p>
+<main class="hero text-center py-10 bg-base-100">
+  <!-- 画像コンテナ -->
+  <div class="w-full mb-4 relative">
+    <%= image_tag 'tea5.jpg', alt: 'image', class: 'object-cover h-full w-full pl-20 pt-10 brightness-100 custom-bg-position' %>
+    <!-- テキストコンテナ -->
+    <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-start items-start p-10" style="top: 5%;">
+      <h1 class="text-6xl text-gray-700 bg-opacity-50 px-4 py-2 rounded-lg">Welcome to LeafWhisper</h1>
+      <p class="text-2xl text-gray-700 mt-4  bg-opacity-50 px-4 py-2 rounded-lg">日本茶をもっと身近に、もっと楽しく</p>
+    </div>
+    <div>
+      <section>
+        <h2 class="text-4xl font-bold text-gray-800 mt-10 mb-4">LeafWhisperとは？</h2>
+        <p class="text-2xl">抹茶商品の検索や抹茶カフェの検索、そしてレビューの投稿やシェアが出来る、<br>抹茶に関心のある方向けのウェブサイトです。</p>
+      </section>   
+    </div>  
   </div>
 </main>
