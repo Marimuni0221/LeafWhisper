@@ -8,14 +8,7 @@ services:
       POSTGRES_PASSWORD: pomchan1858
       POSTGRES_DB: leaf_whisper_development
     networks:
-      - leafwhisper_network
-
-  redis:
-    image: redis:alpine
-    ports:
-      - "6379:6379"
-    networks:
-      - leafwhisper_network    
+      - leafwhisper_network  
 
   web:
     build: .

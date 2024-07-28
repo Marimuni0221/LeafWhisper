@@ -79,6 +79,8 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 
-  config.cache_store = :redis_cache_store, { url: "redis://localhost:6379/0", namespace: "cache" }
+  config.cache_store = :memory_store
+  Rails.application.config.session_store :active_record_store, key: '_leaf_whisper_session'
+
   config.active_record.cache_versioning = false
 end
