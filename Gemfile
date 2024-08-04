@@ -54,7 +54,7 @@ gem 'rakuten_web_service'
 gem 'activerecord-session_store'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
-
+gem 'omniauth-google-oauth2'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -75,6 +75,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'dotenv-rails'
 end
 
 group :development do
