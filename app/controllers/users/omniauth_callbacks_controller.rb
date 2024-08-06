@@ -10,12 +10,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def callback_for(provider)
-    # 先ほどuser.rbで記述したメソッド(from_omniauth)をここで使っています
-    # 'request.env["omniauth.auth"]'この中にgoogoleアカウントから取得したメールアドレスや、名前と言ったデータが含まれています
     auth = request.env["omniauth.auth"]
-    Rails.logger.debug "Omniauth data: #{auth.inspect}"
     @user = User.from_omniauth(auth)
-    Rails.logger.debug "User from omniauth: #{@user.inspect}"
 
     if @user.present?
       sign_in_and_redirect @user, event: :authentication
