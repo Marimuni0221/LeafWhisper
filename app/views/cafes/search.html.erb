@@ -1,0 +1,9 @@
+<div class="search-form">
+  <%= form_with(url: cafes_search_path, method: :get, local: true) do |form| %>
+    <div>
+      <%= form.label :query, "カフェ名で検索" %>
+      <%= form.text_field :query, placeholder: "カフェ名を入力", class: "search-input" %>
+    </div>
+    <%= form.submit "検索", class: "btn btn-primary" %>
+  <% end %>
+</div>
