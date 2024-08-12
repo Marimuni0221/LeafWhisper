@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'cafes/search'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks',
@@ -14,6 +15,12 @@ Rails.application.routes.draw do
   
   resources :products, param: :item_url do
     resources :reviews, only: [:new, :create]
+  end
+
+  resources :cafes, only: [] do
+    collection do
+      get 'search'
+    end
   end
   # Defines the root path route ("/")
   # root "posts#index"
