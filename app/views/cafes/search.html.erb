@@ -40,6 +40,12 @@ function initMap() {
         });
 
         searchCafes(userLocation);
+
+        // ドラッグ後にカフェを再検索
+        map.addListener('dragend', () => {
+            const center = map.getCenter();
+            searchCafes(center);
+        });
     }, (error) => {
         console.error("現在地の取得に失敗しました。", error);
     });
