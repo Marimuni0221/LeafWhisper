@@ -11,7 +11,16 @@
   </div>
   
   <!-- 地図表示 -->
-  <div id="map" style="height: 500px; width: 100%;"></div>
+  <div id="map" style="height: 500px; width: 100%;" data-review-url="<%= new_cafe_review_path('PLACE_ID') %>"></div>
+</div>
+
+<!-- モーダルを追加 -->
+<div id="reviewModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
+    <div id="modalContent">
+      <!-- モーダル内容がここに動的に読み込まれます -->
+    </div>
+  </div>
 </div>
 
 <!-- Google Maps APIのスクリプトを非同期に読み込む -->

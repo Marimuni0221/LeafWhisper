@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
-  resources :cafes, only: [] do
+  resources :cafes, param: :place_id, only: [] do
+    resources :reviews, only: [:new, :create]
     collection do
       get 'search'
     end
