@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "パスワードリセット", type: :request do
+RSpec.describe "パスワードリセット", type: :request do
   it "パスワードリセットのメールを送信する" do
     user = FactoryBot.create(:user)
     post user_password_path, params: { user: { email: user.email } }

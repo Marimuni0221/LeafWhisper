@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "ユーザー登録", type: :request do
+RSpec.describe "ユーザー登録", type: :request do
   describe "DELETE /users" do
     it "アカウントを削除する" do
       user = FactoryBot.create(:user)
