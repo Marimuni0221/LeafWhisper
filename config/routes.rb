@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   
   get 'products/search', to: 'products#search', as: 'search_products'
+  get '/terms', to: 'static_pages#terms'
   
   resources :products, param: :item_url do
     resources :reviews, only: [:new, :create]
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
   end
 
   resources :contacts, only: [:new, :create]
-  # Defines the root path route ("/")
-  # root "posts#index"
+  
   root "static_pages#top"
 end
