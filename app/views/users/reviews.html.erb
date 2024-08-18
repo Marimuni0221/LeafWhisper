@@ -1,0 +1,28 @@
+<ul class="space-y-4">
+  <% @reviews.each do |review| %>
+    <li class="bg-white shadow-lg rounded-lg p-6 flex justify-start items-start space-x-4">
+      <!-- 商品情報 -->
+      <div class="flex-1">
+        <h2 class="text-xl font-semibold mb-2">商品名: <%= review.reviewable.name %></h2>
+        <div class="flex items-center mb-4">
+          <strong class="mr-2">評価:</strong> 
+          <span class="text-yellow-500 text-xl"><%= '★' * review.rating %></span>
+        </div>
+        <p class="mb-4"><strong>コメント:</strong> <%= review.comment %></p>
+        <div class="flex space-x-4">
+          <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">編集</a>
+          <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">削除</a>
+        </div>
+      </div>
+      <!-- 商品画像 -->
+      <div class="w-32 h-32 flex-shrink-0">
+        <img src="<%= review.reviewable.item_image_url %>" alt="<%= review.reviewable.name %>" class="object-cover w-full h-full rounded-lg">
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+
+
+
+
