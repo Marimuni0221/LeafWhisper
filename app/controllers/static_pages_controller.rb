@@ -3,5 +3,7 @@ class StaticPagesController < ApplicationController
     @q = Product.ransack(params[:q] || {})
   end
 
-  def terms;end  
+  def terms;end
+  
+  def privacy;end
 end

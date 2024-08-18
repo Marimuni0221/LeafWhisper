@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   
   get 'products/search', to: 'products#search', as: 'search_products'
   get '/terms', to: 'static_pages#terms'
+  get '/privacy', to: 'static_pages#privacy'
   
   resources :products, param: :item_url do
     resources :reviews, only: [:new, :create]
