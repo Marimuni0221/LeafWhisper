@@ -10,4 +10,12 @@ Rspec.describe StaticPagesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe "GET #privacy" do
+    it "プライバシーポリシーの画面を表示" do
+      get :privacy
+      expect(response).to render_template(:privacy)
+      expect(response).to have_http_status(:success)
+    end  
+  end
 end
