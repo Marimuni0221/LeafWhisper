@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   end
 
   resources :contacts, only: [:new, :create]
+
+  resources :users, only: [] do
+    member do
+      get :reviews  # /users/:id/reviews
+    end
+  end
   
   root "static_pages#top"
 end
