@@ -16,12 +16,14 @@ Rails.application.routes.draw do
   resources :products, param: :item_url do
     resources :reviews, only: [:new, :create]
   end
-
+  
   resources :cafes, only: [] do
     collection do
       get 'search'
     end
   end
+
+  resources :contacts, only: [:new, :create]
   # Defines the root path route ("/")
   # root "posts#index"
   root "static_pages#top"
