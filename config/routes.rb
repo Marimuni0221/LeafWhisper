@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/privacy', to: 'static_pages#privacy'
   
   resources :products, param: :item_url do
-    resources :reviews, only: [:new, :create]
+    resources :reviews, only: %i[new create destroy]
   end
   
   resources :cafes, only: [] do
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contacts, only: [:new, :create]
+  resources :contacts, only: %i[new create]
 
   resources :users, only: [] do
     member do

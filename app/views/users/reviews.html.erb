@@ -11,7 +11,7 @@
         <p class="mb-4"><strong>コメント:</strong> <%= review.comment %></p>
         <div class="flex space-x-4">
           <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">編集</a>
-          <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">削除</a>
+          <%= button_to "削除", product_review_path(review.reviewable, review), method: :delete, data: { turbo_confirm: ('本当にレビューを削除しますか？') }, class: "bg-secondary hover:bg-blue-500 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
         </div>
       </div>
       <!-- 商品画像 -->
