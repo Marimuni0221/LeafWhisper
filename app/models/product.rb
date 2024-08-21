@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   has_many :reviews, as: :reviewable, dependent: :destroy
+  has_many :favorites, as: :favoritable, dependent: :destroy
 
   before_save :generate_url_hash
   

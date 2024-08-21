@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
   devise :database_authenticatable, :registerable,
@@ -33,6 +34,18 @@ class User < ApplicationRecord
         nil
       end
     end
+  end
+
+  def favorite(favoritable)
+    favorites.create(favoritable: favoritable)
+  end
+
+  def unfavorite(favoritable)
+    favorites.find_by(favoritable: favoritable)&.destroy
+  end
+
+  def favorited?(favoritable)
+    favorites.exists?(favoritable: favoritable)
   end
   
   private
