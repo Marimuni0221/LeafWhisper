@@ -14,12 +14,15 @@ Rails.application.routes.draw do
   get 'products/search', to: 'products#search', as: 'search_products'
   get '/terms', to: 'static_pages#terms'
   get '/privacy', to: 'static_pages#privacy'
-  
-  resources :products, param: :item_url do
+  root "static_pages#top"
+
+  resources :products, param: :item_url, shallow: true do
     resources :reviews, only: %i[new create destroy]
+    resources :favorites, only: %i[create destroy] # お気に入り機能
   end
   
-  resources :cafes, only: [] do
+  resources :cafes, shallow: true, only: [] do
+    resources :favorites, only: %i[create destroy] # お気に入り機能
     collection do
       get 'search'
     end
@@ -33,5 +36,4 @@ Rails.application.routes.draw do
     end
   end
   
-  root "static_pages#top"
 end
