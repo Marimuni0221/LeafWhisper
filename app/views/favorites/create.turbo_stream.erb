@@ -1,3 +1,2 @@
-<%= turbo_stream.replace "favorite-button-for-#{@favoritable.id}" do %>
-  <%= render 'favorites/unfavorite', favoritable: @favoritable %>
-<% end %>
+<%= turbo_stream.replace "favorite_#{@favoritable.id}", partial: "favorites/unfavorite", locals: { favoritable: @favoritable } %>
+<%= turbo_stream_flash %>

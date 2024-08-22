@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
   def destroy
     if @review.user == current_user
       @review.destroy!
-      redirect_to product_review_path(@review.reviewable), notice: 'レビューが削除されました。', status: :see_other
+      redirect_to review_path(@review.reviewable), notice: 'レビューが削除されました。', status: :see_other
     else
       redirect_to product_path(@review.reviewable), alert: 'このレビューを削除する権限がありません。', status: :see_other
     end  

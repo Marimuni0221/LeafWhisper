@@ -22,7 +22,9 @@
       </div>
       <%# フラッシュメッセージの表示 %>
       <div class="flex-grow"> 
-        <%= render 'shared/flash_message' %>
+        <div id="flash">
+          <%= render 'shared/flash_message' %>
+        </div>
         <%= yield %>
       </div>
       <%# フッターの表示 %>
