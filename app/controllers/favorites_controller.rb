@@ -3,18 +3,12 @@ class FavoritesController < ApplicationController
 
   def create
     current_user.favorite(@favoritable)
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_back fallback_location: @favoritable, notice: 'お気に入りに追加しました。' }
-    end
+    flash.now[notice] = 'お気に入りに追加しました' 
   end
 
   def destroy
     current_user.unfavorite(@favoritable)
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_back fallback_location: @favoritable, notice: 'お気に入りを解除しました。', status: :see_other  }
-    end
+    flash.now[notice] = 'お気に入りから削除しました' 
   end
 
   private

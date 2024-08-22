@@ -1,5 +1,5 @@
 <div class='ms-auto'>
-  <% if current_user.favorited?(favoritable) %>
+  <% if current_user&.favorited?(favoritable) %>
     <%= render 'favorites/unfavorite', { favoritable: favoritable } %>
   <% else %>
     <%= render 'favorites/favorite', { favoritable: favoritable } %>
