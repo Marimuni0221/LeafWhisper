@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_06_030242) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_24_070509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_030242) do
     t.string "cafe_image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "place_id"
+    t.index ["place_id"], name: "index_caves_on_place_id", unique: true
   end
 
   create_table "favorites", force: :cascade do |t|
