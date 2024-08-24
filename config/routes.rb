@@ -18,12 +18,16 @@ Rails.application.routes.draw do
 
   resources :products, param: :item_url, shallow: true do
     resources :reviews, only: %i[new create destroy]
-    resources :favorites, only: %i[create destroy] # お気に入り機能
+    resources :favorites, only: %i[create destroy]
   end
   
   resources :cafes, shallow: true, only: [] do
-    resources :favorites, only: %i[create destroy] # お気に入り機能
+    resources :favorites, only: %i[create destroy]
+    member do
+      get 'favorite_button'
+    end
     collection do
+      post 'save'
       get 'search'
     end
   end

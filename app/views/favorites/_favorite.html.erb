@@ -1,3 +1,3 @@
-<%= link_to (favoritable.is_a?(Product) ? product_favorites_path(product_item_url: favoritable.url_hash) : cafe_favorites_path(favoritable)), id: "favorite_#{favoritable.id}", data: { turbo_method: :post } do %>
+<%= link_to (favoritable.is_a?(Product) ? product_favorites_path(product_item_url: favoritable.url_hash) : cafe_favorites_path(cafe_id: favoritable.id)), id: "favorite_#{favoritable.id}", data: { turbo_method: :post } do %>
   <i class="fa-regular fa-heart fa-xl" style="color: #FFD43B;"></i> <!-- 空のハートアイコン -->
 <% end %>
