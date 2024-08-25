@@ -31,14 +31,15 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-
-  resources :contacts, only: %i[new create]
-
+  
   resources :users, only: [] do
     member do
       get :reviews
-      get :favorites
     end
   end
+  
+  resources :contacts, only: %i[new create]
+
+  resources :favorites, only: %i[index create destroy]
   
 end
