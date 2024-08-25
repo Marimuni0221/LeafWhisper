@@ -10,10 +10,15 @@
         <h3 class="text-lg font-semibold"><%= link_to product.name, product.item_url %></h3>
         <p class="text-green-500 font-bold"><%= number_to_currency(product.price) %></p>
         
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center space-x-4">
           <%= render 'favorites/favorite_buttons', { favoritable: product } %>
+          <!-- 商品情報のシェアボタン -->
+          <a href="<%= share_on_x_url(product) %>" 
+            target="_blank">             
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
         </div>
-
+        
         <%= link_to 'レビューを書く', '#', onclick: "openModal('#{new_product_review_path(product.url_hash)}')", class: "bg-secondary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4 inline-block" %>
         
         <div id="reviews_<%= product.url_hash %>">
