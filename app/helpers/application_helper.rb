@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def favorites_page?
-    controller_name == 'users' && action_name == 'favorites'
+    request.referer == favorites_url
   end
 end
