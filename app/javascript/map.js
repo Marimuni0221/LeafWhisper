@@ -113,7 +113,10 @@ function saveCafeToServer(placeDetails) {
         body: JSON.stringify({
             name: placeDetails.name,
             address: placeDetails.formatted_address,
-            place_id: placeDetails.place_id
+            place_id: placeDetails.place_id,
+            phone_number: placeDetails.formatted_phone_number || '', // 電話番号を取得
+            cafe_url: placeDetails.website || '', // カフェのウェブサイトURLを取得
+            cafe_image_url: placeDetails.photos ? placeDetails.photos[0].getUrl({ maxWidth: 400 }) : '' // カフェの画像URLを取得
         })
     });
 }
