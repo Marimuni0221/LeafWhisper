@@ -5,6 +5,9 @@ class CafesController < ApplicationController
     cafe = Cafe.find_or_initialize_by(place_id: params[:place_id])
     cafe.name = params[:name]
     cafe.address = params[:address]
+    cafe.phone_number = params[:phone_number] # 電話番号
+    cafe.cafe_url = params[:cafe_url] # カフェのURL
+    cafe.cafe_image_url = params[:cafe_image_url] # カフェの画像URL
     if cafe.save
       render json: { status: 'success', cafe_id: cafe.id }
     else

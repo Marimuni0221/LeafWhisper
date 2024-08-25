@@ -16,7 +16,7 @@
           <summary>メニュー</summary>
           <ul class="bg-base-100 rounded-t-none p-2">
             <li><%= link_to '投稿したレビュー一覧', reviews_user_path(current_user) %></li>
-            <li><a>Link 2</a></li>
+            <li><%= link_to 'お気に入り一覧', favorites_user_path(current_user) %></li>
           </ul>
         </details>
       </li>

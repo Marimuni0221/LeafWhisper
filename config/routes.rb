@@ -36,7 +36,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     member do
-      get :reviews  # /users/:id/reviews
+      get :reviews
+      get :favorites
     end
   end
   
