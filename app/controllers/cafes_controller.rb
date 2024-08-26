@@ -1,4 +1,6 @@
 class CafesController < ApplicationController
+  include ApplicationHelper  
+  
   def search;end
 
   def save
@@ -22,7 +24,15 @@ class CafesController < ApplicationController
       render plain: "Cafe not found", status: :not_found
       return
     end
-    render partial: 'favorites/favorite_buttons', locals: { favoritable: @cafe }
+    
+    # お気に入りボタンのHTMLを生成
+    favorite_button_html = render_to_string(partial: 'favorites/favorite_buttons', locals: { favoritable: @cafe })
+    
+    # シェアURLを生成
+    share_url = share_on_x_url(@cafe)
+
+    # favorite_button_htmlとshare_urlをJSON形式で返す
+    render json: { favorite_button_html: favorite_button_html, share_url: share_url }
   end
   
 end
