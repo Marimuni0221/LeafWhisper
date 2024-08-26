@@ -1,17 +1,60 @@
-<main class="hero text-center py-10 bg-base-100">
+<main class="hero text-center bg-base-100">
   <!-- 画像コンテナ -->
-  <div class="w-full mb-4 relative">
-    <%= image_tag 'tea5.jpg', alt: 'image', class: 'object-cover h-full w-full pl-20 pt-10 brightness-100 custom-bg-position' %>
+  <div class="w-full relative">
+    <%= image_tag 'tea7.jpg', alt: 'image', class: 'object-cover h-screen w-full m-0 p-0 brightness-100' %>
     <!-- テキストコンテナ -->
-    <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-start items-start p-10" style="top: 5%;">
-      <h1 class="text-6xl text-gray-700 bg-opacity-50 px-4 py-2 rounded-lg">Welcome to LeafWhisper</h1>
-      <p class="text-2xl text-gray-700 mt-4  bg-opacity-50 px-4 py-2 rounded-lg">日本茶をもっと身近に、もっと楽しく</p>
+    <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-start items-start p-10 bg-black bg-opacity-5">
+      <h1 class="text-6xl text-white bg-opacity-20 px-4 py-2 rounded-lg">Welcome to LeafWhisper</h1>
+      <p class="text-2xl text-white mt-4 bg-opacity-20 pl-14 pr-4 py-2 rounded-lg">日本茶をもっと身近に、もっと楽しく</p>
     </div>
-    <div>
-      <section>
-        <h2 class="text-4xl font-bold text-gray-800 mt-10 mb-4">LeafWhisperとは？</h2>
-        <p class="text-2xl">抹茶商品の検索や抹茶カフェの検索、そしてレビューの投稿やシェアが出来る、<br>抹茶に関心のある方向けのウェブサイトです。</p>
-      </section>   
+
+    <!-- アコーディオンコンテナ -->
+    <div class="max-w-3xl mx-auto mt-10">
+      <!-- アコーディオン 1: アプリの概要 -->
+      <div class="collapse collapse-plus bg-green-100 mb-4">
+        <input type="radio" name="accordion" checked />
+        <div class="collapse-title text-xl font-medium">
+          LeafWhisperとは？
+        </div>
+        <div class="collapse-content">
+          <p class="text-lg">LeafWhisperは、抹茶商品の検索や抹茶カフェの検索、レビューの投稿やシェアができる、抹茶に関心のある方向けのウェブサイトです。</p>
+        </div>
+      </div>
+
+      <!-- アコーディオン 2: 商品検索機能 -->
+      <div class="collapse collapse-plus bg-green-100 mb-4">
+        <input type="radio" name="accordion" />
+        <div class="collapse-title text-xl font-medium">
+          商品検索機能
+        </div>
+        <div class="collapse-content">
+          <p class="text-lg">LeafWhisperでは、豊富な抹茶商品を検索し、詳細情報や価格を確認することができます。また、レビューを投稿して他のユーザーと共有することも可能です。</p>
+        </div>
+      </div>
+
+      <!-- アコーディオン 3: カフェ検索機能 -->
+      <div class="collapse collapse-plus bg-green-100 mb-4">
+        <input type="radio" name="accordion" />
+        <div class="collapse-title text-xl font-medium">
+          カフェ検索機能
+        </div>
+        <div class="collapse-content">
+          <p class="text-lg">抹茶カフェを検索し、位置情報をもとに最寄りのカフェを見つけることができます。カフェの詳細情報やレビューも確認可能です。</p>
+        </div>
+      </div>
+
+      <!-- アコーディオン 4: レビュー投稿・シェア機能 -->
+      <div class="collapse collapse-plus bg-green-100 mb-10">
+        <input type="radio" name="accordion" />
+        <div class="collapse-title text-xl font-medium">
+          レビュー投稿・シェア機能
+        </div>
+        <div class="collapse-content">
+          <p class="text-lg">LeafWhisperで気に入った商品やカフェのレビューを投稿し、SNS（X）でシェアすることができます。他のユーザーとの交流を深めましょう。</p>
+          <p clss="text-sm">*お気に入り登録機能とレビュー機能は会員登録後の方のみご利用が可能です。</p>
+        </div>
+      </div>
+      
     </div>  
   </div>
 </main>
