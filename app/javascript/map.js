@@ -73,17 +73,20 @@ function searchCafes(location) {
                         if (status === google.maps.places.PlacesServiceStatus.OK) {
                             // カフェデータをサーバーに送信して保存
                             saveCafeToServer(placeDetails).then(() => {
-                                // Railsからお気に入りボタンのHTMLをAjaxで取得
+                                // Railsからお気に入りボタンのHTMLとシェアURLをAjaxで取得
                                 fetch(`/cafes/${place.place_id}/favorite_button`)
-                                    .then(response => response.text())
-                                    .then(favoriteButtonHtml => {
+                                    .then(response => response.json())
+                                    .then(data => {
                                         const contentString = `
                                             <div class="p-4 bg-white rounded-lg shadow-lg">
                                               <h2 class="text-lg font-semibold">${placeDetails.name}</h2>
                                               <p class="text-gray-600">${placeDetails.formatted_address}</p>
                                               <a href="https://www.google.com/maps/place/?q=place_id:${place.place_id}" target="_blank">Googleで見る</a>
-                                              <div class="flex justify-between items-center mt-4">
-                                                ${favoriteButtonHtml}
+                                              <div class="flex justify-between items-center mt-4 space-x-4">
+                                                ${data.favorite_button_html}
+                                                <a href="${data.share_url}" target="_blank" class="ml-4">
+                                                  <i class="fa-brands fa-x-twitter fa-xl"></i>
+                                                </a>    
                                               </div>
                                             </div>`;
                                         const infowindow = new google.maps.InfoWindow({
