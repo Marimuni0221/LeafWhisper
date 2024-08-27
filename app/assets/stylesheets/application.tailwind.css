@@ -38,6 +38,15 @@
   margin-bottom: 0 !important;
 }
 
+details ul {
+  z-index: 20;
+  width: 200px;
+  top: 100%;
+  position: absolute;
+  right: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* ラジオボタンを非表示にし、ラベルのクリックを有効にする */
 input[type="radio"].hidden + label {
   color: gray;

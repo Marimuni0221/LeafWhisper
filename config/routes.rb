@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'faqs/index'
   get 'cafes/search'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -42,4 +43,5 @@ Rails.application.routes.draw do
 
   resources :favorites, only: %i[index create destroy]
   
+  resources :faqs, only: %i[index]
 end
