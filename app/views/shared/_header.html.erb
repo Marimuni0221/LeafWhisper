@@ -1,5 +1,5 @@
 <%# ナビゲーションバー(ログイン後) %>
-<header class="navbar bg-primary flex items-center justify-between p-4">
+<header class="navbar bg-primary flex items-center justify-between p-4 relative">
   <div class="flex items-center space-x-4">
     <img src="<%= asset_path('favicon.ico') %>" alt="LeafWhisper Logo">
     <%= link_to 'LeafWhisper', root_path, class: "btn btn-ghost text-xl font-bold" %>
@@ -15,8 +15,9 @@
         <details>
           <summary>メニュー</summary>
           <ul class="bg-base-100 rounded-t-none p-2">
-            <li><%= link_to '投稿したレビュー一覧', reviews_user_path(current_user) %></li>
+            <li><%= link_to 'レビュー一覧', reviews_user_path(current_user) %></li>
             <li><%= link_to 'お気に入り一覧', favorites_path(current_user) %></li>
+            <li><%= link_to '抹茶に関するQ&A', faqs_index_path %></li>
           </ul>
         </details>
       </li>
