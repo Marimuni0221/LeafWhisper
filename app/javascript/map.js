@@ -29,17 +29,44 @@ window.initMap = function() {
             const center = map.getCenter();
             searchCafes(center);
         });
+
+        // オートコンプリートの初期化
+        initAutocomplete();
     }, (error) => {
         console.error("現在地の取得に失敗しました。", error);
     });
 }
 
+function initAutocomplete() {
+    const input = document.getElementById("address");
+
+    const autocomplete = new google.maps.places.Autocomplete(input, {
+        types: ['geocode'],
+    });
+
+    autocomplete.addListener('place_changed', function() {
+        const place = autocomplete.getPlace();
+
+        if (!place.geometry) {
+            alert("その場所の詳細が見つかりませんでした。別の住所をお試しください。");
+            return;
+        }
+
+        // 地図をオートコンプリートで選択された場所に移動
+        map.setCenter(place.geometry.location);
+        map.setZoom(15);
+
+        new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+        });
+    });
+}
+
 window.codeAddress = function() {
-    //検索フォームの入力内容を取得
     let inputAddress = document.getElementById('address').value;
 
     geocoder.geocode({ 'address': inputAddress }, function(results, status) {
-        //該当する検索結果がヒットした時に、地図の中心を検索結果の緯度経度に更新する
         if (status == 'OK') {
             map.setCenter(results[0].geometry.location);
             new google.maps.Marker({
@@ -47,7 +74,6 @@ window.codeAddress = function() {
                 position: results[0].geometry.location
             });
         } else {
-            //検索結果が何もなかった場合に表示
             alert('該当する結果がありませんでした：' + status);
         }
     });   
@@ -71,9 +97,7 @@ function searchCafes(location) {
                 marker.addListener('click', () => {
                     service.getDetails({ placeId: place.place_id }, (placeDetails, status) => {
                         if (status === google.maps.places.PlacesServiceStatus.OK) {
-                            // カフェデータをサーバーに送信して保存
                             saveCafeToServer(placeDetails).then(() => {
-                                // Railsからお気に入りボタンのHTMLとシェアURLをAjaxで取得
                                 fetch(`/cafes/${place.place_id}/favorite_button`)
                                     .then(response => response.json())
                                     .then(data => {
