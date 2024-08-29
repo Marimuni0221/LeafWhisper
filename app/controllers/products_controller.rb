@@ -42,11 +42,15 @@ class ProductsController < ApplicationController
   private
   
   def fetch_products(keyword, page)
-    # keywordが無効な場合、デフォルトのキーワードを使用
-    keyword = '抹茶' if keyword.blank?
+    # キーワードが無効な場合の対応
+    if keyword.blank?
+      keyword = '抹茶'
+    elsif !keyword.include?('抹茶')
+      keyword = "#{keyword} 抹茶"
+    end
     
     items = []
-    (1..7).each do |i| # 最大5ページまで取得する例
+    (1..5).each do |i| # 最大5ページまで取得する例
       result = RakutenWebService::Ichiba::Item.search(keyword: keyword, page: i)
       break if result === 0
       result.each do |item|
@@ -58,8 +62,6 @@ class ProductsController < ApplicationController
       url_hash = Digest::SHA256.hexdigest(item['itemUrl'])
       product = Product.find_or_initialize_by(url_hash: url_hash)
 
-      Rails.logger.debug "Found or initialized product: #{product.inspect}"
-
       product.assign_attributes(
         name: item['itemName'],
         description: item['itemCaption'],
@@ -69,12 +71,6 @@ class ProductsController < ApplicationController
         category: determine_category(item['itemName'], item['itemCaption']),
         url_hash: url_hash
       )
-      Rails.logger.debug "Before save: #{product.inspect}"
-      if product.save
-        Rails.logger.debug "After save: #{product.inspect}"
-      else
-        Rails.logger.debug "Save failed: #{product.errors.full_messages.join(', ')}"
-      end
       product
     end
       
