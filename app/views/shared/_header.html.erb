@@ -1,26 +1,57 @@
 <%# ナビゲーションバー(ログイン後) %>
-<header class="navbar bg-primary flex items-center justify-between p-4 relative">
+<header class="navbar bg-primary p-4 flex items-center justify-between relative">
+  <!-- 左側のロゴとリンク -->
   <div class="flex items-center space-x-4">
-    <img src="<%= asset_path('favicon.ico') %>" alt="LeafWhisper Logo">
-    <%= link_to 'LeafWhisper', root_path, class: "btn btn-ghost text-xl font-bold" %>
-    <%= render 'products/search_form', q: @q, url: search_products_path %>
+    <img src="<%= asset_path('favicon.ico') %>" alt="LeafWhisper Logo" class="h-8">
+    <%= link_to 'LeafWhisper', root_path, class: "btn btn-ghost md:text-xl sm:text-xs font-bold" %>
+    <div class="hidden lg:block">
+      <%= render 'products/search_form', q: @q, url: search_products_path %>
+    </div>
   </div>
-  <div class="flex-none">
-    <ul class="menu menu-horizontal px-1 items-center">
-      <li class="font-bold">ようこそ<%= current_user.display_name %>さん！</li>
-      <li><%= link_to 'カフェ検索', search_cafes_path %></li>
-      <li><%= link_to '編集', edit_user_registration_path %></li>
-      <li><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %></li>
-      <li>
-        <details>
-          <summary>メニュー</summary>
-          <ul class="bg-base-100 rounded-t-none p-2">
-            <li><%= link_to 'レビュー一覧', reviews_user_path(current_user) %></li>
-            <li><%= link_to 'お気に入り一覧', favorites_path(current_user) %></li>
-            <li><%= link_to '抹茶に関するQ&A', faqs_index_path %></li>
+  
+  <!-- デスクトップ用メニュー -->
+  <div class="hidden lg:flex lg:text-sm xl:text-base space-x-4">
+    <ul class="flex space-x-4 items-center">
+      <li><%= link_to 'カフェ検索', search_cafes_path, class: "text-white" %></li>
+      <li><%= link_to 'ログアウト', destroy_user_session_path, class: "text-white", data: { turbo_method: :delete } %></li>
+      <li class="relative">
+        <details class="group">
+          <summary class="cursor-pointer text-white"><%= current_user.display_name %>さんの<br>メニュー</summary>
+          <ul class="absolute right-0 mt-2 w-48 bg-base-100 rounded shadow-lg hidden group-open:block">
+            <li><%= link_to 'レビュー一覧', reviews_user_path(current_user), class: "block px-4 py-2 hover:bg-gray-200" %></li>
+            <li><%= link_to 'お気に入り一覧', favorites_path(current_user), class: "block px-4 py-2 hover:bg-gray-200" %></li>
+            <li><%= link_to '編集', edit_user_registration_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
+            <li><%= link_to '抹茶Q&A', faqs_index_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
           </ul>
         </details>
       </li>
     </ul>
   </div>
+  
+  <!-- モバイル用ハンバーガーメニュー -->
+  <div class="lg:hidden">
+    <button id="menu-toggle" class="text-white focus:outline-none">
+      <i class="fas fa-bars fa-lg"></i>
+    </button>
+  </div>
 </header>
+
+<!-- モバイルメニュー -->
+<div id="mobile-menu" class="hidden lg:hidden bg-primary p-4">
+  <ul class="flex flex-col space-y-2">
+    <li><%= render 'products/search_form', q: @q, url: search_products_path, class: "w-full" %></li>
+    <li><%= link_to 'カフェ検索', search_cafes_path, class: "text-white" %></li>
+    <li><%= link_to 'ログアウト', destroy_user_session_path, class: "text-white", data: { turbo_method: :delete } %></li>
+    <li class="relative">
+      <details class="group">
+        <summary class="cursor-pointer text-white"><%= current_user.display_name %>さんのメニュー</summary>
+        <ul class="bg-base-100 rounded p-2 mt-2 hidden group-open:block">
+          <li><%= link_to 'レビュー一覧', reviews_user_path(current_user), class: "block px-2 py-1 hover:bg-gray-200" %></li>
+          <li><%= link_to 'お気に入り一覧', favorites_path(current_user), class: "block px-2 py-1 hover:bg-gray-200" %></li>
+          <li><%= link_to '編集', edit_user_registration_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
+          <li><%= link_to '抹茶Q&A', faqs_index_path, class: "block px-2 py-1 hover:bg-gray-200" %></li>
+        </ul>
+      </details>
+    </li>
+  </ul>
+</div>

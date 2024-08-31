@@ -1,15 +1,15 @@
-<div class="search-form flex items-center bg-white shadow-md rounded-md p-2 text-gray-500">
+<div class="search-form flex flex-col lg:flex-row items-center bg-white shadow-md rounded-md p-2 text-gray-500 sm:w-auto lg:text-sm sm:text-xs">
   <%= search_form_for q, url: url do |f| %>
-  <div class="flex items-center space-x-2 w-full">
+    <div class="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 md:space-x-2 w-full align-items-center">
       <!-- 商品ジャンルで絞り込み -->
-      <%= f.select :category_eq, options_for_select(ProductDecorator.category_options), include_blank: 'ジャンルを選択', class: 'form-select border-none bg-transparent focus:ring-0' %>
+      <%= f.select :category_eq, options_for_select(ProductDecorator.category_options), include_blank: 'ジャンルを選択', class: 'form-select border-none bg-transparent focus:ring-0 sm:w-auto h-full' %>
 
       <!-- 価格帯で絞り込み -->
-      <%= select_tag :price_range, options_for_select(ProductDecorator.price_range_options, selected: params[:price_range]), include_blank: '価格帯を選択', class: 'form-select' %>
+      <%= select_tag :price_range, options_for_select(ProductDecorator.price_range_options, selected: params[:price_range]), include_blank: '価格帯を選択', class: 'focus:ring-0 form-select sm:w-auto h-full' %>
       
       <!-- フリーワード検索 -->
-      <div class="relative flex-grow flex items-center">
-        <%= f.text_field :name_or_description_cont, placeholder: 'フリーワード検索', class: 'form-input border-none bg-transparent focus:ring-0 w-full' %>
+      <div class="relative flex-grow flex items-center sm:w-auto max-w-xs h-full">
+        <%= f.text_field :name_or_description_cont, placeholder: 'フリーワード検索', class: 'form-input border-none bg-transparent focus:ring-0 w-full h-full' %>
         <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-5 w-5 text-gray-500">
             <path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" />
@@ -18,5 +18,5 @@
       </div>
     </div>
     <%= f.submit "検索", class: "btn btn-secondary hidden" %>
-  <% end%>
-</div>  
+  <% end %>
+</div>
