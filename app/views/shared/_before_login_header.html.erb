@@ -1,16 +1,45 @@
 <%# ナビゲーションバー(ログイン前) %>
-<header class="navbar bg-primary">
-  <div class="flex-1">
-    <img src="<%= asset_path('favicon.ico') %>" alt="LeafWhisper Logo">
-    <%= link_to 'LeafWhisper', root_path, class: "btn btn-ghost text-xl font-bold" %>
-    <%= render 'products/search_form', q: @q, url: search_products_path %>
+<header class="navbar bg-primary p-4 flex items-center justify-between">
+  <div class="flex items-center space-x-4">
+    <img src="<%= asset_path('favicon.ico') %>" alt="LeafWhisper Logo" class="h-8">
+    <%= link_to 'LeafWhisper', root_path, class: "btn btn-ghost md:text-xl sm:text-xs font-bold" %>
+    <div class="hidden lg:block">
+      <%= render 'products/search_form', q: @q, url: search_products_path, class: "hidden md:block w-full max-w-xs" %>
+    </div>
   </div>
-  <div class="flex-none">
-    <ul class="menu menu-horizontal px-1">
-      <li><%= link_to '新規登録', new_user_registration_path %></li>
-      <li><%= link_to 'ログイン', new_user_session_path%></li>
-      <li><%= link_to 'カフェ検索', search_cafes_path %></li>
-      <li><%= link_to '抹茶に関するQ&A', faqs_index_path %></li>
+  
+  <!-- デスクトップ用メニュー -->
+  <div class="hidden lg:flex lg:text-sm xl:text-base space-x-4">
+    <ul class="flex space-x-4 items-center">
+      <li><%= link_to 'ログイン', new_user_session_path, class: "text-white" %></li>
+      <li><%= link_to 'カフェ検索', search_cafes_path, class: "text-white" %></li>
+      <li class="relative">
+        <details class="group">
+          <summary class="cursor-pointer text-white">メニュー</summary>
+          <ul class="absolute right-0 mt-2 w-48 bg-base-100 rounded shadow-lg hidden group-open:block">
+            <li><%= link_to '新規登録', new_user_registration_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
+            <li><%= link_to '抹茶Q&A', faqs_index_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
+          </ul>
+        </details>
+      </li>
     </ul>
   </div>
+  
+  <!-- モバイル用ハンバーガーメニュー -->
+  <div class="lg:hidden">
+    <button id="menu-toggle" class="text-white focus:outline-none">
+      <i class="fas fa-bars fa-lg"></i>
+    </button>
+  </div>
 </header>
+
+<!-- モバイルメニュー -->
+<div id="mobile-menu" class="hidden lg:hidden bg-primary p-4">
+  <ul class="flex flex-col space-y-2">
+    <li><%= render 'products/search_form', q: @q, url: search_products_path, class: "w-full" %></li>
+    <li><%= link_to '新規登録', new_user_registration_path, class: "text-white" %></li>
+    <li><%= link_to 'ログイン', new_user_session_path, class: "text-white" %></li>
+    <li><%= link_to 'カフェ検索', search_cafes_path, class: "text-white" %></li>
+    <li><%= link_to '抹茶Q&A', faqs_index_path, class: "text-white" %></li>
+  </ul>
+</div>

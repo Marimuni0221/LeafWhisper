@@ -6,6 +6,7 @@ import "./map";
 document.addEventListener('turbo:load', () => {
   initializeStarRating();
   setupModalListeners();
+  setupMenuToggle(); // 追加: メニューのトグルをセットアップ
 });
 
 // 星評価の初期化
@@ -72,4 +73,20 @@ function setupModalListeners() {
       modal.classList.add('hidden');
     }
   });
+}
+
+// メニューのトグルをセットアップ
+function setupMenuToggle() {
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function() {
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+  }
 }
