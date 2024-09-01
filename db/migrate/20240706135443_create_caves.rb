@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCaves < ActiveRecord::Migration[7.1]
   def change
     create_table :caves do |t|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -13,41 +15,35 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { password_required? }
 
   def self.from_omniauth(auth)
-    # メールアドレスで既存ユーザーを検索
-    existing_user = User.find_by(email: auth[:info][:email])
-    
-    if existing_user
-      # 既存ユーザーが見つかった場合、そのユーザーを返す
-      existing_user
-    else
-      # providerとuidで既存の認証情報を持つユーザーを検索または新規作成
-      user = where(provider: auth[:provider], uid: auth[:uid]).first_or_initialize
-      user.email = auth[:info][:email]
-      user.password = Devise.friendly_token[0,20]
-  
-      # 必要に応じて他のフィールドも設定
-      user.name = auth[:info][:name] if user.respond_to?(:name)
-  
-      if user.save
-        user
-      else
-        nil
-      end
-    end
+    existing_user = find_existing_user(auth[:info][:email])
+
+    existing_user || create_or_update_user_from_auth(auth)
   end
 
   def favorite(favoritable)
-    favorites.create(favoritable: favoritable)
+    favorites.create(favoritable:)
   end
 
   def unfavorite(favoritable)
-    favorites.find_by(favoritable: favoritable)&.destroy
+    favorites.find_by(favoritable:)&.destroy
   end
 
   def favorited?(favoritable)
-    favorites.exists?(favoritable: favoritable)
+    favorites.exists?(favoritable:)
   end
-  
+
+  def self.find_existing_user(email)
+    User.find_by(email:)
+  end
+
+  def self.create_or_update_user_from_auth(auth)
+    user = where(provider: auth[:provider], uid: auth[:uid]).first_or_initialize
+    user.email = auth[:info][:email]
+    user.password = Devise.friendly_token[0, 20]
+    user.name = auth[:info][:name] if user.respond_to?(:name)
+    user if user.save
+  end
+
   private
 
   # パスワードの検証をスキップするためのメソッド

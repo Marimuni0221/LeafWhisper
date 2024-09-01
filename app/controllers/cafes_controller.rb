@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class CafesController < ApplicationController
-  include ApplicationHelper  
-  
-  def search;end
+  include ApplicationHelper
+
+  def search; end
 
   def save
     cafe = Cafe.find_or_initialize_by(place_id: params[:place_id])
@@ -19,20 +21,19 @@ class CafesController < ApplicationController
 
   def favorite_button
     @cafe = Cafe.find_by(place_id: params[:id])
-    Rails.logger.debug "Found Cafe: #{@cafe.inspect}"
+    Rails.logger.debug { "Found Cafe: #{@cafe.inspect}" }
     unless @cafe
-      render plain: "Cafe not found", status: :not_found
+      render plain: 'Cafe not found', status: :not_found
       return
     end
-    
+
     # お気に入りボタンのHTMLを生成
     favorite_button_html = render_to_string(partial: 'favorites/favorite_buttons', locals: { favoritable: @cafe })
-    
+
     # シェアURLを生成
     share_url = share_on_x_url(@cafe)
 
     # favorite_button_htmlとshare_urlをJSON形式で返す
-    render json: { favorite_button_html: favorite_button_html, share_url: share_url }
+    render json: { favorite_button_html:, share_url: }
   end
-  
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   before_action :set_favoritable, except: [:index]
 
@@ -7,14 +9,14 @@ class FavoritesController < ApplicationController
 
   def create
     current_user.favorite(@favoritable)
-    flash.now[notice] = 'お気に入りに追加しました' 
+    flash.now[notice] = 'お気に入りに追加しました'
   end
 
   def destroy
-    @favorite = current_user.favorites.find(params[:id])  # 削除対象のFavoriteを取得
-    @favoritable = @favorite.favoritable 
+    @favorite = current_user.favorites.find(params[:id]) # 削除対象のFavoriteを取得
+    @favoritable = @favorite.favoritable
     current_user.unfavorite(@favoritable)
-    flash.now[notice] = 'お気に入りから削除しました' 
+    flash.now[notice] = 'お気に入りから削除しました'
   end
 
   private
@@ -28,14 +30,13 @@ class FavoritesController < ApplicationController
       favorite = Favorite.find(params[:id])
       @favoritable = favorite.favoritable
     end
-                  
+
     # デバッグログを追加
-    Rails.logger.debug "Favoritable: #{@favoritable.inspect}"
-  
+    Rails.logger.debug { "Favoritable: #{@favoritable.inspect}" }
+
     # 万が一@favoritableがnilだった場合の処理
-    unless @favoritable
-      redirect_to root_path, alert: 'お気に入り対象が見つかりませんでした。'
-    end
-  end 
-  
+    return if @favoritable
+
+    redirect_to root_path, alert: 'お気に入り対象が見つかりませんでした。'
+  end
 end

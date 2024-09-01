@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
@@ -5,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @reviews = @user.reviews.includes(:reviewable)
   end
-  
+
   def favorites
     @user = User.find(params[:id])
     @favorites = @user.favorites.includes(:favoritable)
