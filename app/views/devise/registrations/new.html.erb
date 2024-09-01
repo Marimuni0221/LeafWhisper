@@ -1,43 +1,43 @@
-<% content_for :title, "サインアップ" %>
+<% content_for :title, t('devise.registrations.new.title') %>
 
 <div class="min-h-screen bg-gray-100 flex items-center justify-center">
   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-    <h2 class="text-2xl font-bold text-center mb-6"><%= t('.sign_up') %></h2>
+    <h2 class="text-2xl font-bold text-center mb-6"><%= t('devise.registrations.new.sign_up') %></h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       
       <div class="field flex flex-col mb-4">
-        <%= f.label :name, "ニックネーム", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.label :name, t('devise.registrations.new.nickname'), class: "block text-sm font-medium text-gray-700" %>
         <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
       </div>
 
       <div class="field flex flex-col mb-4">
-        <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.label :email, t('devise.registrations.new.email'), class: "block text-sm font-medium text-gray-700" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
       </div>
 
       <div class="field flex flex-col mb-4">
-        <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.label :password, t('devise.registrations.new.password'), class: "block text-sm font-medium text-gray-700" %>
         <% if @minimum_password_length %>
-        <em class="text-xs text-gray-500"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+          <em class="text-xs text-gray-500"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
         <% end %>
         <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
       </div>
 
       <div class="field flex flex-col mb-4">
-        <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.label :password_confirmation, t('devise.registrations.new.password_confirmation'), class: "block text-sm font-medium text-gray-700" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
       </div>
 
       <div class="actions">
-        <%= f.submit '登録する', class: "w-full py-2 px-4 bg-secondary text-white font-bold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+        <%= f.submit t('devise.registrations.new.sign_up_button'), class: "w-full py-2 px-4 bg-secondary text-white font-bold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
       </div>
     <% end %>
 
     <div class="flex items-center my-4">
       <div class="flex-grow border-t border-gray-300"></div>
-        <span class="mx-2 text-sm text-gray-400">Or continue with</span>
+        <span class="mx-2 text-sm text-gray-400"><%= t('devise.registrations.new.or_continue_with') %></span>
       <div class="flex-grow border-t border-gray-300"></div>
     </div>
 
@@ -49,9 +49,11 @@
     </div>
 
     <p class="mt-4 text-sm text-center text-gray-500">
-      既にアカウントをお持ちの方は<%= link_to 'こちら', new_user_session_path, class: "text-blue-500 hover:underline" %>
+      <%= t('devise.registrations.new.already_have_account') %>
+      <%= link_to t('devise.registrations.new.sign_in_link'), new_user_session_path, class: "text-blue-500 hover:underline" %>
     </p>
   </div>
 </div>
+
 
 

@@ -1,53 +1,53 @@
-<% content_for :title, "利用規約" %>
+<% content_for :title, t('terms.title') %>
 
 <div class="container mx-auto px-6 mt-12">
-  <h1 class="text-3xl font-bold text-center mb-6 border-b-2 border-gray-300 pb-2">利用規約</h1>
+  <h1 class="text-3xl font-bold text-center mb-6 border-b-2 border-gray-300 pb-2"><%= t('terms.header') %></h1>
 
-  <p class="mb-4">この利用規約（以下、「本規約」といいます。）は、LeafWhisper（以下、「本アプリ」といいます。）の利用条件を定めるものです。本アプリを利用する全てのユーザー（以下、「ユーザー」といいます。）は、本規約に同意したものとみなします。</p>
+  <p class="mb-4"><%= t('terms.intro') %></p>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">第1条（適用）</h2>
-  <p class="mb-4">本規約は、ユーザーとLeafWhisperの運営者（以下、「運営者」といいます。）との間の本アプリの利用に関する一切の関係に適用されます。</p>
+  <h2 class="text-2xl font-semibold mt-8 mb-4"><%= t('terms.section1.title') %></h2>
+  <p class="mb-4"><%= t('terms.section1.content') %></p>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">第2条（利用登録）</h2>
-  <p class="mb-4">1. 本アプリでは、ユーザーが本規約に同意の上、運営者が定める手続に従い利用登録を申請することで、利用登録が完了します。</p>
-  <p class="mb-4">2. 運営者は、利用登録の申請者が以下の事由に該当する場合には、利用登録の申請を拒否することがあります。</p>
+  <h2 class="text-2xl font-semibold mt-8 mb-4"><%= t('terms.section2.title') %></h2>
+  <p class="mb-4"><%= t('terms.section2.content1') %></p>
+  <p class="mb-4"><%= t('terms.section2.content2') %></p>
   <ul class="list-disc list-inside mb-4">
-    <li>虚偽の情報を提供した場合</li>
-    <li>その他、運営者が利用登録を適当でないと判断した場合</li>
+    <li><%= t('terms.section2.item1') %></li>
+    <li><%= t('terms.section2.item2') %></li>
   </ul>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">第3条（禁止事項）</h2>
-  <p class="mb-4">ユーザーは、本アプリの利用に際し、以下の行為をしてはなりません。</p>
+  <h2 class="text-2xl font-semibold mt-8 mb-4"><%= t('terms.section3.title') %></h2>
+  <p class="mb-4"><%= t('terms.section3.content') %></p>
   <ul class="list-disc list-inside mb-4">
-    <li>法令または公序良俗に違反する行為</li>
-    <li>本アプリの内容等、運営者または第三者の知的財産権を侵害する行為</li>
-    <li>サービスの運営を妨害する行為</li>
-    <li>不正アクセスまたはそれを試みる行為</li>
+    <li><%= t('terms.section3.item1') %></li>
+    <li><%= t('terms.section3.item2') %></li>
+    <li><%= t('terms.section3.item3') %></li>
+    <li><%= t('terms.section3.item4') %></li>
   </ul>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">第4条（サービスの提供の停止）</h2>
-  <p class="mb-4">運営者は、以下のいずれかの事由が発生した場合、ユーザーに事前に通知することなく本アプリの全部または一部の提供を停止することができます。</p>
+  <h2 class="text-2xl font-semibold mt-8 mb-4"><%= t('terms.section4.title') %></h2>
+  <p class="mb-4"><%= t('terms.section4.content') %></p>
   <ul class="list-disc list-inside mb-4">
-    <li>システムの保守や点検を行う場合</li>
-    <li>火災、停電、天災などの不可抗力によりサービスの提供が困難な場合</li>
-    <li>その他、運営者がサービスの提供を停止する必要があると判断した場合</li>
+    <li><%= t('terms.section4.item1') %></li>
+    <li><%= t('terms.section4.item2') %></li>
+    <li><%= t('terms.section4.item3') %></li>
   </ul>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">第5条（利用制限および登録抹消）</h2>
-  <p class="mb-4">運営者は、ユーザーが以下のいずれかに該当する場合、事前の通知なく、利用制限または登録を抹消することができます。</p>
+  <h2 class="text-2xl font-semibold mt-8 mb-4"><%= t('terms.section5.title') %></h2>
+  <p class="mb-4"><%= t('terms.section5.content') %></p>
   <ul class="list-disc list-inside mb-4">
-    <li>本規約のいずれかの条項に違反した場合</li>
-    <li>その他、運営者が利用を適当でないと判断した場合</li>
+    <li><%= t('terms.section5.item1') %></li>
+    <li><%= t('terms.section5.item2') %></li>
   </ul>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">第6条（免責事項）</h2>
-  <p class="mb-4">1. 運営者は、ユーザーに対して提供される本アプリの内容について、その正確性や完全性を保証しません。</p>
-  <p class="mb-4">2. 本アプリの利用に関連してユーザーに生じたあらゆる損害について、運営者は一切の責任を負いません。</p>
+  <h2 class="text-2xl font-semibold mt-8 mb-4"><%= t('terms.section6.title') %></h2>
+  <p class="mb-4"><%= t('terms.section6.content1') %></p>
+  <p class="mb-4"><%= t('terms.section6.content2') %></p>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">第7条（利用規約の変更）</h2>
-  <p class="mb-4">運営者は、必要と判断した場合には、ユーザーに通知することなく本規約を変更することができるものとします。</p>
+  <h2 class="text-2xl font-semibold mt-8 mb-4"><%= t('terms.section7.title') %></h2>
+  <p class="mb-4"><%= t('terms.section7.content') %></p>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">第8条（準拠法および裁判管轄）</h2>
-  <p class="mb-4">1. 本規約の解釈にあたっては、日本法を準拠法とします。</p>
-  <p class="mb-4">2. 本アプリに関して紛争が生じた場合には、運営者の所在地を管轄する裁判所を専属的合意管轄とします。</p>
+  <h2 class="text-2xl font-semibold mt-8 mb-4"><%= t('terms.section8.title') %></h2>
+  <p class="mb-4"><%= t('terms.section8.content1') %></p>
+  <p class="mb-4"><%= t('terms.section8.content2') %></p>
 </div>

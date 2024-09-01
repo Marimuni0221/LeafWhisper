@@ -9,14 +9,14 @@ class FavoritesController < ApplicationController
 
   def create
     current_user.favorite(@favoritable)
-    flash.now[notice] = 'お気に入りに追加しました'
+    flash.now[:notice] = I18n.t('favorites.added')
   end
 
   def destroy
     @favorite = current_user.favorites.find(params[:id]) # 削除対象のFavoriteを取得
     @favoritable = @favorite.favoritable
     current_user.unfavorite(@favoritable)
-    flash.now[notice] = 'お気に入りから削除しました'
+    flash.now[:notice] = I18n.t('favorites.removed')
   end
 
   private
@@ -31,12 +31,9 @@ class FavoritesController < ApplicationController
       @favoritable = favorite.favoritable
     end
 
-    # デバッグログを追加
-    Rails.logger.debug { "Favoritable: #{@favoritable.inspect}" }
-
     # 万が一@favoritableがnilだった場合の処理
     return if @favoritable
 
-    redirect_to root_path, alert: 'お気に入り対象が見つかりませんでした。'
+    redirect_to root_path, alert: I18n.t('favorites.not_found')
   end
 end

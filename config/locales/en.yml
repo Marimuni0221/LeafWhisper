@@ -1,31 +1,255 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  faqs:
+    title: "FAQ about Matcha"
+    header: "Frequently Asked Questions about Matcha"
+    questions:
+      what_is_matcha: "What is Matcha?"
+      matcha_health_benefits: "What are the health benefits of drinking Matcha?"
+      how_to_prepare_matcha: "How do you properly prepare Matcha?"
+      how_to_store_matcha: "How should Matcha be stored?"
+      difference_matcha_and_green_tea: "What is the difference between Matcha and other green teas?"
+      types_of_matcha: "What types of Matcha are there?"
+      caffeine_in_matcha: "How much caffeine does Matcha contain?"
+      matcha_for_diet: "Is Matcha effective for weight loss?"
+      popular_matcha_recipes: "What are some popular recipes using Matcha?"
+      how_to_choose_matcha: "How should I choose Matcha?"
+      can_kids_drink_matcha: "Can children drink Matcha?"
+      matcha_for_vegans: "Is Matcha suitable for vegetarians or vegans?"
+
+    answers:
+      what_is_matcha: "Matcha is a finely ground powder made from tea leaves, traditionally used in Japanese tea ceremonies. Unlike regular green tea, where the leaves are steeped and discarded, Matcha involves consuming the entire leaf, which allows for full intake of its nutrients. The tea leaves are grown in the shade before harvesting, which gives Matcha its unique sweetness and flavor. The leaves are then stone-ground into a fine powder, giving Matcha its vibrant green color. Matcha is also widely used in sweets and cooking, and is particularly popular among health-conscious individuals worldwide."
+      matcha_health_benefits: "Matcha is rich in vitamins, minerals, and antioxidants. One of the key antioxidants is epigallocatechin gallate (EGCG), which is believed to have strong anti-cancer properties and promote heart health. While Matcha contains caffeine, it also contains L-theanine, an amino acid that provides a calming effect and enhances concentration. This combination is believed to offer a balanced energy boost without the jitters associated with caffeine."
+      how_to_prepare_matcha: "To prepare Matcha, start by placing a small amount (about one teaspoon) of Matcha powder into a bowl. Add 70-80°C (160-180°F) water, then whisk vigorously with a bamboo whisk (chasen) until a frothy layer forms on the surface. The thickness of the Matcha can be adjusted to taste. Thick tea (koicha) is rich and thick, while thin tea (usucha) is lighter and more commonly consumed. When drinking Matcha, it is recommended to savor the aroma and taste slowly."
+      how_to_store_matcha: "Matcha should be stored in an airtight container in a cool, dark place to protect it from moisture and light. It is best consumed soon after opening, but if you need to store it for a longer period, refrigeration is recommended. Allow it to return to room temperature before use to preserve its flavor. Freshness is key to enjoying the best Matcha, so proper storage is essential."
+      difference_matcha_and_green_tea: "The main difference between Matcha and regular green tea is in the processing and consumption of the leaves. Matcha is made from tea leaves grown in the shade, which are then stone-ground into a fine powder and consumed whole. In contrast, regular green tea involves steeping the leaves in water and discarding them after brewing, meaning the nutrients in the leaves are not fully consumed. Matcha also has a distinctive vibrant green color and creamy texture, which sets it apart from other green teas."
+      types_of_matcha: "Matcha comes in various grades and types, depending on its intended use and quality. There are 'thick tea' (koicha) and 'thin tea' (usucha), with koicha made from the highest quality tea leaves. Culinary-grade Matcha, often used in cooking and sweets, tends to have a slightly bitter taste and is more affordable. High-quality Matcha has a vibrant green color, smooth texture, and subtle sweetness."
+      caffeine_in_matcha: "Matcha contains more caffeine than other green teas, with about 60-70mg of caffeine per serving (approximately 2g of Matcha). This amount is comparable to that found in regular green tea or coffee. The L-theanine in Matcha is believed to mitigate the jitteriness often associated with caffeine."
+      matcha_for_diet: "Matcha is rich in catechins, which are believed to boost metabolism and aid in fat burning. It is also low in calories and contains dietary fiber, which can help you feel fuller for longer. These properties make Matcha a popular choice for those looking to support their weight loss efforts. However, it's important to consume Matcha in moderation."
+      popular_matcha_recipes: "Matcha is not only enjoyed as a drink but is also widely used in cooking and sweets. Popular recipes include Matcha lattes, Matcha cakes, and Matcha ice cream. The balance of Matcha's bitterness and sweetness works well in recipes, especially with white chocolate or cream. Matcha can also be added to smoothies or pancakes for a healthy twist."
+      how_to_choose_matcha: "When choosing Matcha, look for bright green color, fresh aroma, and check the origin. High-quality Matcha has a vibrant green color and a fresh, sweet smell. Matcha from renowned regions such as Kyoto or Shizuoka is often highly regarded. It's also important to choose the appropriate type of Matcha depending on whether it will be used in tea ceremonies or for cooking."
+      can_kids_drink_matcha: "Matcha contains caffeine, so it's important to monitor the amount children consume. In small amounts, Matcha can be a nutritious drink for children. Matcha lattes or sweets with added sweetness are ways to make it enjoyable for kids."
+      matcha_for_vegans: "Yes, Matcha is made purely from tea leaves and contains no animal products, making it suitable for vegetarians and vegans. When preparing drinks or dishes with Matcha, plant-based milks (such as almond milk or soy milk) can be used to create vegan-friendly versions."
+  contacts:
+    errors:
+      name_blank: "Please enter your name"
+      email_blank: "Please enter your email address"
+      message_blank: "Please enter your message"
+    notices:
+      sent: "Your inquiry has been sent."
+  products:
+    search_results:
+      page_title: "Product Search Results"
+      title: "Search Results"
+      write_review: "Write a Review"
+      no_products_found: "No products found."
+    search_form:
+      select_genre: "Select Genre"
+      select_price_range: "Select Price Range"
+      keyword_search: "Keyword Search"
+      search_button: "Search"
+    default_keyword: "matcha"
+    categories:
+      sweets: "sweets"
+      gift: "gift"
+      cosmetics: "cosmetics"
+      tea: "tea"
+    price_ranges:
+      under_500: "Up to 500 yen"
+      500_to_1000: "500 yen to 1000 yen"
+      1000_to_2000: "1000 yen to 2000 yen"
+      2000_to_3000: "2000 yen to 3000 yen"
+      above_3000: "Above 3000 yen"  
+  favorites:
+    index:
+      title: "Favorites List"
+      cafe_name: "Cafe Name"
+      product_name: "Product Name"
+      address: "Address"
+      confirm_unfavorite: "Are you sure you want to remove from favorites?"
+    added: "Added to favorites"
+    removed: "Removed from favorites"
+    not_found: "The item could not be found." 
+  reviews:
+    index:
+      title: "Review List"
+      product_name: "Product Name"
+      rating: "Rating"
+      comment: "Comment"
+      edit: "Edit"
+      delete: "Delete"
+      confirm_delete: "Are you sure you want to delete this review?"
+    streams:
+      review_posted_title: "Review Posted"
+      thank_you_message: "Thank you for your feedback!"
+      close_button: "Close"
+      review_posted_flash: "Your review has been posted."
+    form:
+      title: "Post a Review"
+      subtitle: "How was your experience with this product?"
+      placeholder_comment: "Enter your comment"
+      submit_button: "Submit"
+    created: "Your review has been posted."
+    deleted: "Your review has been deleted."
+    unauthorized: "You do not have permission to delete this review."
+    not_found: "Product not found."
+    review_not_found: "Review not found." 
+  share:
+    product: "I found an amazing matcha product! #Matcha #JapaneseTea #LeafWhisper"
+    cafe: "I visited %{name}! Highly recommended cafe. #MatchaCafe #JapaneseTea #LeafWhisper"
+    default: "Check out these great items and cafes! #LeafWhisper"
+    default_text: "Check out these amazing items! #LeafWhisper" 
+  map:
+    error_geolocation: "Failed to retrieve your current location."
+    error_no_place_details: "No details found for that location. Please try another address."
+    alert_no_results: "No results were found"
+    view_on_google_maps: "View on Google Maps"
+  cafe:
+    search:
+      title: "Cafe Search"
+      placeholder: "Enter an address"
+  contact_mailer:
+    send_contact_email:
+      subject: "You have received a contact request"
+    subject: "Contact Details"
+    name: "Name"
+    email: "Email"
+    message: "Message"
+  contacts:
+    new:
+      title: "Contact Us"
+      name: "Name"
+      email: "Email"
+      message: "Message"
+      submit: "Send"
+  shared:
+    links:
+      back: "Back"
+  meta:
+    title: "LeafWhisper - Your Hub for Matcha Information"
+    description: "LeafWhisper is an app for searching and reviewing matcha-related products and cafes."
+    keywords: "matcha, cafe, product search, review"
+    og_title: "LeafWhisper - Your Hub for Matcha Information"
+    og_description: "LeafWhisper is an app for searching and reviewing matcha-related products and cafes."
+    twitter_title: "LeafWhisper - Your Hub for Japanese Tea Information"
+    twitter_description: "Search and review matcha and Japanese tea-related products and cafes with LeafWhisper."
+  navbar:
+    login: "Login"
+    signup: "Sign Up"
+    search_cafes: "Search Cafes"
+    faq: "Matcha Q&A"
+    menu: "Menu"
+    search_cafes: "Search Cafes"
+    logout: "Logout"
+    menu_suffix: "'s Menu"
+    review_list: "Review List"
+    favorites_list: "Favorites"
+    edit_profile: "Edit Profile"
+    faq: "Matcha Q&A"
+    language: "Language"
+  footer:
+    privacy_policy: "Privacy Policy"
+    terms_of_service: "Terms of Service"
+    contact: "Contact"
+    all_rights_reserved: "All rights reserved"
+  privacy:
+    title: "Privacy Policy"
+    header: "Privacy Policy"
+    intro: "LeafWhisper (hereinafter referred to as 'this app') recognizes the importance of protecting personal information and strives to manage it appropriately by establishing the following privacy policy."
+    section1:
+      title: "Article 1 (Definition of Personal Information)"
+      content: "Personal information refers to information about a living individual that can identify a specific individual, such as name, address, email address, and phone number."
+    section2:
+      title: "Article 2 (Method of Collecting Personal Information)"
+      content: "This app collects personal information from users in the following ways:"
+      item1: "Information entered during user registration (e.g., name, email address)"
+      item2: "Information provided when posting reviews of products or cafes"
+      item3: "Information provided when using the contact form"
+    section3:
+      title: "Article 3 (Purpose of Using Personal Information)"
+      content: "The personal information collected by this app will be used for the following purposes:"
+      item1: "Management of user registration and user authentication"
+      item2: "Provision of search, review posting, and viewing services for matcha-related products"
+      item3: "Response to inquiries"
+      item4: "Marketing and analysis for service improvement with the user's consent"
+      item5: "Compliance with laws and prevention of violations of terms of service"
+    section4:
+      title: "Article 4 (Provision of Personal Information to Third Parties)"
+      content: "This app will not disclose or provide users' personal information to third parties except in the following cases:"
+    section5:
+      title: "Article 5 (Management of Personal Information)"
+      content: "This app will manage users' personal information safely and take appropriate technical and organizational measures to prevent leakage, loss, alteration, and unauthorized access."
+    section6:
+      title: "Article 6 (Disclosure, Correction, and Deletion of Personal Information)"
+      content: "Users may request the disclosure, correction, or deletion of their personal information by following the procedures below:"
+      item1: "Requests for disclosure, correction, or deletion of information can be made through the contact form within the app."
+      item2: "The operator will respond within a reasonable period after following the appropriate procedures."
+    section7:
+      title: "Article 7 (Changes to Privacy Policy)"
+      content: "This app may change this privacy policy as necessary. Users will be notified of any changes, and the updated policy will apply."
+    section8:
+      title: "Article 8 (Use of Analytics Tools)"
+      content1: "This app uses Google's analytics tool 'Google Analytics' for service improvement. Google Analytics uses cookies to collect information about users' website usage. This information includes IP address, browser type, pages viewed, and time spent on the site."
+      content2: "Information collected by Google Analytics is managed according to Google's privacy policy. Please refer to Google's privacy policy for more details."
+      content3: "Users can disable cookies in their browser settings, but this may prevent some functions from working properly."
+      link: "View Google's Privacy Policy here"
+    section9:
+      title: "Article 9 (Contact Information)"
+      content1: "For inquiries regarding this policy, please contact the following:"
+      content2: "Operator: LeafWhisper Management Team"
+      link: "Contact us here"
+  terms:
+    title: "Terms of Service"
+    header: "Terms of Service"
+    intro: "These Terms of Service (hereinafter referred to as 'these terms') stipulate the conditions for the use of LeafWhisper (hereinafter referred to as 'this app'). All users (hereinafter referred to as 'users') of this app are deemed to have agreed to these terms."
+    section1:
+      title: "Article 1 (Application)"
+      content: "These terms apply to all relationships between the users and the operator of LeafWhisper (hereinafter referred to as 'the operator') regarding the use of this app."
+    section2:
+      title: "Article 2 (User Registration)"
+      content1: "1. User registration for this app is completed by the user applying for registration in accordance with the procedures specified by the operator and agreeing to these terms."
+      content2: "2. The operator may refuse the application for user registration if the applicant falls under any of the following:"
+      item1: "Providing false information"
+      item2: "Other cases where the operator deems the registration inappropriate"
+    section3:
+      title: "Article 3 (Prohibited Acts)"
+      content: "Users must not engage in the following acts when using this app:"
+      item1: "Acts that violate laws or public order and morals"
+      item2: "Acts that infringe on the intellectual property rights of the operator or third parties"
+      item3: "Acts that interfere with the operation of the service"
+      item4: "Unauthorized access or attempts to do so"
+    section4:
+      title: "Article 4 (Suspension of Service)"
+      content: "The operator may suspend all or part of the service without prior notice to the users if any of the following occur:"
+      item1: "Maintenance or inspection of the system"
+      item2: "Service provision is difficult due to force majeure such as fire, power outage, or natural disaster"
+      item3: "Other cases where the operator deems it necessary to suspend the service"
+    section5:
+      title: "Article 5 (Restrictions on Use and Deregistration)"
+      content: "The operator may restrict the use of the service or deregister the user without prior notice if the user falls under any of the following:"
+      item1: "Violation of any provision of these terms"
+      item2: "Other cases where the operator deems the use inappropriate"
+    section6:
+      title: "Article 6 (Disclaimer)"
+      content1: "1. The operator does not guarantee the accuracy or completeness of the content provided to users through this app."
+      content2: "2. The operator shall not be liable for any damages incurred by the user in connection with the use of this app."
+    section7:
+      title: "Article 7 (Changes to Terms of Service)"
+      content: "The operator may change these terms without notifying users if deemed necessary."
+    section8:
+      title: "Article 8 (Governing Law and Jurisdiction)"
+      content1: "1. These terms shall be governed by and construed in accordance with the laws of Japan."
+      content2: "2. In the event of a dispute arising in connection with this app, the court having jurisdiction over the location of the operator shall have exclusive jurisdiction."
+  top:
+    title: "Top Page"
+    welcome: "Welcome to LeafWhisper"
+    subtitle: "Bringing the taste of matcha closer to you"
+    accordion:
+      what_is_leafwhisper: "What is LeafWhisper?"
+      what_is_leafwhisper_content: "LeafWhisper is a website for matcha enthusiasts where you can search for matcha products, find matcha cafes, and share your reviews and experiences."
+      product_search: "Product Search Feature"
+      product_search_content: "At LeafWhisper, you can search a wide variety of matcha products, check detailed information and prices, and share your reviews with other users."
+      cafe_search: "Cafe Search Feature"
+      cafe_search_content: "Search for matcha cafes and find the nearest one based on your location. You can also check detailed information and reviews of the cafes."
+      review_and_share: "Review and Share Feature"
+      review_and_share_content: "Post reviews of your favorite matcha products and cafes on LeafWhisper and share them on social media (X). Connect with other users and enhance your matcha experience."
+      review_note: "*The favorite registration and review features are available only to registered members."                

@@ -13,7 +13,12 @@
     <!-- Google Analytics -->
     <%= render 'layouts/google_analytics' %>
   </head>
-  <body class="bg-base-100 text-neutral flex flex-col min-h-screen">
+  <body 
+    class="bg-base-100 text-neutral flex flex-col min-h-screen"
+    data-error-geolocation="<%= I18n.t('map.error_geolocation') %>"
+    data-error-no_place_details="<%= I18n.t('map.error_no_place_details') %>"
+    data-alert-no_results="<%= I18n.t('map.alert_no_results') %>"
+    data-view-on-google-maps="<%= I18n.t('map.view_on_google_maps') %>">
     
       <%# ヘッダーの表示 %>
       <div class="w-full">

@@ -42,9 +42,9 @@ class ProductsController < ApplicationController
   def fetch_products(keyword, _page)
     # キーワードが無効な場合の対応
     if keyword.blank?
-      keyword = '抹茶'
-    elsif keyword.exclude?('抹茶')
-      keyword = "#{keyword} 抹茶"
+      keyword = I18n.t('products.default_keyword')
+    elsif keyword.exclude?(I18n.t('products.default_keyword'))
+      keyword = "#{keyword} #{I18n.t('products.default_keyword')}"
     end
 
     items = []

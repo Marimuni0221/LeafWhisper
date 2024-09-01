@@ -1,18 +1,20 @@
-<% content_for :title, "お気に入り一覧" %>
+<% content_for :title, t('favorites.index.title') %>
 
 <ul class="space-y-4">
   <% @favorites.each do |favorite| %>
     <li class="bg-white shadow-lg rounded-lg p-6 flex justify-start items-start space-x-4" id=<%= "favorite_#{favorite.id}" %>>
       <!-- カフェや商品の情報 -->
       <div class="flex-1">
-        <h2 class="text-xl font-semibold mb-2"><%= favorite.favoritable_type == 'Cafe' ? 'カフェ名' : '商品名' %>: <%= favorite.favoritable.name %></h2>
+        <h2 class="text-xl font-semibold mb-2">
+          <%= favorite.favoritable_type == 'Cafe' ? t('favorites.index.cafe_name') : t('favorites.index.product_name') %>: <%= favorite.favoritable.name %>
+        </h2>
         
         <% if favorite.favoritable_type == 'Cafe' %>
-          <p class="mb-4"><strong>住所:</strong> <%= favorite.favoritable.address %></p>
+          <p class="mb-4"><strong><%= t('favorites.index.address') %>:</strong> <%= favorite.favoritable.address %></p>
         <% end %>
         
         <div class="flex space-x-4">
-          <%= button_to favorite_path(favorite), method: :delete, data: { turbo_confirm: ('本当にお気に入りを解除しますか？') }, class: "text-white font-bold py-2 px-4 rounded cursor-pointer" do %>
+          <%= button_to favorite_path(favorite), method: :delete, data: { turbo_confirm: t('favorites.index.confirm_unfavorite') }, class: "text-white font-bold py-2 px-4 rounded cursor-pointer" do %>
             <i class="fa-solid fa-heart fa-xl" style="color: #FFD43B;"></i>
           <% end %>
         </div>
@@ -25,8 +27,6 @@
           <img src="<%= favorite.favoritable.item_image_url %>" alt="<%= favorite.favoritable.name %>" class="object-cover w-full h-full rounded-lg">
         <% end %>
       </div>
-      
     </li>
   <% end %>
 </ul>
-

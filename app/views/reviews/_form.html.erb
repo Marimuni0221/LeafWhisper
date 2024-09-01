@@ -2,8 +2,8 @@
   <div class="bg-white p-6 rounded-lg shadow-lg relative max-w-lg w-full">
     <span id="close-modal" class="absolute top-4 right-4 text-2xl cursor-pointer text-gray-600 hover:text-gray-900">&times;</span>
 
-    <h2 class="text-2xl font-bold mb-4 text-center">レビュー投稿</h2>
-    <p class="text-lg mb-4 text-center">商品のご感想はいかがでしたか？</p>
+    <h2 class="text-2xl font-bold mb-4 text-center"><%= t('reviews.form.title') %></h2>
+    <p class="text-lg mb-4 text-center"><%= t('reviews.form.subtitle') %></p>
     
     <%= form_with model: [reviewable, review], url: product_reviews_path(reviewable.url_hash), local: true, id: "review_form", class: "space-y-4" do |form| %>
       <div class="flex justify-center space-x-1">
@@ -20,13 +20,12 @@
       </div>
       
       <div class="form-control">
-        <%= form.text_area :comment, placeholder: "コメントを入力", class: "textarea textarea-bordered w-full h-32" %>
+        <%= form.text_area :comment, placeholder: t('reviews.form.placeholder_comment'), class: "textarea textarea-bordered w-full h-32" %>
       </div>
       
       <div class="flex justify-center">
-        <%= form.submit "投稿する", class: "btn btn-secondary w-full" %>
+        <%= form.submit t('reviews.form.submit_button'), class: "btn btn-secondary w-full" %>
       </div>
     <% end %>
   </div>
 </div>
-

@@ -1,4 +1,4 @@
-<h2 class="text-2xl font-bold mt-4 mb-4 text-center">検索結果</h2>
+<h2 class="text-2xl font-bold mt-4 mb-4 text-center"><%= t('products.search_results.title') %></h2>
 <% if @products.present? %>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <% @products.each do |product| %>
@@ -19,7 +19,7 @@
           </a>
         </div>
         
-        <%= link_to 'レビューを書く', '#', onclick: "openModal('#{new_product_review_path(product.url_hash)}')", class: "bg-secondary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4 inline-block" %>
+        <%= link_to t('products.search_results.write_review'), '#', onclick: "openModal('#{new_product_review_path(product.url_hash)}')", class: "bg-secondary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4 inline-block" %>
         
         <div id="reviews_<%= product.url_hash %>">
           <%= render product.reviews %>
@@ -33,5 +33,5 @@
   </div>
 <% else %>
   
-  <p class="text-gray-500 text-center text-xl">該当する商品が見つかりませんでした。</p>
+  <p class="text-gray-500 text-center text-xl"><%= t('products.search_results.no_products_found') %></p>
 <% end %>

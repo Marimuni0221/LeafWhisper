@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     if @review.save
       respond_to do |format|
-        format.html { redirect_to search_products_path, notice: 'レビューが投稿されました。' }
+        format.html { redirect_to search_products_path, notice: I18n.t('reviews.created') }
         format.turbo_stream
       end
     else
@@ -31,9 +31,9 @@ class ReviewsController < ApplicationController
   def destroy
     if @review.user == current_user
       @review.destroy!
-      redirect_to review_path(@review.reviewable), notice: 'レビューが削除されました。', status: :see_other
+      redirect_to review_path(@review.reviewable), notice: I18n.t('reviews.deleted'), status: :see_other
     else
-      redirect_to product_path(@review.reviewable), alert: 'このレビューを削除する権限がありません。', status: :see_other
+      redirect_to product_path(@review.reviewable), alert: I18n.t('reviews.unauthorized'), status: :see_other
     end
   end
 
@@ -43,14 +43,14 @@ class ReviewsController < ApplicationController
     @reviewable = Product.find_by(url_hash: params[:product_item_url])
     return if @reviewable
 
-    redirect_to root_path, alert: '商品が見つかりませんでした。'
+    redirect_to root_path, alert: I18n.t('reviews.not_found')
   end
 
   def set_review
     @review = Review.find(params[:id])
     return if @review
 
-    redirect_to root_path, alert: 'レビューが見つかりませんでした。'
+    redirect_to root_path, alert: I18n.t('reviews.review_not_found')
   end
 
   def review_params

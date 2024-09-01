@@ -1,6 +1,6 @@
-<% content_for :title, "抹茶に関するFAQ" %>
+<% content_for :title, t('faqs.title') %>
 
-<h1 class="text-4xl font-bold text-center my-8 text-gray-500">抹茶に関するよくある質問</h1>
+<h1 class="text-4xl font-bold text-center my-8 text-gray-500"><%= t('faqs.header') %></h1>
 
 <div class="max-w-3xl mx-auto text-gray-500">
   <% @faqs.each_with_index do |faq, index| %>
