@@ -11,9 +11,9 @@ class ContactsController < ApplicationController
     # バリデーションの実施
     if contact_name.blank? || contact_email.blank? || contact_message.blank?
       flash.now[:alert] = []
-      flash.now[:alert] << '名前を入力してください' if contact_name.blank?
-      flash.now[:alert] << 'メールアドレスを入力してください' if contact_email.blank?
-      flash.now[:alert] << 'メッセージを入力してください' if contact_message.blank?
+      flash.now[:alert] << I18n.t('contacts.errors.name_blank') if contact_name.blank?
+      flash.now[:alert] << I18n.t('contacts.errors.email_blank') if contact_email.blank?
+      flash.now[:alert] << I18n.t('contacts.errors.message_blank') if contact_message.blank?
 
       render :new, status: :unprocessable_entity
       return
@@ -22,6 +22,6 @@ class ContactsController < ApplicationController
     # メールを送信
     ContactMailer.send_contact_email(contact_name, contact_email, contact_message).deliver_now
 
-    redirect_to new_contact_path, notice: 'お問い合わせが送信されました。'
+    redirect_to new_contact_path, notice: I18n.t('contacts.notices.sent')
   end
 end

@@ -18,11 +18,11 @@ class ProductDecorator < Draper::Decorator
 
   def self.price_range_options
     [
-      ['〜500円', 'under_500'],
-      ['500円〜1000円', '500_to_1000'],
-      ['1000円〜2000円', '1000_to_2000'],
-      ['2000円〜3000円', '2000_to_3000'],
-      ['3000円以上', 'above_3000']
+      [I18n.t('products.price_ranges.under_500'), 'under_500'],
+      [I18n.t('products.price_ranges.500_to_1000'), '500_to_1000'],
+      [I18n.t('products.price_ranges.1000_to_2000'), '1000_to_2000'],
+      [I18n.t('products.price_ranges.2000_to_3000'), '2000_to_3000'],
+      [I18n.t('products.price_ranges.above_3000'), 'above_3000']
     ]
   end
 end

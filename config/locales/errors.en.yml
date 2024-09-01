@@ -1,0 +1,24 @@
+en:
+  errors:
+    messages:
+      already_confirmed: has already been confirmed. Please log in.
+      confirmation_period_expired: has expired. Please request a new one.
+      expired: has expired. Please request a new one.
+      not_found: could not be found.
+      not_locked: is not locked.
+      not_saved:
+        one: There was an error saving %{resource}.
+        other: There were %{count} errors saving %{resource}.
+    models:
+      user:
+        attributes:
+          email:
+            blank: "Please enter your email address."
+            invalid: "Please enter a valid email address with an '@' symbol."
+          password:
+            blank: "Please enter your password."
+            confirmation: "Password confirmation doesn't match. Please re-enter the confirmation password."
+          password_confirmation:
+            confirmation: "Password confirmation doesn't match. Please re-enter the confirmation password."
+    messages:
+      confirmation: "Password confirmation doesn't match. Please re-enter the confirmation password."

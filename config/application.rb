@@ -19,6 +19,7 @@ module LeafWhisper
 
     # アプリケーションの日本語化設定
     config.i18n.default_locale = :ja
+    config.i18n.available_locales = %i[ja en]
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

@@ -1,24 +1,24 @@
-<% content_for :title, "パスワードリセット" %>
+<% content_for :title, t('devise.passwords.new.title') %>
 
 <div class="min-h-screen bg-gray-100 flex items-center justify-center">
   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-    <h2 class="text-2xl font-bold text-center mb-6"><%= t('.forgot_your_password') %></h2>
+    <h2 class="text-2xl font-bold text-center mb-6"><%= t('devise.passwords.new.forgot_your_password') %></h2>
     <p class="mt-4 text-sm text-center text-gray-500">
-      パスワードを覚えている方は<%= link_to 'こちら', new_user_session_path, class: "text-blue-500 hover:underline" %> 
+      <%= t('devise.passwords.new.remember_password_text') %>
+      <%= link_to t('devise.passwords.new.sign_in_link'), new_user_session_path, class: "text-blue-500 hover:underline" %> 
     </p>  
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field flex flex-col mb-4">
-        <%= f.label :email, class: "block text-sm font-medium text-gray-700" %><br />
+        <%= f.label :email, t('devise.passwords.new.email_label'), class: "block text-sm font-medium text-gray-700" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm" %>
       </div>
 
       <div class="actions">
-        <%= f.submit t('.send_me_reset_password_instructions'), class: "w-full py-2 px-4 bg-secondary text-white font-bold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+        <%= f.submit t('devise.passwords.new.send_me_reset_password_instructions'), class: "w-full py-2 px-4 bg-secondary text-white font-bold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
       </div>
     <% end %>
   </div>
 </div>
-

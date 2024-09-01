@@ -1,23 +1,22 @@
 <%= form_with(url: contacts_path, local: true, class: "bg-white shadow-md rounded-lg p-8 max-w-md mx-auto") do |form| %>
-  <h2 class="text-2xl font-bold text-center mb-6">お問い合わせ</h2>
+  <h2 class="text-2xl font-bold text-center mb-6"><%= t('contacts.new.title') %></h2>
 
   <div class="mb-4 text-sm font-medium text-gray-700">
-    <%= form.label :name, "お名前", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.label :name, t('contacts.new.name'), class: "block text-gray-700 font-semibold mb-2" %>
     <%= form.text_field :name, class: "w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" %>
   </div>
 
   <div class="mb-4 text-sm font-medium text-gray-700">
-    <%= form.label :email, "メールアドレス", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.label :email, t('contacts.new.email'), class: "block text-gray-700 font-semibold mb-2" %>
     <%= form.email_field :email, class: "w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" %>
   </div>
 
   <div class="mb-4 text-sm font-medium text-gray-700">
-    <%= form.label :message, "メッセージ", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.label :message, t('contacts.new.message'), class: "block text-gray-700 font-semibold mb-2" %>
     <%= form.text_area :message, class: "w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" %>
   </div>
 
   <div class="text-center text-sm font-medium text-gray-700">
-    <%= form.submit "送信", class: "w-full py-2 px-4 bg-secondary text-white font-bold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+    <%= form.submit t('contacts.new.submit'), class: "w-full py-2 px-4 bg-secondary text-white font-bold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
   </div>
 <% end %>
-

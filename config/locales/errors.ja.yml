@@ -1,0 +1,24 @@
+ja:
+  errors:
+    messages:
+      already_confirmed: は既に登録済みです。ログインしてください。
+      confirmation_period_expired: の期限が切れました。%{period} までに確認する必要があります。 新しくリクエストしてください。
+      expired: の有効期限が切れました。新しくリクエストしてください。
+      not_found: は見つかりませんでした。
+      not_locked: はロックされていません。
+      not_saved:
+        one: エラーが発生したため %{resource}は保存されませんでした。
+        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+    models:
+      user:
+        attributes:
+          email:
+            blank: 'メールアドレスを入力してください。'
+            invalid: 'メールアドレスに「@」を挿入してください。'
+          password:
+            blank: 'パスワードを入力してください。'
+            confirmation: 'パスワードが一致しません。確認用パスワードをもう一度入力してください。'
+          password_confirmation:
+            confirmation: 'パスワードが一致しません。確認用パスワードをもう一度入力してください。'
+    messages:
+      confirmation: 'パスワードが一致しません。確認用パスワードをもう一度入力してください。'

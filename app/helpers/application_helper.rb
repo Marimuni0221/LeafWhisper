@@ -26,15 +26,15 @@ module ApplicationHelper
 
     text = case object
            when Product
-             'おすすめの抹茶の商品を見つけました！ #抹茶 #日本茶 #LeafWhisper'
+             I18n.t('share.product', default: 'おすすめの抹茶の商品を見つけました！ #抹茶 #日本茶 #LeafWhisper')
            when Cafe
-             "#{object.name} に行ってきました！すごくおすすめのカフェです。 #抹茶カフェ #日本茶 #LeafWhisper"
+             I18n.t('share.cafe', name: object.name, default: "#{object.name} に行ってきました！すごくおすすめのカフェです。 #抹茶カフェ #日本茶 #LeafWhisper")
            else
-             '素晴らしいアイテムやカフェをチェックしてみてください！ #LeafWhisper' # デフォルトのテキスト
+             I18n.t('share.default', default: '素晴らしいアイテムやカフェをチェックしてみてください！ #LeafWhisper')
            end
 
     # textがnilでないか確認
-    encoded_text = CGI.escape(text || '素晴らしいアイテムをチェックしてください！ #LeafWhisper')
+    encoded_text = CGI.escape(text || I18n.t('share.default_text'))
 
     "https://twitter.com/share?url=#{url}&text=#{encoded_text}"
   end

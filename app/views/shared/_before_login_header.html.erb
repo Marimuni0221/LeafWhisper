@@ -9,24 +9,67 @@
   </div>
   
   <!-- デスクトップ用メニュー -->
-  <div class="hidden lg:flex lg:text-sm xl:text-base space-x-4">
+  <div class="hidden lg:flex lg:text-sm xl:text-base space-x-4 items-center">
     <ul class="flex space-x-4 items-center">
-      <li><%= link_to 'ログイン', new_user_session_path, class: "text-white" %></li>
-      <li><%= link_to 'カフェ検索', search_cafes_path, class: "text-white" %></li>
+      <li><%= link_to t('navbar.login'), new_user_session_path, class: "text-white" %></li>
+      <li><%= link_to t('navbar.search_cafes'), search_cafes_path, class: "text-white" %></li>
       <li class="relative">
         <details class="group">
-          <summary class="cursor-pointer text-white">メニュー</summary>
+          <summary class="cursor-pointer text-white"><%= t('navbar.menu') %></summary>
           <ul class="absolute right-0 mt-2 w-48 bg-base-100 rounded shadow-lg hidden group-open:block">
-            <li><%= link_to '新規登録', new_user_registration_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
-            <li><%= link_to '抹茶Q&A', faqs_index_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
+            <li><%= link_to t('navbar.signup'), new_user_registration_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
+            <li><%= link_to t('navbar.faq'), faqs_index_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
           </ul>
         </details>
       </li>
     </ul>
+    
+    <!-- 言語選択ドロップダウン -->
+    <div class="relative">
+      <details class="group">
+        <summary class="cursor-pointer text-white flex items-center">
+          <img src="https://img.icons8.com/?size=512&id=t3NE3BsOAQwq&format=png" class="w-5 h-5 mr-2" alt="Current Language" />
+          <span class="text-white"><%= t('navbar.language') %></span>
+        </summary>
+        <ul class="absolute right-0 mt-2 w-28 bg-base-100 rounded shadow-lg hidden group-open:block">
+          <li>
+            <%= link_to url_for(locale: 'en'), class: "block px-4 py-2 hover:bg-gray-200" do %>
+              English
+            <% end %>
+          </li>
+          <li>
+            <%= link_to url_for(locale: 'ja'), class: "block px-4 py-2 hover:bg-gray-200" do %>
+              日本語
+            <% end %>
+          </li>
+        </ul>
+      </details>
+    </div>
   </div>
   
   <!-- モバイル用ハンバーガーメニュー -->
-  <div class="lg:hidden">
+  <div class="lg:hidden flex items-center space-x-2">
+    <!-- 言語選択ドロップダウン (モバイル用) -->
+    <details class="relative group">
+      <summary class="cursor-pointer text-white flex items-center">
+        <img src="https://img.icons8.com/?size=512&id=t3NE3BsOAQwq&format=png" class="w-5 h-5 mr-2" alt="Current Language" />
+        <span class="text-white"><%= t('navbar.language') %></span>
+      </summary>
+      <ul class="absolute right-0 mt-2 w-28 bg-base-100 rounded shadow-lg hidden group-open:block">
+        <li>
+          <%= link_to url_for(locale: 'en'), class: "block px-4 py-2 hover:bg-gray-200" do %>
+            English
+          <% end %>
+        </li>
+        <li>
+          <%= link_to url_for(locale: 'ja'), class: "block px-4 py-2 hover:bg-gray-200" do %>
+            日本語
+          <% end %>
+        </li>
+      </ul>
+    </details>
+    
+    <!-- ハンバーガーメニュー -->
     <button id="menu-toggle" class="text-white focus:outline-none">
       <i class="fas fa-bars fa-lg"></i>
     </button>
@@ -37,9 +80,31 @@
 <div id="mobile-menu" class="hidden lg:hidden bg-primary p-4">
   <ul class="flex flex-col space-y-2">
     <li><%= render 'products/search_form', q: @q, url: search_products_path, class: "w-full" %></li>
-    <li><%= link_to '新規登録', new_user_registration_path, class: "text-white" %></li>
-    <li><%= link_to 'ログイン', new_user_session_path, class: "text-white" %></li>
-    <li><%= link_to 'カフェ検索', search_cafes_path, class: "text-white" %></li>
-    <li><%= link_to '抹茶Q&A', faqs_index_path, class: "text-white" %></li>
+    <li><%= link_to t('navbar.signup'), new_user_registration_path, class: "text-white" %></li>
+    <li><%= link_to t('navbar.login'), new_user_session_path, class: "text-white" %></li>
+    <li><%= link_to t('navbar.search_cafes'), search_cafes_path, class: "text-white" %></li>
+    <li><%= link_to t('navbar.faq'), faqs_index_path, class: "text-white" %></li>
+    
+    <!-- 言語選択メニュー (モバイル用) -->
+    <li class="relative">
+      <details class="group">
+        <summary class="cursor-pointer text-white flex items-center">
+          <img src="https://img.icons8.com/?size=512&id=t3NE3BsOAQwq&format=png" class="w-5 h-5 mr-2" alt="Current Language" />
+          <span class="text-white"><%= t('navbar.language') %></span>
+        </summary>
+        <ul class="absolute right-0 mt-2 w-28 bg-base-100 rounded shadow-lg hidden group-open:block">
+          <li>
+            <%= link_to url_for(locale: 'en'), class: "block px-4 py-2 hover:bg-gray-200" do %>
+              English
+            <% end %>
+          </li>
+          <li>
+            <%= link_to url_for(locale: 'ja'), class: "block px-4 py-2 hover:bg-gray-200" do %>
+              日本語
+            <% end %>
+          </li>
+        </ul>
+      </details>
+    </li>
   </ul>
 </div>

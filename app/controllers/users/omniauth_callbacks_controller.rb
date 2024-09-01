@@ -6,7 +6,6 @@ module Users
     # devise :omniauthable, omniauth_providers: [:twitter]
     #
     def google_oauth2
-      Rails.logger.debug 'OmniauthCallbacksController#google_oauth2 called'
       callback_for(:google)
     end
 

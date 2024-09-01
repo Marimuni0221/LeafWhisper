@@ -8,7 +8,7 @@ class ContactMailer < ApplicationMailer
 
     mail(
       to: ENV.fetch('MAIL_ADDRESS', nil),
-      subject: 'お問い合わせがありました'
+      subject: I18n.t('contact_mailer.send_contact_email.subject')
     )
   end
 end

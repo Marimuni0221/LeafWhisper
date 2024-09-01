@@ -1,18 +1,18 @@
 <div class="bg-white shadow-md rounded-lg p-6 max-w-md w-full">
-  <h2 class="text-2xl font-bold text-center mb-4">お問い合わせ内容</h2>
+  <h2 class="text-2xl font-bold text-center mb-4"><%= t('contact_mailer.subject') %></h2>
 
   <div class="mb-4">
-    <p class="text-gray-700 font-semibold">お名前:</p>
+    <p class="text-gray-700 font-semibold"><%= t('contact_mailer.name') %>:</p>
     <p class="text-gray-900"><%= @contact_name %></p>
   </div>
 
   <div class="mb-4">
-    <p class="text-gray-700 font-semibold">メールアドレス:</p>
+    <p class="text-gray-700 font-semibold"><%= t('contact_mailer.email') %>:</p>
     <p class="text-gray-900"><%= @contact_email %></p>
   </div>
 
   <div class="mb-4">
-    <p class="text-gray-700 font-semibold">メッセージ:</p>
+    <p class="text-gray-700 font-semibold"><%= t('contact_mailer.message') %>:</p>
     <p class="text-gray-900 whitespace-pre-wrap"><%= @contact_message %></p>
   </div>
 </div>
