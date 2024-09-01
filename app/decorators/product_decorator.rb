@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductDecorator < Draper::Decorator
   delegate_all
 
@@ -23,5 +25,4 @@ class ProductDecorator < Draper::Decorator
       ['3000円以上', 'above_3000']
     ]
   end
-
 end

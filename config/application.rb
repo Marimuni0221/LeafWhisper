@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -13,8 +15,8 @@ module LeafWhisper
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
-    
+    config.autoload_lib(ignore: %w[assets tasks])
+
     # アプリケーションの日本語化設定
     config.i18n.default_locale = :ja
     # Configuration for the application, engines, and railties goes here.
@@ -27,13 +29,13 @@ module LeafWhisper
     # アセットパイプラインが有効になっていることを確認
     config.assets.enabled = true
     # アセットロードパスにアセットを追加する
-    config.assets.paths << Rails.root.join('app', 'assets', 'images')
+    config.assets.paths << Rails.root.join('app/assets/images')
 
     config.action_controller.default_protect_from_forgery = true
 
     config.cache_store = :redis_cache_store, {
-      url: "redis://redis:6379/0/cache",
-      namespace: "cache",
+      url: 'redis://redis:6379/0/cache',
+      namespace: 'cache',
       expires_in: 90.minutes
     }
   end

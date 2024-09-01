@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ContactsController < ApplicationController
-  def new;end
+  def new; end
 
   def create
     contact_name = params[:name]
@@ -9,10 +11,10 @@ class ContactsController < ApplicationController
     # バリデーションの実施
     if contact_name.blank? || contact_email.blank? || contact_message.blank?
       flash.now[:alert] = []
-      flash.now[:alert] << "名前を入力してください" if contact_name.blank?
-      flash.now[:alert] << "メールアドレスを入力してください" if contact_email.blank?
-      flash.now[:alert] << "メッセージを入力してください" if contact_message.blank?
-      
+      flash.now[:alert] << '名前を入力してください' if contact_name.blank?
+      flash.now[:alert] << 'メールアドレスを入力してください' if contact_email.blank?
+      flash.now[:alert] << 'メッセージを入力してください' if contact_message.blank?
+
       render :new, status: :unprocessable_entity
       return
     end

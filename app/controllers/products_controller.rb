@@ -1,4 +1,6 @@
-class ProductsController < ApplicationController 
+# frozen_string_literal: true
+
+class ProductsController < ApplicationController
   require 'digest'
   def search
     # ここでセッションの保存を無効にする
@@ -12,15 +14,11 @@ class ProductsController < ApplicationController
     @products = fetch_products(keyword, page)
 
     # カテゴリフィルターを適用
-    if category.present?
-      @products = @products.select { |product| product[:category].to_sym == category }
-    end
+    @products = @products.select { |product| product[:category].to_sym == category } if category.present?
 
     # 価格帯フィルターを適用
-    if params[:price_range].present?
-      @products = apply_price_range(@products, params[:price_range])
-    end
-    
+    @products = apply_price_range(@products, params[:price_range]) if params[:price_range].present?
+
     # 商品リストをセッションに保存
     session[:products] = @products
 
@@ -40,19 +38,20 @@ class ProductsController < ApplicationController
   end
 
   private
-  
-  def fetch_products(keyword, page)
+
+  def fetch_products(keyword, _page)
     # キーワードが無効な場合の対応
     if keyword.blank?
       keyword = '抹茶'
-    elsif !keyword.include?('抹茶')
+    elsif keyword.exclude?('抹茶')
       keyword = "#{keyword} 抹茶"
     end
-    
+
     items = []
     (1..5).each do |i| # 最大5ページまで取得する例
-      result = RakutenWebService::Ichiba::Item.search(keyword: keyword, page: i)
+      result = RakutenWebService::Ichiba::Item.search(keyword:, page: i)
       break if result === 0
+
       result.each do |item|
         items << item
       end
@@ -60,7 +59,7 @@ class ProductsController < ApplicationController
 
     items.map do |item|
       url_hash = Digest::SHA256.hexdigest(item['itemUrl'])
-      product = Product.find_or_initialize_by(url_hash: url_hash)
+      product = Product.find_or_initialize_by(url_hash:)
 
       product.assign_attributes(
         name: item['itemName'],
@@ -69,11 +68,10 @@ class ProductsController < ApplicationController
         item_url: item['itemUrl'],
         item_image_url: item['mediumImageUrls'].first,
         category: determine_category(item['itemName'], item['itemCaption']),
-        url_hash: url_hash
+        url_hash:
       )
       product
     end
-      
   end
 
   def apply_price_range(products, range)

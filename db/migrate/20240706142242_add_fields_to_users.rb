@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
 class AddFieldsToUsers < ActiveRecord::Migration[7.1]
   def change
-    add_column :users, :name, :string, null: false, default: ""
-    add_column :users, :avatar, :string
-    add_column :users, :sign_in_count, :integer, default: 0, null: false
-    add_column :users, :current_sign_in_at, :datetime
-    add_column :users, :last_sign_in_at, :datetime
-    add_column :users, :current_sign_in_ip, :string
-    add_column :users, :last_sign_in_ip, :string
+    change_table :users, bulk: true do |t|
+      t.string :name, null: false, default: ''
+      t.string :avatar
+      t.integer :sign_in_count, default: 0, null: false
+      t.datetime :current_sign_in_at
+      t.datetime :last_sign_in_at
+      t.string :current_sign_in_ip
+      t.string :last_sign_in_ip
+    end
   end
 end

@@ -1,0 +1,25 @@
+require:
+  - rubocop-rails   
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.3.3  
+  Exclude:
+    - 'db/schema.rb'  
+    - 'bin/*'
+    - 'node_modules/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'config/routes.rb'
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'  # RSpecのテストファイルではこのルールを無効化
+  Max: 25  # ブロックの最大行数を25行に設定
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+  Enabled: false  
