@@ -12,8 +12,7 @@
         </div>
         <p class="mb-4"><strong><%= t('reviews.index.comment') %>:</strong> <%= review.comment %></p>
         <div class="flex space-x-4">
-          <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer"><%= t('reviews.index.edit') %></a>
-          <%= button_to t('reviews.index.delete'), review_path(review), method: :delete, data: { turbo_confirm: t('reviews.index.confirm_delete') }, class: "bg-secondary hover:bg-blue-500 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+          <%= button_to t('reviews.index.delete'), review_path(review), method: :delete, data: { turbo_confirm: t('reviews.index.confirm_delete') }, class: "bg-green-100 hover:bg-green-200 text-gray-700 font-bold py-2 px-4 rounded cursor-pointer" %>
         </div>
       </div>
       <!-- 商品画像 -->
