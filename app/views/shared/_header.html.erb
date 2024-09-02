@@ -10,16 +10,16 @@
   </div>
   
   <!-- デスクトップ用メニュー -->
-  <div class="hidden lg:flex lg:text-sm xl:text-base space-x-4 items-center">
+  <div class="hidden lg:flex lg:text-sm xl:text-base space-x-2 items-center">
     <ul class="flex space-x-4 items-center">
       <li><%= link_to t('navbar.search_cafes'), search_cafes_path, class: "text-white" %></li>
       <li><%= link_to t('navbar.logout'), destroy_user_session_path, class: "text-white", data: { turbo_method: :delete } %></li>
       <li class="relative">
         <details class="group">
-          <summary class="cursor-pointer text-white"><%= current_user.display_name %><%= t('navbar.menu_suffix') %></summary>
+          <summary class="cursor-pointer text-white"><%= t('navbar.menu_suffix') %></summary>
           <ul class="absolute right-0 mt-2 w-48 bg-base-100 rounded shadow-lg hidden group-open:block">
             <li><%= link_to t('navbar.review_list'), reviews_user_path(current_user), class: "block px-4 py-2 hover:bg-gray-200" %></li>
-            <li><%= link_to t('navbar.favorites_list'), favorites_path(current_user), class: "block px-4 py-2 hover:bg-gray-200" %></li>
+            <li><%= link_to t('navbar.favorites_list'), favorites_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
             <li><%= link_to t('navbar.edit_profile'), edit_user_registration_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
             <li><%= link_to t('navbar.faq'), faqs_index_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
           </ul>
@@ -27,11 +27,11 @@
       </li>
     </ul>
 
-    <!-- 言語選択ドロップダウン -->
+    <!-- 言語選択トグル -->
     <div class="relative">
       <details class="group">
         <summary class="cursor-pointer text-white flex items-center">
-          <img src="https://img.icons8.com/?size=512&id=t3NE3BsOAQwq&format=png" class="w-5 h-5 mr-2" alt="Current Language" />
+          <i class="pr-1 fa-solid fa-globe" style="color: #ffffff;"></i>
           <span class="text-white"><%= t('navbar.language') %></span>
         </summary>
         <ul class="absolute right-0 mt-2 w-28 bg-base-100 rounded shadow-lg hidden group-open:block">
@@ -52,25 +52,27 @@
   
   <!-- モバイル用ハンバーガーメニュー -->
   <div class="lg:hidden flex items-center space-x-2">
-    <!-- 言語選択ドロップダウン (モバイル用) -->
-    <details class="relative group">
-      <summary class="cursor-pointer text-white flex items-center">
-        <img src="https://img.icons8.com/?size=512&id=t3NE3BsOAQwq&format=png" class="w-5 h-5 mr-2" alt="Current Language" />
-        <span class="text-white"><%= t('navbar.language') %></span>
-      </summary>
-      <ul class="absolute right-0 mt-2 w-28 bg-base-100 rounded shadow-lg hidden group-open:block">
-        <li>
-          <%= link_to url_for(locale: 'en'), class: "block px-4 py-2 hover:bg-gray-200" do %>
-            English
-          <% end %>
-        </li>
-        <li>
-          <%= link_to url_for(locale: 'ja'), class: "block px-4 py-2 hover:bg-gray-200" do %>
-            日本語
-          <% end %>
-        </li>
-      </ul>
-    </details>
+    <!-- 言語選択トグル (モバイル用) -->
+    <div class="relative">
+      <details class="group">
+        <summary class="cursor-pointer text-white flex items-center">
+          <i class="pr-1 fa-solid fa-globe" style="color: #ffffff;"></i>
+          <span class="text-white"><%= t('navbar.language') %></span>
+        </summary>
+        <ul class="absolute right-0 mt-2 w-28 bg-base-100 rounded shadow-lg hidden group-open:block">
+          <li>
+            <%= link_to url_for(locale: 'en'), class: "block px-4 py-2 hover:bg-gray-200" do %>
+              English
+            <% end %>
+          </li>
+          <li>
+            <%= link_to url_for(locale: 'ja'), class: "block px-4 py-2 hover:bg-gray-200" do %>
+              日本語
+            <% end %>
+          </li>
+        </ul>
+      </details>
+    </div>
     
     <!-- ハンバーガーメニュー -->
     <button id="menu-toggle" class="text-white focus:outline-none">
@@ -87,10 +89,10 @@
     <li><%= link_to t('navbar.logout'), destroy_user_session_path, class: "text-white", data: { turbo_method: :delete } %></li>
     <li class="relative">
       <details class="group">
-        <summary class="cursor-pointer text-white"><%= current_user.display_name %><%= t('navbar.menu_suffix') %></summary>
+        <summary class="cursor-pointer text-white"><%= t('navbar.menu_suffix') %></summary>
         <ul class="bg-base-100 rounded p-2 mt-2 hidden group-open:block">
           <li><%= link_to t('navbar.review_list'), reviews_user_path(current_user), class: "block px-2 py-1 hover:bg-gray-200" %></li>
-          <li><%= link_to t('navbar.favorites_list'), favorites_path(current_user), class: "block px-2 py-1 hover:bg-gray-200" %></li>
+          <li><%= link_to t('navbar.favorites_list'), favorites_path, class: "block px-2 py-1 hover:bg-gray-200" %></li>
           <li><%= link_to t('navbar.edit_profile'), edit_user_registration_path, class: "block px-4 py-2 hover:bg-gray-200" %></li>
           <li><%= link_to t('navbar.faq'), faqs_index_path, class: "block px-2 py-1 hover:bg-gray-200" %></li>
         </ul>
