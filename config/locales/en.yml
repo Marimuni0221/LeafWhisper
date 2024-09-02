@@ -42,6 +42,7 @@ en:
       title: "Search Results"
       write_review: "Write a Review"
       no_products_found: "No products found."
+      feature_not_available: "The Favorites and Review features are not available in the English version."
     search_form:
       select_genre: "Select Genre"
       select_price_range: "Select Price Range"
@@ -140,7 +141,7 @@ en:
     menu: "Menu"
     search_cafes: "Search Cafes"
     logout: "Logout"
-    menu_suffix: "'s Menu"
+    menu_suffix: "Menu"
     review_list: "Review List"
     favorites_list: "Favorites"
     edit_profile: "Edit Profile"
