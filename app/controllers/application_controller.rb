@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_search
   before_action :set_locale
+  before_action :store_user_location!, if: :storable_location?
 
   def current_user
     super&.decorate
@@ -17,6 +18,21 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  # 元のページのURLを保存するメソッド
+  def store_user_location!
+    store_location_for(:user, request.fullpath)
+  end
+
+  # URLを保存するための条件を定義するメソッド
+  def storable_location?
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
+  end
+
+  # ログイン後のリダイレクト先を指定するメソッド
+  def after_sign_in_path_for(resource_or_scope)
+    stored_location_for(resource_or_scope) || super
+  end
 
   def set_search
     @q = Product.ransack(params[:q])

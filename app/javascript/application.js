@@ -7,7 +7,26 @@ document.addEventListener('turbo:load', () => {
   initializeStarRating();
   setupModalListeners();
   setupMenuToggle(); // 追加: メニューのトグルをセットアップ
+  disableButtonAfterClick(); // 追加: ボタンの無効化をセットアップ
+
+  // ログイン後にモーダルを自動表示する
+  const modalTrigger = document.getElementById('review-modal-trigger');
+  if (modalTrigger) {
+    modalTrigger.click(); // ログイン後にモーダルを表示
+  }
 });
+
+// ボタンの無効化をセットアップする関数
+function disableButtonAfterClick() {
+  const reviewButton = document.querySelector('#no-double_click-button');
+
+  if (reviewButton) {
+    reviewButton.addEventListener('click', function() {
+      reviewButton.disabled = true; // ボタンを無効化
+      reviewButton.form.submit(); // ボタンを無効化した後にフォームを送信
+    });
+  }
+}
 
 // 星評価の初期化
 function initializeStarRating() {
@@ -53,13 +72,21 @@ function resetStarRating(stars) {
 // モーダルのリスナーを設定
 function setupModalListeners() {
   window.openModal = (url) => {
-    fetch(url)
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('modalContent').innerHTML = html;
-        document.getElementById('reviewModal').classList.remove('hidden');
-        initializeStarRating(); // モーダル内の星評価を初期化
-      });
+    const isLoggedIn = document.querySelector('meta[name="logged-in"]').getAttribute('content') === 'true';
+    
+    if (isLoggedIn) {
+      // ログイン済みの場合、モーダルを表示
+      fetch(url)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('modalContent').innerHTML = html;
+          document.getElementById('reviewModal').classList.remove('hidden');
+          initializeStarRating(); // モーダル内の星評価を初期化
+        });
+    } else {
+      // 未ログインの場合、ログインページにリダイレクト
+      window.location.href = '/users/sign_in';
+    }
   };
 
   window.closeModal = () => {
@@ -74,6 +101,7 @@ function setupModalListeners() {
     }
   });
 }
+
 
 // メニューのトグルをセットアップ
 function setupMenuToggle() {

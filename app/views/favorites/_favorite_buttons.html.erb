@@ -1,4 +1,4 @@
-<div class='ms-auto'>
+<div id="favorite-buttons-<%= favoritable.id %>" class='ms-auto'>
   <% if current_user&.favorited?(favoritable) %>
     <%= render 'favorites/unfavorite', { favoritable: favoritable } %>
   <% else %>
