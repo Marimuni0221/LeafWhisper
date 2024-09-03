@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_favoritable, except: [:index]
 
   def index
@@ -8,15 +9,25 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    current_user.favorite(@favoritable)
-    flash.now[:notice] = I18n.t('favorites.added')
+    if @favoritable
+      current_user.favorite(@favoritable)
+      flash.now[:notice] = I18n.t('favorites.added')
+    else
+      flash[:alert] = I18n.t('favorites.not_found')
+    end
+    redirect_to request.referer || root_path
   end
 
   def destroy
-    @favorite = current_user.favorites.find(params[:id]) # 削除対象のFavoriteを取得
-    @favoritable = @favorite.favoritable
-    current_user.unfavorite(@favoritable)
-    flash.now[:notice] = I18n.t('favorites.removed')
+    @favorite = current_user.favorites.find(params[:id])
+    if @favorite
+      @favoritable = @favorite.favoritable
+      current_user.unfavorite(@favoritable)
+      flash[:notice] = I18n.t('favorites.removed')
+    else
+      flash[:alert] = I18n.t('favorites.not_found')
+    end
+    redirect_to request.referer || root_path
   end
 
   private
