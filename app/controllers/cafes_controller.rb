@@ -21,7 +21,6 @@ class CafesController < ApplicationController
 
   def favorite_button
     @cafe = Cafe.find_by(place_id: params[:id])
-    Rails.logger.debug { "Found Cafe: #{@cafe.inspect}" }
     unless @cafe
       render plain: 'Cafe not found', status: :not_found
       return
@@ -29,7 +28,7 @@ class CafesController < ApplicationController
 
     # お気に入りボタンのHTMLを生成
     favorite_button_html = render_to_string(partial: 'favorites/favorite_buttons', locals: { favoritable: @cafe })
-
+    Rails.logger.debug { "Favorite button rendered with locale: #{I18n.locale}" }
     # シェアURLを生成
     share_url = share_on_x_url(@cafe)
 

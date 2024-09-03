@@ -7,6 +7,9 @@ window.initMap = function() {
 
     const errorGeolocation = document.body.getAttribute('data-error-geolocation');
     const viewOnGoogleMapsText = document.body.getAttribute('data-view-on-google-maps');
+    const favoriteNotAvailableText = "The Favorites are not available in the English version."; // 英語でのメッセージ
+
+    const isEnglish = document.documentElement.lang === 'en';
 
     navigator.geolocation.getCurrentPosition((position) => {
         const userLocation = { 
@@ -58,31 +61,47 @@ window.initMap = function() {
                         service.getDetails({ placeId: place.place_id }, (placeDetails, status) => {
                             if (status === google.maps.places.PlacesServiceStatus.OK) {
                                 saveCafeToServer(placeDetails).then(() => {
-                                    fetch(`/cafes/${place.place_id}/favorite_button`)
-                                        .then(response => response.json())
-                                        .then(data => {
-                                            const contentString = `
-                                                <div class="p-4 bg-white rounded-lg shadow-lg">
-                                                  <h2 class="text-lg font-semibold">${placeDetails.name}</h2>
-                                                  <p class="text-gray-600">${placeDetails.formatted_address}</p>
-                                                  <a href="https://www.google.com/maps/place/?q=place_id:${place.place_id}" target="_blank">
+                                    if (isEnglish) {
+                                        const contentString = `
+                                            <div class="p-4 bg-white rounded-lg shadow-lg">
+                                                <h2 class="text-lg font-semibold">${placeDetails.name}</h2>
+                                                <p class="text-gray-600">${placeDetails.formatted_address}</p>
+                                                <a href="https://www.google.com/maps/place/?q=place_id:${place.place_id}" target="_blank">
                                                     ${viewOnGoogleMapsText}
-                                                  </a>
-                                                  <div class="flex justify-between items-center mt-4 space-x-4">
-                                                    ${data.favorite_button_html}
-                                                    <a href="${data.share_url}" target="_blank" class="ml-4">
-                                                      <i class="fa-brands fa-x-twitter fa-xl"></i>
-                                                    </a>    
-                                                  </div>
-                                                </div>`;
-                                            const infowindow = new google.maps.InfoWindow({
-                                                content: contentString,
-                                            });
-                                            infowindow.open(map, marker);
-                                        })
-                                        .catch(error => {
-                                            console.error('お気に入りボタンの取得に失敗しました:', error);
+                                                </a>
+                                                <p class="text-gray-500 text-sm mt-4">${favoriteNotAvailableText}</p>
+                                            </div>`;
+                                        const infowindow = new google.maps.InfoWindow({
+                                            content: contentString,
                                         });
+                                        infowindow.open(map, marker);
+                                    } else {
+                                        fetch(`/cafes/${place.place_id}/favorite_button`)
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                const contentString = `
+                                                    <div class="p-4 bg-white rounded-lg shadow-lg">
+                                                        <h2 class="text-lg font-semibold">${placeDetails.name}</h2>
+                                                        <p class="text-gray-600">${placeDetails.formatted_address}</p>
+                                                        <a href="https://www.google.com/maps/place/?q=place_id:${place.place_id}" target="_blank">
+                                                            ${viewOnGoogleMapsText}
+                                                        </a>
+                                                        <div class="flex justify-between items-center mt-4 space-x-4">
+                                                            ${data.favorite_button_html}
+                                                            <a href="${data.share_url}" target="_blank" class="ml-4">
+                                                                <i class="fa-brands fa-x-twitter fa-xl"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>`;
+                                                const infowindow = new google.maps.InfoWindow({
+                                                    content: contentString,
+                                                });
+                                                infowindow.open(map, marker);
+                                            })
+                                            .catch(error => {
+                                                console.error('お気に入りボタンの取得に失敗しました:', error);
+                                            });
+                                    }
                                 });
                             }
                         });
