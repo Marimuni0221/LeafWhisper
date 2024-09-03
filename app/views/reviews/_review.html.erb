@@ -1,4 +1,4 @@
-<div class="review bg-white shadow-md rounded-md p-4 mb-4">
+<div id="reviews_<%= review.reviewable.url_hash %>" class="review bg-white shadow-md rounded-md p-4 mb-4">
   <div class="rating mb-2">
     <% if review.rating.present? %>
       <% review.rating.times do %>

@@ -7,9 +7,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <!-- ログイン状態を示すmetaタグ -->
+    <% if user_signed_in? %>
+      <meta name="logged-in" content="true">
+    <% else %>
+      <meta name="logged-in" content="false">
+    <% end %>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous">
+    
     <!-- Google Analytics -->
     <%= render 'layouts/google_analytics' %>
   </head>
@@ -20,22 +29,24 @@
     data-alert-no_results="<%= I18n.t('map.alert_no_results') %>"
     data-view-on-google-maps="<%= I18n.t('map.view_on_google_maps') %>">
     
-      <%# ヘッダーの表示 %>
-      <div class="w-full">
-        <% if user_signed_in? %>
-          <%= render 'shared/header' %>
-        <% else %>
-          <%= render 'shared/before_login_header' %>
-        <% end %>  
+    <%# ヘッダーの表示 %>
+    <div class="w-full">
+      <% if user_signed_in? %>
+        <%= render 'shared/header' %>
+      <% else %>
+        <%= render 'shared/before_login_header' %>
+      <% end %>  
+    </div>
+    
+    <%# フラッシュメッセージの表示 %>
+    <div class="flex-grow container mx-auto"> 
+      <div id="flash">
+        <%= render 'shared/flash_message' %>
       </div>
-      <%# フラッシュメッセージの表示 %>
-      <div class="flex-grow container mx-auto"> 
-        <div id="flash">
-          <%= render 'shared/flash_message' %>
-        </div>
-        <%= yield %>
-      </div>
-      <%# フッターの表示 %>
-      <%= render 'shared/footer' %>
+      <%= yield %>
+    </div>
+    
+    <%# フッターの表示 %>
+    <%= render 'shared/footer' %>
   </body>
 </html>

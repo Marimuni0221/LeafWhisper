@@ -6,12 +6,16 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i[destroy]
 
   def new
-    @review = @reviewable.reviews.new
-    respond_to do |format|
-      format.html do
-        render partial: 'reviews/form', layout: false, locals: { reviewable: @reviewable, review: @review }
+    if user_signed_in?
+      @review = @reviewable.reviews.new
+      respond_to do |format|
+        format.html do
+          render partial: 'reviews/form', layout: false, locals: { reviewable: @reviewable, review: @review }
+        end
+        format.turbo_stream
       end
-      format.turbo_stream
+    else
+      redirect_to new_user_session_path # ログインページにリダイレクト
     end
   end
 

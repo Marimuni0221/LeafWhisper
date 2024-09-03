@@ -57,12 +57,12 @@
       <% end %>
 
       <div class="actions">
-        <%= f.submit t('devise.registrations.edit.update'), class: "w-full py-2 px-4 bg-secondary text-white font-bold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+        <%= f.submit t('devise.registrations.edit.update'), class: "w-full py-2 px-4 bg-secondary text-white font-bold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500", id: "no-double_click-button" %>
       </div>
     <% end %>
 
     <div class="text-center mt-4">
-      <%= button_to t('devise.registrations.edit.cancel_my_account'), user_registration_path, data: { confirm: t('devise.registrations.edit.are_you_sure'), turbo_confirm: t('devise.registrations.edit.are_you_sure') }, method: :delete, class: "text-blue-500 hover:underline" %>
+      <%= button_to t('devise.registrations.edit.cancel_my_account'), user_registration_path, data: { confirm: t('devise.registrations.edit.are_you_sure'), turbo_confirm: t('devise.registrations.edit.are_you_sure') }, method: :delete, class: "text-blue-500 hover:underline", id: "no-double_click-button" %>
     </div>
 
     <div class="text-center mt-4">
