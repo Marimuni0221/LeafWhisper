@@ -1,0 +1,7 @@
+<turbo-stream action="replace" target="unfavorite_<%= favoritable.id %>">
+  <template>
+    <%= link_to favorite_path(current_user.favorites.find_by(favoritable: favoritable)), id: "unfavorite_#{favoritable.id}", data: { turbo_method: :delete } do %>
+      <i class="fa-solid fa-heart fa-xl" style="color: #FFD43B;"></i> <!-- 塗りつぶされたハートアイコン -->
+    <% end %>
+  </template>
+</turbo-stream>

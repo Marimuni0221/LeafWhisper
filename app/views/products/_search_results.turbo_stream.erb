@@ -1,0 +1,44 @@
+<turbo-stream action="replace" target="search_results">
+  <template>
+    <h2 class="text-2xl font-bold mt-4 mb-4 text-center"><%= t('products.search_results.title') %></h2>
+    <% if @products.present? %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% @products.each do |product| %>
+          <div class="bg-white shadow-md rounded-md p-4">
+            
+            <% if product.item_image_url.present? %>
+              <%= image_tag product.item_image_url, alt: product.name, class: "w-full h-48 object-contain mb-4" %>
+            <% end %>
+            <h3 class="text-lg font-semibold"><%= link_to product.name, product.item_url %></h3>
+            <p class="text-green-500 font-bold"><%= number_to_currency(product.price) %></p>
+            
+            <% unless I18n.locale == :en %>
+              <div class="flex justify-between items-center space-x-4">
+                <%= render 'favorites/favorite_buttons', { favoritable: product } %>
+                <!-- 商品情報のシェアボタン -->
+                <a href="<%= share_on_x_url(product) %>" 
+                  target="_blank">             
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+              </div>
+              
+              <%= link_to t('products.search_results.write_review'), '#', onclick: "openModal('#{new_product_review_path(product.url_hash)}')", class: "bg-secondary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4 inline-block" %>
+            <% else %>
+              <p class="text-gray-500 text-sm"><%= t('products.search_results.feature_not_available') %></p>
+            <% end %>
+            
+            <div id="reviews_<%= product.url_hash %>">
+              <%= render product.reviews %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%# ページネーションを適用 %>
+      <div class="mt-4">
+        <%= paginate @products %>
+      </div>
+    <% else %>
+      <p class="text-gray-500 text-center text-xl"><%= t('products.search_results.no_products_found') %></p>
+    <% end %>
+  </template>
+</turbo-stream>
