@@ -8,10 +8,12 @@ services:
       POSTGRES_PASSWORD: pomchan1858
       POSTGRES_DB: leaf_whisper_development
     networks:
-      - leafwhisper_network  
+      - leafwhisper_network
+    mem_limit: 1g   
 
   web:
     build: .
+    mem_limit: 2g
     command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/rails
