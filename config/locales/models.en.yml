@@ -8,7 +8,6 @@ en:
           tea: Tea
           sweets: Sweets
           gift: Gift
-          cosmetics: Cosmetics
       user:
         confirmation_sent_at: Confirmation Sent At
         confirmation_token: Confirmation Token

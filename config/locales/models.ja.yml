@@ -8,7 +8,6 @@ ja:
           tea: お茶
           sweets: スイーツ
           gift: ギフト
-          cosmetics: コスメ
       user:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
