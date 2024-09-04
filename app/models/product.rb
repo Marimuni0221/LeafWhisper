@@ -28,7 +28,7 @@ class Product < ApplicationRecord
     end
   }
 
-  enum :category, { tea: 0, sweets: 1, gift: 2, cosmetics: 3 }
+  enum :category, { tea: 0, sweets: 1, gift: 2 }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[category created_at description id name price updated_at]

@@ -96,8 +96,6 @@ class ProductsController < ApplicationController
       'sweets'
     elsif name.include?('ギフト') || description.include?('ギフト')
       'gift'
-    elsif name.include?('コスメ') || description.include?('コスメ')
-      'cosmetics'
     else
       'tea'
     end
