@@ -20,13 +20,13 @@ jobs:
         env:
           RAILS_ENV: test
         run: |
-          docker-compose up --build -d
-          docker-compose exec -T web rails db:create
-          docker-compose exec -T web rails db:migrate
+          docker compose up --build -d
+          docker compose exec -T web rails db:create
+          docker compose exec -T web rails db:migrate
 
       - name: RUN Rspec
         shell: bash
         env:
           RAILS_ENV: test
         run: |
-          docker-compose exec -T web bundle exec rspec
+          docker compose exec -T web bundle exec rspec
