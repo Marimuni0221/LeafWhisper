@@ -1,0 +1,32 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Rspec_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up docker
+        shell: bash
+        env:
+          RAILS_ENV: test
+        run: |
+          docker-compose up --build -d
+          docker-compose exec -T web rails db:create
+          docker-compose exec -T web rails db:migrate
+
+      - name: RUN Rspec
+        shell: bash
+        env:
+          RAILS_ENV: test
+        run: |
+          docker-compose exec -T web bundle exec rspec
