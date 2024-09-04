@@ -8,7 +8,7 @@
     remote:        data-remote
 -%>
 <% if page.current? %>
-  <span class="bg-indigo-400 text-white px-4 py-3 rounded"><%= page %></span>
+  <span class="join-item btn bg-emerald-200 text-white px-2 sm:px-4 py-1 sm:py-2"><%= page %></span>
 <% else %>
-  <%= link_to page, url, remote: remote, rel: page.rel, class: "px-4 text-gray-800 font-light" %>
+  <%= link_to page, url, remote: remote, rel: page.rel, class: "join-item btn px-2 sm:px-4 py-1 sm:py-2" %>
 <% end %>
