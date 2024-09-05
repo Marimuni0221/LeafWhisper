@@ -87,14 +87,13 @@ class ProductsController < ApplicationController
     keyword.exclude?(I18n.t('products.default_keyword')) ? "#{keyword} #{I18n.t('products.default_keyword')}" : keyword
   end
 
-  # 楽天APIからアイテムを取得
   def fetch_items_from_rakuten(keyword)
     items = []
     (1..5).each do |i|
       result = RakutenWebService::Ichiba::Item.search(keyword:, page: i)
       break if result.count.zero?
 
-      items.concat(result)
+      items.concat(result.to_a)
     end
     items
   end
