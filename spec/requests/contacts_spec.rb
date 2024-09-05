@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'お問い合わせ', type: :request do
+RSpec.describe 'お問い合わせ' do
   describe 'GET /new' do
     it 'お問い合わせページを表示する' do
       get new_contact_path

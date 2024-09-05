@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-Rspec.describe 'FAQ ページ', type: :system do
+RSpec.describe 'FAQ ページ' do
   before do
     driven_by(:selenium_chrome_headless)
   end

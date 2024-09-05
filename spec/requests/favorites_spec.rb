@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Favorites', type: :request do
+RSpec.describe 'Favorites' do
   describe 'GET /index' do
     pending "add some examples (or delete) #{__FILE__}"
   end

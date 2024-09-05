@@ -12,6 +12,6 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe CafesHelper, type: :helper do
+RSpec.describe CafesHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
