@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'ユーザー認証機能', type: :feature do
+describe 'ユーザー認証機能' do
   context 'ユーザー新規登録時' do
     it 'ユーザー登録成功時' do
       visit new_user_registration_path
@@ -39,7 +39,7 @@ describe 'ユーザー認証機能', type: :feature do
   end
 
   context 'ユーザーログイン時' do
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
 
     it 'ログイン成功時' do
       visit new_user_session_path

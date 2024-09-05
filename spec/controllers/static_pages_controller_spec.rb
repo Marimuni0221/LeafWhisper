@@ -4,7 +4,7 @@ require 'rails_helper'
 
 # frozen_string_literal: true
 
-Rspec.describe StaticPagesController, type: :controller do
+RSpec.describe StaticPagesController do
   describe 'GET #terms' do
     it '利用規約の画面を表示' do
       get :terms

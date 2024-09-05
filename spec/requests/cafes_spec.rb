@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Cafes', type: :request do
+RSpec.describe 'Cafes' do
   describe 'GET /search' do
     it 'returns http success' do
       get '/cafes/search'
