@@ -14,7 +14,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      # スワップ領域を4GBに設定
+      - name: Set up Swap (4GB)
+        run: |
+          sudo fallocate -l 4G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          sudo swapon --show
 
+      - name: Check Memory Usage (Before Docker)
+        run: free -m
+
+      - name: Docker Stats (Before Docker)
+        run: docker stats --no-stream
+    
       - name: Set up Ruby and install dependencies
         uses: ruby/setup-ruby@v1
         with:
@@ -30,17 +45,38 @@ jobs:
           docker compose exec -T web bundle exec rails db:create
           docker compose exec -T web bundle exec rails db:migrate
 
-      - name: RUN Rspec
+      - name: Check Memory Usage (Before RSpec)
+        run: free -m
+
+      # テストを分割して実行 (モデル)
+      - name: RUN Rspec (Models)
         shell: bash
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
         run: |
-          docker compose exec -T web bundle exec rspec --jobs 2
+          docker compose exec -T web bundle exec rspec --no-parallel spec/models
 
-      # メモリ使用量を明示的にチェック
-      - name: Check Memory Usage
+      # RSpec実行後にメモリ使用量をチェック
+      - name: Check Memory Usage (After RSpec Models)
         run: free -m
+
+      # テストを分割して実行 (コントローラー)
+      - name: RUN Rspec (Controllers)
+        shell: bash
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
+        run: |
+          docker compose exec -T web bundle exec rspec --no-parallel spec/controllers
+
+      # RSpec実行後にメモリ使用量をチェック
+      - name: Check Memory Usage (After RSpec Controllers)
+        run: free -m
+
+      # スワップ領域の使用状況を確認
+      - name: Check Swap Usage
+        run: swapon --show
 
       # Dockerコンテナごとのメモリ使用量をモニタリング
       - name: Docker Stats
