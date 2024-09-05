@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: Rails CI
 
 on:
   push:
@@ -9,79 +9,56 @@ on:
       - main
 
 jobs:
-  Rspec_test:
+  build:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: leaf_whisper
+          POSTGRES_PASSWORD: pomchan1858
+          POSTGRES_DB: leaf_whisper_test
+
+    env:
+      RAILS_ENV: test
+      POSTGRES_USER: leaf_whisper
+      POSTGRES_PASSWORD: pomchan1858
+      POSTGRES_DB: leaf_whisper_test
+
     steps:
-      - uses: actions/checkout@v2
-      
-      # スワップ領域を4GBに設定
-      - name: Set up Swap (4GB)
-        run: |
-          sudo fallocate -l 4G /swapfile
-          sudo chmod 600 /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
-          sudo swapon --show
+      - name: Git checkout
+        uses: actions/checkout@v2
 
-      - name: Check Memory Usage (Before Docker)
-        run: free -m
-
-      - name: Docker Stats (Before Docker)
-        run: docker stats --no-stream
-    
-      - name: Set up Ruby and install dependencies
+      - name: Setup Ruby 3.3.3
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.3
 
-      - name: Set up docker
-        shell: bash
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
+      - name: Setup bundler
+        run: gem install bundler
+
+      - name: Cache gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+
+      - name: Install gems
+        run: bundle install --path vendor/bundle --jobs 4
+
+      - name: Setup Database
         run: |
-          docker compose up --build -d
-          docker compose exec -T web bundle exec rails db:create
-          docker compose exec -T web bundle exec rails db:migrate
+          cp -v config/database.yml.ci config/database.yml
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
 
-      - name: Check Memory Usage (Before RSpec)
-        run: free -m
+      - name: Run RSpec tests
+        run: bundle exec rspec
 
-      # テストを分割して実行 (モデル)
-      - name: RUN Rspec (Models)
-        shell: bash
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
-        run: |
-          docker compose exec -T web bundle exec rspec --no-parallel spec/models
-
-      # RSpec実行後にメモリ使用量をチェック
-      - name: Check Memory Usage (After RSpec Models)
-        run: free -m
-
-      # テストを分割して実行 (コントローラー)
-      - name: RUN Rspec (Controllers)
-        shell: bash
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
-        run: |
-          docker compose exec -T web bundle exec rspec --no-parallel spec/controllers
-
-      # RSpec実行後にメモリ使用量をチェック
-      - name: Check Memory Usage (After RSpec Controllers)
-        run: free -m
-
-      # スワップ領域の使用状況を確認
-      - name: Check Swap Usage
-        run: swapon --show
-
-      # Dockerコンテナごとのメモリ使用量をモニタリング
-      - name: Docker Stats
-        run: docker stats --no-stream
-
-      # RSpec実行後にカーネルログでOOM（メモリ不足）エラーを確認
-      - name: Display Kernel Logs for OOM
-        run: dmesg | grep -i 'out of memory' || echo "No OOM errors found"
+      - name: Run RuboCop
+        run: bundle exec rubocop
