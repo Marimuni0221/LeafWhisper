@@ -14,7 +14,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      # スワップ領域を設定
+      - name: Set up Swap (2GB)
+        run: |
+          sudo fallocate -l 2G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          sudo swapon --show
 
+      - name: Check Memory Usage (Before Docker)
+        run: free -m
+
+      - name: Docker Stats (Before Docker)
+        run: docker stats --no-stream
+    
       - name: Set up Ruby and install dependencies
         uses: ruby/setup-ruby@v1
         with:
