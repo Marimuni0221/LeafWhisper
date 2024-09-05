@@ -19,12 +19,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.3
-          bundler-cache: true  
 
       - name: Set up docker
         shell: bash
         env:
           RAILS_ENV: test
+          DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
         run: |
           docker compose up --build -d
           docker compose exec -T web bundle exec rails db:create
@@ -34,5 +34,6 @@ jobs:
         shell: bash
         env:
           RAILS_ENV: test
+          DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_developments
         run: |
           docker compose exec -T web bundle exec rspec
