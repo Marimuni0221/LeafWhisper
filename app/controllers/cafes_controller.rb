@@ -6,16 +6,13 @@ class CafesController < ApplicationController
   def search; end
 
   def save
-    cafe = Cafe.find_or_initialize_by(place_id: params[:place_id])
-    cafe.name = params[:name]
-    cafe.address = params[:address]
-    cafe.phone_number = params[:phone_number] # 電話番号
-    cafe.cafe_url = params[:cafe_url] # カフェのURL
-    cafe.cafe_image_url = params[:cafe_image_url] # カフェの画像URL
+    cafe = find_or_initialize_cafe
+    update_cafe_attributes(cafe)
+
     if cafe.save
-      render json: { status: 'success', cafe_id: cafe.id }
+      render_success(cafe)
     else
-      render json: { status: 'error', errors: cafe.errors.full_messages }, status: :unprocessable_entity
+      render_error(cafe)
     end
   end
 
@@ -26,12 +23,31 @@ class CafesController < ApplicationController
       return
     end
 
-    # お気に入りボタンのHTMLを生成
     favorite_button_html = render_to_string(partial: 'favorites/favorite_buttons', locals: { favoritable: @cafe })
-    # シェアURLを生成
     share_url = share_on_x_url(@cafe)
 
-    # favorite_button_htmlとshare_urlをJSON形式で返す
     render json: { favorite_button_html:, share_url: }
+  end
+
+  private
+
+  def find_or_initialize_cafe
+    Cafe.find_or_initialize_by(place_id: params[:place_id])
+  end
+
+  def update_cafe_attributes(cafe)
+    cafe.name = params[:name]
+    cafe.address = params[:address]
+    cafe.phone_number = params[:phone_number]
+    cafe.cafe_url = params[:cafe_url]
+    cafe.cafe_image_url = params[:cafe_image_url]
+  end
+
+  def render_success(cafe)
+    render json: { status: 'success', cafe_id: cafe.id }
+  end
+
+  def render_error(cafe)
+    render json: { status: 'error', errors: cafe.errors.full_messages }, status: :unprocessable_entity
   end
 end
