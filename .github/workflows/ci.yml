@@ -21,6 +21,9 @@ jobs:
           POSTGRES_USER: leaf_whisper
           POSTGRES_PASSWORD: pomchan1858
           POSTGRES_DB: leaf_whisper_test
+          AWS_ACCESS_KEY_ID: dummy_access_key
+          AWS_SECRET_ACCESS_KEY: dummy_secret_key
+          S3_BUCKET_NAME: dummy_bucket
 
     env:
       RAILS_ENV: test
