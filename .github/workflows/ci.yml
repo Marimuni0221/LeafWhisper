@@ -15,10 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      # スワップ領域を設定
-      - name: Set up Swap (2GB)
+      # スワップ領域を4GBに設定
+      - name: Set up Swap (4GB)
         run: |
-          sudo fallocate -l 2G /swapfile
+          sudo fallocate -l 4G /swapfile
           sudo chmod 600 /swapfile
           sudo mkswap /swapfile
           sudo swapon /swapfile
@@ -45,6 +45,9 @@ jobs:
           docker compose exec -T web bundle exec rails db:create
           docker compose exec -T web bundle exec rails db:migrate
 
+      - name: Check Memory Usage (Before RSpec)
+        run: free -m
+
       # テストを分割して実行 (モデル)
       - name: RUN Rspec (Models)
         shell: bash
@@ -52,7 +55,11 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
         run: |
-          docker compose exec -T web bundle exec rspec spec/models
+          docker compose exec -T web bundle exec rspec --no-parallel spec/models
+
+      # RSpec実行後にメモリ使用量をチェック
+      - name: Check Memory Usage (After RSpec Models)
+        run: free -m
 
       # テストを分割して実行 (コントローラー)
       - name: RUN Rspec (Controllers)
@@ -61,11 +68,15 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
         run: |
-          docker compose exec -T web bundle exec rspec spec/controllers
+          docker compose exec -T web bundle exec rspec --no-parallel spec/controllers
 
-      # メモリ使用量を明示的にチェック
-      - name: Check Memory Usage
+      # RSpec実行後にメモリ使用量をチェック
+      - name: Check Memory Usage (After RSpec Controllers)
         run: free -m
+
+      # スワップ領域の使用状況を確認
+      - name: Check Swap Usage
+        run: swapon --show
 
       # Dockerコンテナごとのメモリ使用量をモニタリング
       - name: Docker Stats
@@ -74,7 +85,3 @@ jobs:
       # RSpec実行後にカーネルログでOOM（メモリ不足）エラーを確認
       - name: Display Kernel Logs for OOM
         run: dmesg | grep -i 'out of memory' || echo "No OOM errors found"
-
-      # Dockerコンテナ内のメモリ使用状況を確認
-      - name: Check Memory Usage inside Docker
-        run: docker exec -it web top -b -n 1
