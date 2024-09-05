@@ -49,44 +49,8 @@
   
   <!-- モバイル用ハンバーガーメニュー -->
   <div class="lg:hidden flex items-center space-x-2">
-    <!-- 言語選択ドロップダウン (モバイル用) -->
-    <details class="relative group">
-      <summary class="cursor-pointer text-white flex items-center">
-        <i class="pr-1 fa-solid fa-globe" style="color: #ffffff;"></i>
-        <span class="text-white"><%= t('navbar.language') %></span>
-      </summary>
-      <ul class="absolute right-0 mt-2 w-28 bg-base-100 rounded shadow-lg hidden group-open:block">
-        <li>
-          <%= link_to url_for(locale: 'en'), class: "block px-4 py-2 hover:bg-gray-200" do %>
-            English
-          <% end %>
-        </li>
-        <li>
-          <%= link_to url_for(locale: 'ja'), class: "block px-4 py-2 hover:bg-gray-200" do %>
-            日本語
-          <% end %>
-        </li>
-      </ul>
-    </details>
-    
-    <!-- ハンバーガーメニュー -->
-    <button id="menu-toggle" class="text-white focus:outline-none">
-      <i class="fas fa-bars fa-lg"></i>
-    </button>
-  </div>
-</header>
-
-<!-- モバイルメニュー -->
-<div id="mobile-menu" class="hidden lg:hidden bg-primary p-4">
-  <ul class="flex flex-col space-y-2">
-    <li><%= render 'products/search_form', q: @q, url: search_products_path, class: "w-full" %></li>
-    <li><%= link_to t('navbar.signup'), new_user_registration_path, class: "text-white" %></li>
-    <li><%= link_to t('navbar.login'), new_user_session_path, class: "text-white" %></li>
-    <li><%= link_to t('navbar.search_cafes'), search_cafes_path, class: "text-white" %></li>
-    <li><%= link_to t('navbar.faq'), faqs_index_path, class: "text-white" %></li>
-    
-    <!-- 言語選択メニュー (モバイル用) -->
-    <li class="relative">
+    <!-- 言語選択トグル (モバイル用) -->
+    <div class="relative">
       <details class="group">
         <summary class="cursor-pointer text-white flex items-center">
           <i class="pr-1 fa-solid fa-globe" style="color: #ffffff;"></i>
@@ -105,6 +69,29 @@
           </li>
         </ul>
       </details>
-    </li>
+    </div>
+    
+    <!-- ハンバーガーメニュー -->
+    <button id="menu-toggle" class="text-white focus:outline-none">
+      <i class="fas fa-bars fa-lg"></i>
+    </button>
+  </div>
+</header>
+
+<!-- モバイルメニュー -->
+<div id="mobile-menu" class="hidden lg:hidden bg-primary p-4">
+  <ul class="flex flex-col space-y-2">
+    <li><%= render 'products/search_form', q: @q, url: search_products_path, class: "w-full" %></li>
+    <li><%= link_to t('navbar.search_cafes'), search_cafes_path, class: "text-white" %></li>
+    <li><%= link_to t('navbar.login'), new_user_session_path, class: "text-white" %></li>
+    <li class="relative">
+      <details class="group">
+        <summary class="cursor-pointer text-white"><%= t('navbar.menu_suffix') %></summary>
+        <ul class="bg-base-100 rounded p-2 mt-2 hidden group-open:block">  
+          <li><%= link_to t('navbar.signup'), new_user_registration_path, class: "block px-2 py-1 hover:bg-gray-200" %></li>
+          <li><%= link_to t('navbar.faq'), faqs_index_path, class: "block px-2 py-1 hover:bg-gray-200" %></li>
+        </ul>
+      </details>
+    </li>    
   </ul>
 </div>
