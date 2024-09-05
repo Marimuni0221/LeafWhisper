@@ -45,13 +45,23 @@ jobs:
           docker compose exec -T web bundle exec rails db:create
           docker compose exec -T web bundle exec rails db:migrate
 
-      - name: RUN Rspec
+      # テストを分割して実行 (モデル)
+      - name: RUN Rspec (Models)
         shell: bash
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
         run: |
-          docker compose exec -T web bundle exec rspec --jobs 2
+          docker compose exec -T web bundle exec rspec spec/models
+
+      # テストを分割して実行 (コントローラー)
+      - name: RUN Rspec (Controllers)
+        shell: bash
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
+        run: |
+          docker compose exec -T web bundle exec rspec spec/controllers
 
       # メモリ使用量を明示的にチェック
       - name: Check Memory Usage
@@ -64,3 +74,7 @@ jobs:
       # RSpec実行後にカーネルログでOOM（メモリ不足）エラーを確認
       - name: Display Kernel Logs for OOM
         run: dmesg | grep -i 'out of memory' || echo "No OOM errors found"
+
+      # Dockerコンテナ内のメモリ使用状況を確認
+      - name: Check Memory Usage inside Docker
+        run: docker exec -it web top -b -n 1
