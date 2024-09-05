@@ -34,10 +34,18 @@ jobs:
         shell: bash
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_developments
+          DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_development
         run: |
           docker compose exec -T web bundle exec rspec --jobs 2
 
+      # メモリ使用量を明示的にチェック
+      - name: Check Memory Usage
+        run: free -m
+
+      # Dockerコンテナごとのメモリ使用量をモニタリング
+      - name: Docker Stats
+        run: docker stats --no-stream
+
       # RSpec実行後にカーネルログでOOM（メモリ不足）エラーを確認
       - name: Display Kernel Logs for OOM
-        run: dmesg | grep -i 'out of memory' || echo "No OOM errors found"    
+        run: dmesg | grep -i 'out of memory' || echo "No OOM errors found"
