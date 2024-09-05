@@ -36,4 +36,8 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://leaf_whisper:pomchan1858@db:5432/leaf_whisper_developments
         run: |
-          docker compose exec -T web bundle exec rspec
+          docker compose exec -T web bundle exec rspec --jobs 2
+
+      # RSpec実行後にカーネルログでOOM（メモリ不足）エラーを確認
+      - name: Display Kernel Logs for OOM
+        run: dmesg | grep -i 'out of memory' || echo "No OOM errors found"    
