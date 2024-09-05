@@ -160,6 +160,7 @@ GEM
       devise (>= 4.9.0)
     devise-i18n-views (0.3.7)
     diff-lcs (1.5.1)
+    docile (1.4.1)
     dotenv (3.1.2)
     dotenv-rails (3.1.2)
       dotenv (= 3.1.2)
@@ -432,6 +433,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     slim (5.2.1)
       temple (~> 0.10.0)
       tilt (>= 2.1.0)
@@ -537,6 +544,7 @@ DEPENDENCIES
   rubocop-checkstyle_formatter
   rubocop-rails
   selenium-webdriver
+  simplecov
   slim-rails
   sprockets-rails
   stimulus-rails
