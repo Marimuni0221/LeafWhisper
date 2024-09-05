@@ -28,7 +28,6 @@ class CafesController < ApplicationController
 
     # お気に入りボタンのHTMLを生成
     favorite_button_html = render_to_string(partial: 'favorites/favorite_buttons', locals: { favoritable: @cafe })
-    Rails.logger.debug { "Favorite button rendered with locale: #{I18n.locale}" }
     # シェアURLを生成
     share_url = share_on_x_url(@cafe)
 

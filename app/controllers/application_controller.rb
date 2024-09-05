@@ -34,6 +34,8 @@ class ApplicationController < ActionController::Base
     # 保存されたリダイレクト先がカフェ関連の場合は、カフェ検索ページにリダイレクト
     if stored_location_for(resource_or_scope)&.include?('/cafes/')
       cafes_search_path
+    elsif stored_location_for(resource_or_scope)&.include?('/products/')
+      search_products_path
     else
       stored_location_for(resource_or_scope) || super
     end
@@ -45,7 +47,6 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
-    Rails.logger.debug { "Current locale: #{I18n.locale}" }
   end
 
   def default_url_options
