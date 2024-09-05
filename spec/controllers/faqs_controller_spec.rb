@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-Rspec.describe FaqsController, type: :controller do
+RSpec.describe FaqsController, type: :controller do
   describe 'GET #index' do
     it 'FAQの画面を表示' do
       get :index
