@@ -23,7 +23,7 @@ describe 'ユーザー認証機能' do
       fill_in 'パスワード（確認用）', with: 'password'
       click_button '登録する'
 
-      expect(page).to have_text('メールアドレスに「@」を挿入してください。')
+      expect(page).to have_text('Eメールは不正な値です')
     end
 
     it '一致しないパスワード入力時' do
