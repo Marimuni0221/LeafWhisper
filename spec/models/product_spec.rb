@@ -6,12 +6,13 @@ RSpec.describe Product do
   describe 'バリデーション' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:url_hash) }
-    it { is_expected.to validate_uniqueness_of(:url_hash) }
+    it { is_expected.to validate_uniqueness_of(:url_hash).case_insensitive }
   end
 
   describe 'コールバック' do
     it '保存前にurl_hashを生成する' do
       product = described_class.new(name: 'Test Product', item_url: 'http://example.com')
+      expect(product.url_hash).to be_nil
       product.save
       expect(product.url_hash).to be_present
     end
