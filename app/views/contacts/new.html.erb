@@ -1,8 +1,7 @@
-<% if @contact.errors.any? %>
+<% if flash[:alert].present? %>
   <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
-    <h2 class="text-xl font-bold mb-4"><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
     <ul>
-      <% @contact.errors.full_messages.each do |message| %>
+      <% flash[:alert].each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>

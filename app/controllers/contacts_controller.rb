@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
   end
 
   def create
-    @contact = params[:contact]
+    @contact = contact_params
 
     if contact_params_invalid?
       handle_validation_errors
@@ -16,6 +16,10 @@ class ContactsController < ApplicationController
   end
 
   private
+
+  def contact_params
+    params.require(:contact).permit(:name, :email, :message)
+  end
 
   def contact_params_invalid?
     contact_name.blank? || contact_email.blank? || contact_message.blank?
@@ -47,14 +51,14 @@ class ContactsController < ApplicationController
   end
 
   def contact_name
-    params[:contact][:name]
+    params.dig(:contact, :name)
   end
 
   def contact_email
-    params[:contact][:email]
+    params.dig(:contact, :email)
   end
 
   def contact_message
-    params[:contact][:message]
+    params.dig(:contact, :message)
   end
 end
