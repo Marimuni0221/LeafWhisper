@@ -12,7 +12,7 @@ describe 'ユーザー認証機能' do
       fill_in 'パスワード（確認用）', with: 'password'
       click_button '登録する'
 
-      expect(page).to have - text('アカウント登録が完了しました')
+      expect(page).to have_text('アカウント登録が完了しました')
     end
 
     it '不正なメールアドレス使用時' do
@@ -23,7 +23,7 @@ describe 'ユーザー認証機能' do
       fill_in 'パスワード（確認用）', with: 'password'
       click_button '登録する'
 
-      expect(page).to have - text('メールアドレスに「@」を挿入してください。')
+      expect(page).to have_text('メールアドレスに「@」を挿入してください。')
     end
 
     it '一致しないパスワード入力時' do
@@ -34,7 +34,7 @@ describe 'ユーザー認証機能' do
       fill_in 'パスワード（確認用）', with: 'differentpassword'
       click_button '登録する'
 
-      expect(page).to have - text('パスワードが一致しません。確認用パスワードをもう一度入力してください。')
+      expect(page).to have_text('パスワードが一致しません。確認用パスワードをもう一度入力してください。')
     end
   end
 
