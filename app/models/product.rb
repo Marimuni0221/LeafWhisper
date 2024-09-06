@@ -5,11 +5,10 @@ class Product < ApplicationRecord
   has_many :favorites, as: :favoritable, dependent: :destroy
 
   before_validation :generate_url_hash, if: -> { item_url.present? && item_url_changed? }
-  before_save :generate_url_hash
 
   validates :name, presence: true
-  validates :url_hash, presence: true, uniqueness: true
-  # validates :item_url, presence: true, uniqueness: true
+  validates :url_hash, presence: true, uniqueness: { case_sensitive: false }
+  validates :item_url, presence: true, uniqueness: true
 
   scope :price_range, lambda { |range|
     case range
@@ -41,6 +40,8 @@ class Product < ApplicationRecord
   private
 
   def generate_url_hash
+    return if item_url.nil?
+
     self.url_hash = Digest::SHA256.hexdigest(item_url)
   end
 end
