@@ -10,7 +10,7 @@ describe 'ユーザー認証機能' do
       fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認用）', with: 'password'
-      click_butoon '登録する'
+      click_button '登録する'
 
       expect(page).to have - text('アカウント登録が完了しました')
     end
@@ -21,7 +21,7 @@ describe 'ユーザー認証機能' do
       fill_in 'メールアドレス', with: 'invalid_email'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認用）', with: 'password'
-      click_butoon '登録する'
+      click_button '登録する'
 
       expect(page).to have - text('メールアドレスに「@」を挿入してください。')
     end
@@ -32,7 +32,7 @@ describe 'ユーザー認証機能' do
       fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認用）', with: 'differentpassword'
-      click_butoon '登録する'
+      click_button '登録する'
 
       expect(page).to have - text('パスワードが一致しません。確認用パスワードをもう一度入力してください。')
     end
@@ -45,7 +45,7 @@ describe 'ユーザー認証機能' do
       visit new_user_session_path
       fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: user.password
-      click_butoon 'ログイン'
+      click_button 'ログイン'
 
       expect(page).to have_text('ログインしました。')
     end
@@ -54,7 +54,7 @@ describe 'ユーザー認証機能' do
       visit new_user_session_path
       fill_in 'メールアドレス', with: 'wrong@example.com'
       fill_in 'パスワード', with: 'wrongpassword'
-      click_butoon 'ログイン'
+      click_button 'ログイン'
 
       expect(page).to have_text('Eメールまたはパスワードが違います。')
     end
