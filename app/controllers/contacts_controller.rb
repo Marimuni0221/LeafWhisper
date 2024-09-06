@@ -1,9 +1,11 @@
-# frozen_string_literal: true
-
 class ContactsController < ApplicationController
-  def new; end
+  def new
+    @contact = {} # 空のハッシュを使ってビューに渡す
+  end
 
   def create
+    @contact = params[:contact]
+
     if contact_params_invalid?
       handle_validation_errors
       return
@@ -45,14 +47,14 @@ class ContactsController < ApplicationController
   end
 
   def contact_name
-    params[:name]
+    params[:contact][:name]
   end
 
   def contact_email
-    params[:email]
+    params[:contact][:email]
   end
 
   def contact_message
-    params[:message]
+    params[:contact][:message]
   end
 end
