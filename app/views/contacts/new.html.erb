@@ -1,3 +1,14 @@
+<% if @contact.errors.any? %>
+  <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
+    <h2 class="text-xl font-bold mb-4"><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+    <ul>
+      <% @contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with(url: contacts_path, local: true, class: "bg-white shadow-md rounded-lg p-8 max-w-md mx-auto") do |form| %>
   <h2 class="text-2xl font-bold text-center mb-6"><%= t('contacts.new.title') %></h2>
 
