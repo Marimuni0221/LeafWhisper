@@ -7,7 +7,7 @@ describe 'ユーザー認証機能' do
     it 'ユーザー登録成功時' do
       visit new_user_registration_path
       fill_in 'ニックネーム', with: 'nickname'
-      fill_in 'Eメール', with: 'test@example.com'
+      fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認用）', with: 'password'
       click_butoon '登録する'
@@ -18,7 +18,7 @@ describe 'ユーザー認証機能' do
     it '不正なメールアドレス使用時' do
       visit new_user_registration_path
       fill_in 'ニックネーム', with: 'nickname'
-      fill_in 'Eメール', with: 'invalid_email'
+      fill_in 'メールアドレス', with: 'invalid_email'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認用）', with: 'password'
       click_butoon '登録する'
@@ -29,7 +29,7 @@ describe 'ユーザー認証機能' do
     it '一致しないパスワード入力時' do
       visit new_user_registration_path
       fill_in 'ニックネーム', with: 'nickname'
-      fill_in 'Eメール', with: 'test@example.com'
+      fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認用）', with: 'differentpassword'
       click_butoon '登録する'
@@ -43,7 +43,7 @@ describe 'ユーザー認証機能' do
 
     it 'ログイン成功時' do
       visit new_user_session_path
-      fill_in 'Eメール', with: user.email
+      fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: user.password
       click_butoon 'ログイン'
 
@@ -52,7 +52,7 @@ describe 'ユーザー認証機能' do
 
     it 'ログイン失敗時' do
       visit new_user_session_path
-      fill_in 'Eメール', with: 'wrong@example.com'
+      fill_in 'メールアドレス', with: 'wrong@example.com'
       fill_in 'パスワード', with: 'wrongpassword'
       click_butoon 'ログイン'
 
