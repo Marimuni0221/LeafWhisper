@@ -10,7 +10,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2]
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 6 }, if: -> { password_required? }
   validates :password_confirmation, presence: true, if: -> { password_required? }
 
@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
 
   def self.find_existing_user(email)
-    User.find_by(email:)
+    User.find_by('lower(email) = ?', email.downcase)
   end
 
   def self.create_or_update_user_from_auth(auth)
