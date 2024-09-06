@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Cafe do
+  let(:cafe) { create(:cafe) }
+
   it 'テーブル名が正しい' do
     expect(described_class.table_name).to eq('caves')
   end
