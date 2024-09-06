@@ -1,19 +1,22 @@
-# frozen_string_literal: true
-
 class ContactsController < ApplicationController
-  def new; end
+  def new
+    @contact = ContactForm.new
+  end
 
   def create
-    if contact_params_invalid?
-      handle_validation_errors
-      return
+    if @contact.valid?
+      send_contact_email
+      redirect_to new_contact_path, notice: I18n.t('contacts.notices.sent')
+    else
+      render :new, status: :unprocessable_entity
     end
-
-    send_contact_email
-    redirect_to new_contact_path, notice: I18n.t('contacts.notices.sent')
   end
 
   private
+
+  def contact_params
+    params.require(:contact).permit(:name, :email, :message)
+  end
 
   def contact_params_invalid?
     contact_name.blank? || contact_email.blank? || contact_message.blank?
@@ -41,18 +44,18 @@ class ContactsController < ApplicationController
   end
 
   def send_contact_email
-    ContactMailer.send_contact_email(contact_name, contact_email, contact_message).deliver_now
+    ContactMailer.send_contact_email(@contact.name, @contact.email, @contact.message).deliver_now
   end
 
   def contact_name
-    params[:name]
+    params.dig(:contact, :name)
   end
 
   def contact_email
-    params[:email]
+    params.dig(:contact, :email)
   end
 
   def contact_message
-    params[:message]
+    params.dig(:contact, :message)
   end
 end
