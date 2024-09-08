@@ -7,7 +7,7 @@ ja:
         categories:
           tea: お茶
           sweets: スイーツ
-          gift: ギフト
+          gift: ギフト  
       user:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
@@ -32,5 +32,11 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+  activemodel:
+    attributes:
+      contact:
+        name: "お名前"
+        email: "メールアドレス"
+        message: "メッセージ"      
   models:
     user: ユーザー
