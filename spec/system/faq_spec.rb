@@ -14,7 +14,7 @@ RSpec.describe 'FAQ ページ' do
 
   it 'FAQ項目を展開・折りたたむ' do
     visit faqs_path
-    find('.collapse-title', text: '抹茶とは何ですか？').click
+    find('.collapse-title', text: '抹茶とは何ですか？').click(force: true)
     expect(page).to have_content('抹茶は、茶葉を細かく粉末状にしたもの')
   end
 end
