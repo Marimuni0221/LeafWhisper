@@ -26,18 +26,19 @@ class ApplicationController < ActionController::Base
 
   # URLを保存するための条件を定義するメソッド
   def storable_location?
-    request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? && !user_signed_in?
   end
 
-  # ログイン後のリダイレクト先を指定するメソッド
+  # パスワードリセット中かどうかを確認するメソッド
+  def password_reset_in_progress?
+    params[:controller] == 'devise/passwords' && (params[:action] == 'edit' || params[:action] == 'update')
+  end
+
   def after_sign_in_path_for(resource_or_scope)
-    # 保存されたリダイレクト先がカフェ関連の場合は、カフェ検索ページにリダイレクト
-    if stored_location_for(resource_or_scope)&.include?('/cafes/')
-      cafes_search_path
-    elsif stored_location_for(resource_or_scope)&.include?('/products/')
-      search_products_path
+    if resource_or_scope.is_a?(User) && resource_or_scope.provider == 'google_oauth2'
+      root_path # Google認証の場合はトップページへリダイレクト
     else
-      stored_location_for(resource_or_scope) || super
+      root_path # 通常のログインもトップページへリダイレクト
     end
   end
 

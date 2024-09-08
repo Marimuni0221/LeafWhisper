@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'ユーザー登録' do
+  include Devise::Test::IntegrationHelpers
+
   describe 'DELETE /users' do
     it 'アカウントを削除する' do
       user = create(:user)

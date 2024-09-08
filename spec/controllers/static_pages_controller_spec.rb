@@ -5,6 +5,8 @@ require 'rails_helper'
 # frozen_string_literal: true
 
 RSpec.describe StaticPagesController do
+  include Devise::Test::ControllerHelpers
+
   describe 'GET #terms' do
     it '利用規約の画面を表示' do
       get :terms

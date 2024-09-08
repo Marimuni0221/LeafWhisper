@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'パスワードリセット' do
+  include Devise::Test::IntegrationHelpers
+
   it 'パスワードリセットのメールを送信する' do
     user = create(:user)
     post user_password_path, params: { user: { email: user.email } }
@@ -15,6 +17,6 @@ RSpec.describe 'パスワードリセット' do
     token = user.send(:set_reset_password_token)
     put user_password_path,
         params: { user: { reset_password_token: token, password: 'newpassword', password_confirmation: 'newpassword' } }
-    expect(response).to redirect_to(user_session_path)
+    expect(response).to redirect_to(root_path)
   end
 end

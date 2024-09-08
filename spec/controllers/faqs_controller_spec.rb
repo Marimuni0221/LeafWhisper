@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe FaqsController do
+  include Devise::Test::ControllerHelpers
+
   describe 'GET #index' do
     it 'FAQの画面を表示' do
       get :index
