@@ -430,6 +430,13 @@ GEM
       rubocop (~> 1.41)
     rubocop-checkstyle_formatter (0.6.0)
       rubocop (>= 1.14.0)
+    rubocop-discourse (3.8.0)
+      activesupport (>= 6.1)
+      rubocop (>= 1.59.0)
+      rubocop-capybara (>= 2.0.0)
+      rubocop-factory_bot (>= 2.0.0)
+      rubocop-rails (>= 2.25.0)
+      rubocop-rspec (>= 2.25.0)
     rubocop-factory_bot (2.26.1)
       rubocop (~> 1.61)
     rubocop-performance (1.21.1)
@@ -575,6 +582,7 @@ DEPENDENCIES
   rubocop
   rubocop-capybara
   rubocop-checkstyle_formatter
+  rubocop-discourse
   rubocop-factory_bot
   rubocop-performance
   rubocop-rails
