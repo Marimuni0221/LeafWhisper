@@ -28,4 +28,4 @@ Style/Documentation:
 
 Layout/LineLength:
   Max: 120
-  Enabled: true  # 行の長さを120に設定し、有効化
+  Enabled: true
