@@ -86,6 +86,7 @@ group :development, :test do
   gem 'rubocop-capybara'
   gem 'rubocop-checkstyle_formatter'
   gem 'rubocop-factory_bot'
+  gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'rubocop-rspec_rails'
