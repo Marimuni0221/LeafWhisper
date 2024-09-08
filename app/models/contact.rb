@@ -1,4 +1,4 @@
-class ContactForm
+class Contact
   include ActiveModel::Model
 
   # フォームのフィールドを定義

@@ -1,61 +1,34 @@
 class ContactsController < ApplicationController
   def new
-    @contact = ContactForm.new
+    @contact = Contact.new
   end
 
   def create
+    @contact = Contact.new(contact_params)
+
     if @contact.valid?
+      # メールを送信
       send_contact_email
+      # 成功メッセージとともにリダイレクト
       redirect_to new_contact_path, notice: I18n.t('contacts.notices.sent')
     else
+      # バリデーションエラーがある場合、再度フォームを表示（エラーメッセージは自動的に @contact.errors に格納される）
       render :new, status: :unprocessable_entity
     end
   end
 
   private
 
+  # パラメータのストロングパラメータ設定
   def contact_params
     params.require(:contact).permit(:name, :email, :message)
   end
 
-  def contact_params_invalid?
-    contact_name.blank? || contact_email.blank? || contact_message.blank?
-  end
-
-  def handle_validation_errors
-    flash.now[:alert] = []
-    add_name_error if contact_name.blank?
-    add_email_error if contact_email.blank?
-    add_message_error if contact_message.blank?
-
-    render :new, status: :unprocessable_entity
-  end
-
-  def add_name_error
-    flash.now[:alert] << I18n.t('contacts.errors.name_blank')
-  end
-
-  def add_email_error
-    flash.now[:alert] << I18n.t('contacts.errors.email_blank')
-  end
-
-  def add_message_error
-    flash.now[:alert] << I18n.t('contacts.errors.message_blank')
-  end
-
   def send_contact_email
-    ContactMailer.send_contact_email(@contact.name, @contact.email, @contact.message).deliver_now
-  end
-
-  def contact_name
-    params.dig(:contact, :name)
-  end
-
-  def contact_email
-    params.dig(:contact, :email)
-  end
-
-  def contact_message
-    params.dig(:contact, :message)
+    ContactMailer.send_contact_email(
+      @contact.name,
+      @contact.email,
+      @contact.message
+    ).deliver_now
   end
 end
