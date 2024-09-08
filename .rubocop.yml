@@ -3,9 +3,9 @@ require:
   - rubocop-capybara
   - rubocop-factory_bot
   - rubocop-rspec
-  - rubocop-rspec_rails 
+  - rubocop-rspec_rails
   - rubocop-performance
-  - rubocop-rake  
+  - rubocop-rake
 
 AllCops:
   NewCops: enable
@@ -20,7 +20,7 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - 'config/routes.rb'
     - 'config/environments/development.rb'
-    - 'config/environments/production.rb'  # RSpecのテストファイルではこのルールを無効化
+    - 'config/environments/production.rb'
   Max: 25  # ブロックの最大行数を25行に設定
 
 Style/Documentation:
@@ -28,4 +28,4 @@ Style/Documentation:
 
 Layout/LineLength:
   Max: 120
-  Enabled: false  
+  Enabled: true  # 行の長さを120に設定し、有効化
