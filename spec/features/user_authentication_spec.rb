@@ -69,23 +69,21 @@ describe 'ユーザー認証機能' do
   context 'when ユーザーログイン時' do
     let(:user) { create(:user) }
 
-    it 'ログインが成功する' do
+    before do
       visit new_user_session_path
+    end
+
+    it 'ログインが成功する' do
       fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: user.password
-      within('#login_form') do
-        click_link_or_button 'ログイン'
-
+      within('#login_form') { click_link_or_button 'ログイン' }
       expect(page).to have_text('ログインしました。')
     end
 
     it 'ログインが失敗する' do
-      visit new_user_session_path
       fill_in 'メールアドレス', with: 'wrong@example.com'
       fill_in 'パスワード', with: 'wrongpassword'
-      within('#login_form') do
-        click_link_or_button 'ログイン'
-
+      within('#login_form') { click_link_or_button 'ログイン' }
       expect(page).to have_text('Eメールまたはパスワードが違います。')
     end
   end
