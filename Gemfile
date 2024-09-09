@@ -93,7 +93,7 @@ group :development, :test do
   gem 'rubocop-rake'
   gem 'rubocop-rspec'
   gem 'rubocop-rspec_rails'
-  gem 'shoulda-matchers', '~> 5.0'
+  gem 'shoulda-matchers'
 end
 
 group :development do
