@@ -76,14 +76,14 @@ describe 'ユーザー認証機能' do
     it 'ログインが成功する' do
       fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: user.password
-      within('#login_form') { click_link_or_button 'ログイン' }
+      within('#login_button_id') { click_link_or_button 'ログイン' }
       expect(page).to have_text('ログインしました。')
     end
 
     it 'ログインが失敗する' do
       fill_in 'メールアドレス', with: 'wrong@example.com'
       fill_in 'パスワード', with: 'wrongpassword'
-      within('#login_form') { click_link_or_button 'ログイン' }
+      within('#login_button_id') { click_link_or_button 'ログイン' }
       expect(page).to have_text('Eメールまたはパスワードが違います。')
     end
   end
