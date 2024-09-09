@@ -29,3 +29,7 @@ Style/Documentation:
 Layout/LineLength:
   Max: 120
   Enabled: true
+
+inherit_mode:
+  exclude:
+    - vendor/bundle/ruby/3.3.0/gems/draper-4.0.2/.rubocop.yml
