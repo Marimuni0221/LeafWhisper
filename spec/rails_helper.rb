@@ -34,10 +34,8 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 # capybara等ファイルの読み込み設定
-Rails.root.glob('spec/support/**/*.rb').each do |f|
-  require f
-  require file
-end
+Rails.root.glob('spec/support/**/*.rb').each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |file| require file }
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
