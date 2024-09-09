@@ -24,7 +24,7 @@ module Users
 
     # protected
 
-    def after_resetting_password_path_for(resource)
+    def after_resetting_password_path_for(_resource)
       user_session_path # パスワードリセット後はログインページにリダイレクト
     end
 

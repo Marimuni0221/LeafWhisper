@@ -5,10 +5,15 @@ require 'rails_helper'
 RSpec.describe 'パスワードリセット' do
   include Devise::Test::IntegrationHelpers
 
-  it 'パスワードリセットのメールを送信する' do
+  it 'パスワードリセットのメールが送信されることを確認する' do
     user = create(:user)
     post user_password_path, params: { user: { email: user.email } }
     expect(ActionMailer::Base.deliveries.size).to eq(1)
+  end
+
+  it 'パスワードリセットのリダイレクトを確認する' do
+    user = create(:user)
+    post user_password_path, params: { user: { email: user.email } }
     expect(response).to redirect_to(new_user_session_path)
   end
 

@@ -34,12 +34,8 @@ class ApplicationController < ActionController::Base
     params[:controller] == 'devise/passwords' && (params[:action] == 'edit' || params[:action] == 'update')
   end
 
-  def after_sign_in_path_for(resource_or_scope)
-    if resource_or_scope.is_a?(User) && resource_or_scope.provider == 'google_oauth2'
-      root_path # Google認証の場合はトップページへリダイレクト
-    else
-      root_path # 通常のログインもトップページへリダイレクト
-    end
+  def after_sign_in_path_for(_resource_or_scope)
+    root_path
   end
 
   def set_search

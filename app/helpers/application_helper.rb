@@ -28,7 +28,8 @@ module ApplicationHelper
            when Product
              I18n.t('share.product', default: 'おすすめの抹茶の商品を見つけました！ #抹茶 #日本茶 #LeafWhisper')
            when Cafe
-             I18n.t('share.cafe', name: object.name, default: "#{object.name} に行ってきました！すごくおすすめのカフェです。 #抹茶カフェ #日本茶 #LeafWhisper")
+             I18n.t('share.cafe', name: object.name,
+                                  default: "#{object.name} に行ってきました！すごくおすすめのカフェです。 #抹茶カフェ #日本茶 #LeafWhisper")
            else
              I18n.t('share.default', default: '素晴らしいアイテムやカフェをチェックしてみてください！ #LeafWhisper')
            end
