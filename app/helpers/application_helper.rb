@@ -15,28 +15,35 @@ module ApplicationHelper
   end
 
   def share_on_x_url(object)
-    url = case object
-          when Product
-            object.item_url || 'https://default-url.com' # デフォルトURLを指定
-          when Cafe
-            object.cafe_url || 'https://default-url.com' # デフォルトURLを指定
-          else
-            'https://default-url.com' # 万が一のためのデフォルトURL
-          end
-
-    text = case object
-           when Product
-             I18n.t('share.product', default: 'おすすめの抹茶の商品を見つけました！ #抹茶 #日本茶 #LeafWhisper')
-           when Cafe
-             I18n.t('share.cafe', name: object.name,
-                                  default: "#{object.name} に行ってきました！すごくおすすめのカフェです。 #抹茶カフェ #日本茶 #LeafWhisper")
-           else
-             I18n.t('share.default', default: '素晴らしいアイテムやカフェをチェックしてみてください！ #LeafWhisper')
-           end
-
-    # textがnilでないか確認
+    url = extract_url(object)
+    text = generate_share_text(object)
     encoded_text = CGI.escape(text || I18n.t('share.default_text'))
 
     "https://twitter.com/share?url=#{url}&text=#{encoded_text}"
+  end
+
+  private
+
+  def extract_url(object)
+    case object
+    when Product
+      object.item_url || 'https://default-url.com'
+    when Cafe
+      object.cafe_url || 'https://default-url.com'
+    else
+      'https://default-url.com'
+    end
+  end
+
+  def generate_share_text(object)
+    case object
+    when Product
+      I18n.t('share.product', default: 'おすすめの抹茶の商品を見つけました！ #抹茶 #日本茶 #LeafWhisper')
+    when Cafe
+      I18n.t('share.cafe', name: object.name,
+                           default: "#{object.name} に行ってきました！すごくおすすめのカフェです。 #抹茶カフェ #日本茶 #LeafWhisper")
+    else
+      I18n.t('share.default', default: '素晴らしいアイテムやカフェをチェックしてみてください！ #LeafWhisper')
+    end
   end
 end
