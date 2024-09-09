@@ -10,9 +10,13 @@ RSpec.describe Product do
   end
 
   describe 'コールバック' do
-    it '保存前にurl_hashを生成する' do
+    it '保存前はurl_hashがnilであることを確認する' do
       product = described_class.new(name: 'Test Product', item_url: 'http://example.com')
       expect(product.url_hash).to be_nil
+    end
+
+    it '保存後にurl_hashが生成されることを確認する' do
+      product = described_class.new(name: 'Test Product', item_url: 'http://example.com')
       product.save
       expect(product.url_hash).to be_present
     end
