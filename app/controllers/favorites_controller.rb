@@ -23,18 +23,20 @@ class FavoritesController < ApplicationController
   private
 
   def set_favoritable
-    if params[:product_item_url]
-      @favoritable = Product.find_by(url_hash: params[:product_item_url])
-    elsif params[:cafe_id]
-      @favoritable = Cafe.find(params[:cafe_id])
-    elsif params[:id] # 削除アクション時に使う場合
-      favorite = Favorite.find(params[:id])
-      @favoritable = favorite.favoritable
-    end
-
-    # 万が一@favoritableがnilだった場合の処理
+    @favoritable = find_favoritable
     return if @favoritable
 
     redirect_to root_path, alert: I18n.t('favorites.not_found')
+  end
+
+  def find_favoritable
+    if params[:product_item_url]
+      Product.find_by(url_hash: params[:product_item_url])
+    elsif params[:cafe_id]
+      Cafe.find(params[:cafe_id])
+    elsif params[:id]
+      favorite = Favorite.find(params[:id])
+      favorite.favoritable
+    end
   end
 end
