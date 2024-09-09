@@ -8,12 +8,7 @@ class ReviewsController < ApplicationController
   def new
     if user_signed_in?
       @review = @reviewable.reviews.new
-      respond_to do |format|
-        format.html do
-          render partial: 'reviews/form', layout: false, locals: { reviewable: @reviewable, review: @review }
-        end
-        format.turbo_stream
-      end
+      respond_with_review_form
     else
       redirect_to new_user_session_path # ログインページにリダイレクト
     end
@@ -42,6 +37,15 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def respond_with_review_form
+    respond_to do |format|
+      format.html do
+        render partial: 'reviews/form', layout: false, locals: { reviewable: @reviewable, review: @review }
+      end
+      format.turbo_stream
+    end
+  end
 
   def set_reviewable
     @reviewable = Product.find_by(url_hash: params[:product_item_url])
