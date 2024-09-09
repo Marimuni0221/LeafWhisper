@@ -11,6 +11,7 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.3.3  
   Exclude:
+    - 'spec/rails_helper.rb'
     - 'vendor/bundle/**/*'
     - 'db/schema.rb'  
     - 'bin/*'
