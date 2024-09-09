@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_06_063242) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_05_093956) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,7 +47,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_06_063242) do
     t.integer "category", default: 0, null: false
     t.string "url_hash"
     t.string "old_url_hash"
-    t.index ["url_hash"], name: "index_products_on_url_hash"
+    t.index ["item_url"], name: "index_products_on_item_url", unique: true
+    t.index ["url_hash"], name: "index_products_on_url_hash", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|

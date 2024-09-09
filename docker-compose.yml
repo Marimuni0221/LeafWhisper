@@ -7,6 +7,7 @@ services:
       POSTGRES_USER: leaf_whisper
       POSTGRES_PASSWORD: pomchan1858
       POSTGRES_DB: leaf_whisper_development
+      POSTGRES_TEST_DB: leaf_whisper_test
     networks:
       - leafwhisper_network
     mem_limit: 2g  
