@@ -1,8 +1,9 @@
 name: Render Deploy
 
 on:
-  push:
   pull_request:
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -13,4 +14,4 @@ jobs:
           api-key: ${{ secrets.RENDER_API_KEY }}
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           interval: 20 # optional
-          timeout: 300 # optional
+          timeout: 300 # optionals
