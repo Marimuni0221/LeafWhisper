@@ -114,6 +114,7 @@ class ProductSearchService
       item_image_url: item['mediumImageUrls'].first,
       category: determine_category(item['itemName'], item['itemCaption'])
     )
+    product.save!
   end
 
   def determine_category(name, description)
