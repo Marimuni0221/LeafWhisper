@@ -122,13 +122,13 @@ ja:
     links:
       back: "戻る"
   meta:
-    title: "LeafWhisper - 抹茶に関する情報集約アプリ"
-    description: "LeafWhisperで抹茶に関する商品やカフェを検索・レビューできるアプリ"
+    title: "LeafWhisper"
+    description: "抹茶に関する商品やカフェを検索・レビューできるアプリです"
     keywords: "抹茶, カフェ, 商品検索, レビュー"
-    og_title: "LeafWhisper - 抹茶に関する情報集約アプリ"
-    og_description: "LeafWhisperで抹茶に関する商品やカフェを検索・レビューできるアプリ"
-    twitter_title: "LeafWhisper - 日本茶に関する情報集約アプリ"
-    twitter_description: "LeafWhisperで抹茶や日本茶に関する商品やカフェを検索・レビューできるアプリ"
+    og_title: "LeafWhisper"
+    og_description: "抹茶に関する商品やカフェを検索・レビューできるアプリです"
+    twitter_title: "LeafWhisper"
+    twitter_description: "抹茶に関する商品やカフェを検索・レビューできるアプリです"
   navbar:
     login: "ログイン"
     signup: "新規登録"
