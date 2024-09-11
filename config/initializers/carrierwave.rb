@@ -17,7 +17,7 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1',
       path_style: true
     }
-    config.fog_attributes = {}
+
   else
     config.storage = :file
     config.enable_processing = false if Rails.env.test?
