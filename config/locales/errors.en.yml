@@ -1,6 +1,7 @@
 en:
   errors:
     messages:
+      extension_whitelist_error: "You are not allowed to upload this kind of file. Please upload a file in jpg, jpeg, gif, or png format."
       already_confirmed: has already been confirmed. Please log in.
       confirmation_period_expired: has expired. Please request a new one.
       expired: has expired. Please request a new one.
