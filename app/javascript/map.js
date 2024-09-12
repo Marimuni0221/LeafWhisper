@@ -58,14 +58,7 @@ window.initMap = function() {
                         service.getDetails({ placeId: place.place_id }, (placeDetails, status) => {
                             if (status === google.maps.places.PlacesServiceStatus.OK) {
                                 saveCafeToServer(placeDetails).then(() => {
-                                    let googleMapsLink;
-                                    const isMobile = /Android|iPhone/i.test(navigator.userAgent);
-                    
-                                    if (isMobile) {
-                                        googleMapsLink = `comgooglemaps://?daddr=place_id:${place.place_id}`;
-                                    } else {
-                                        googleMapsLink = `https://www.google.com/maps/place/?q=place_id:${place.place_id}`;
-                                    }
+                                    const googleMapsLink = `https://www.google.com/maps/place/?q=place_id:${place.place_id}`;
                     
                                     if (isEnglish) {
                                         const contentString = `
@@ -152,7 +145,6 @@ function initAutocomplete() {
             return;
         }
 
-        // 地図をオートコンプリートで選択された場所に移動
         map.setCenter(place.geometry.location);
         map.setZoom(15);
 
