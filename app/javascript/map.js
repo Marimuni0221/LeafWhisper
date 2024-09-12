@@ -7,7 +7,7 @@ window.initMap = function() {
 
     const errorGeolocation = document.body.getAttribute('data-error-geolocation');
     const viewOnGoogleMapsText = document.body.getAttribute('data-view-on-google-maps');
-    const favoriteNotAvailableText = "The Favorites are not available in the English version."; // 英語でのメッセージ
+    const favoriteNotAvailableText = "The Favorites are not available in the English version.";
 
     const isEnglish = document.documentElement.lang === 'en';
 
@@ -30,13 +30,11 @@ window.initMap = function() {
 
         searchCafes(userLocation);
 
-        // ドラッグ後にカフェを再検索
         map.addListener('dragend', () => {
             const center = map.getCenter();
             searchCafes(center);
         });
 
-        // オートコンプリートの初期化
         initAutocomplete();
     }, (error) => {
         console.error(errorGeolocation, error);
@@ -56,17 +54,25 @@ window.initMap = function() {
                         map: map,
                         title: place.name
                     });
-
                     marker.addListener('click', () => {
                         service.getDetails({ placeId: place.place_id }, (placeDetails, status) => {
                             if (status === google.maps.places.PlacesServiceStatus.OK) {
                                 saveCafeToServer(placeDetails).then(() => {
+                                    let googleMapsLink;
+                                    const isMobile = /Android|iPhone/i.test(navigator.userAgent);
+                    
+                                    if (isMobile) {
+                                        googleMapsLink = `comgooglemaps://?q=place_id:${place.place_id}`;
+                                    } else {
+                                        googleMapsLink = `https://www.google.com/maps/place/?q=place_id:${place.place_id}`;
+                                    }
+                    
                                     if (isEnglish) {
                                         const contentString = `
                                             <div class="p-4 bg-white rounded-lg shadow-lg">
                                                 <h2 class="text-lg font-semibold">${placeDetails.name}</h2>
                                                 <p class="text-gray-600">${placeDetails.formatted_address}</p>
-                                                <a href="https://www.google.com/maps/place/?q=place_id:${place.place_id}" target="_blank">
+                                                <a href="${googleMapsLink}" target="_blank">
                                                     ${viewOnGoogleMapsText}
                                                 </a>
                                                 <p class="text-gray-500 text-sm mt-4">${favoriteNotAvailableText}</p>
@@ -83,7 +89,7 @@ window.initMap = function() {
                                                     <div class="p-4 bg-white rounded-lg shadow-lg">
                                                         <h2 class="text-lg font-semibold">${placeDetails.name}</h2>
                                                         <p class="text-gray-600">${placeDetails.formatted_address}</p>
-                                                        <a href="https://www.google.com/maps/place/?q=place_id:${place.place_id}" target="_blank">
+                                                        <a href="${googleMapsLink}" target="_blank">
                                                             ${viewOnGoogleMapsText}
                                                         </a>
                                                         <div class="flex justify-between items-center mt-4 space-x-4">
@@ -105,7 +111,7 @@ window.initMap = function() {
                                 });
                             }
                         });
-                    });
+                    });                    
                 });
             }
         });
@@ -122,8 +128,8 @@ window.initMap = function() {
                 name: placeDetails.name,
                 address: placeDetails.formatted_address,
                 place_id: placeDetails.place_id,
-                phone_number: placeDetails.formatted_phone_number || '', // 電話番号を取得
-                cafe_url: placeDetails.website || '', // カフェのウェブサイトURLを取得
+                phone_number: placeDetails.formatted_phone_number || '',
+                cafe_url: placeDetails.website || '',
                 cafe_image_url: placeDetails.photos ? placeDetails.photos[0].getUrl({ maxWidth: 400 }) : '' // カフェの画像URLを取得
             })
         });
@@ -146,7 +152,6 @@ function initAutocomplete() {
             return;
         }
 
-        // 地図をオートコンプリートで選択された場所に移動
         map.setCenter(place.geometry.location);
         map.setZoom(15);
 
