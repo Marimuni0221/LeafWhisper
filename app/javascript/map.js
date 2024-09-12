@@ -62,7 +62,7 @@ window.initMap = function() {
                                     const isMobile = /Android|iPhone/i.test(navigator.userAgent);
                     
                                     if (isMobile) {
-                                        googleMapsLink = `comgooglemaps://?q=place_id:${place.place_id}`;
+                                        googleMapsLink = `comgooglemaps://?daddr=place_id:${place.place_id}`;
                                     } else {
                                         googleMapsLink = `https://www.google.com/maps/place/?q=place_id:${place.place_id}`;
                                     }
@@ -130,7 +130,7 @@ window.initMap = function() {
                 place_id: placeDetails.place_id,
                 phone_number: placeDetails.formatted_phone_number || '',
                 cafe_url: placeDetails.website || '',
-                cafe_image_url: placeDetails.photos ? placeDetails.photos[0].getUrl({ maxWidth: 400 }) : '' // カフェの画像URLを取得
+                cafe_image_url: placeDetails.photos ? placeDetails.photos[0].getUrl({ maxWidth: 400 }) : ''
             })
         });
     }
@@ -152,6 +152,7 @@ function initAutocomplete() {
             return;
         }
 
+        // 地図をオートコンプリートで選択された場所に移動
         map.setCenter(place.geometry.location);
         map.setZoom(15);
 
