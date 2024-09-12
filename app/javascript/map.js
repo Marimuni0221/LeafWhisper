@@ -58,7 +58,7 @@ window.initMap = function() {
                         service.getDetails({ placeId: place.place_id }, (placeDetails, status) => {
                             if (status === google.maps.places.PlacesServiceStatus.OK) {
                                 saveCafeToServer(placeDetails).then(() => {
-                                    const googleMapsLink = `https://www.google.com/maps/place/?q=place_id:${place.place_id}&force=web`;
+                                    const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(placeDetails.name + ' ' + placeDetails.formatted_address)}`;
                     
                                     if (isEnglish) {
                                         const contentString = `
