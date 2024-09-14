@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # 固定URLでOmniAuthのコールバックルートを定義
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   scope '(:locale)', locale: /en|ja/ do
@@ -12,7 +11,6 @@ Rails.application.routes.draw do
       registrations: 'users/registrations'
     }
 
-    # Health status check
     get 'up' => 'rails/health#show', as: :rails_health_check
 
     get 'products/search', to: 'products#search', as: 'search_products'

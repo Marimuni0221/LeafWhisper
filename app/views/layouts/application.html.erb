@@ -8,7 +8,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- ログイン状態を示すmetaタグ -->
     <% if user_signed_in? %>
       <meta name="logged-in" content="true">
     <% else %>
@@ -19,7 +18,6 @@
     <%= javascript_importmap_tags %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous">
     
-    <!-- Google Analytics -->
     <%= render 'layouts/google_analytics' %>
   </head>
   <body 
@@ -29,7 +27,6 @@
     data-alert-no_results="<%= I18n.t('map.alert_no_results') %>"
     data-view-on-google-maps="<%= I18n.t('map.view_on_google_maps') %>">
     
-    <%# ヘッダーの表示 %>
     <div class="w-full">
       <% if user_signed_in? %>
         <%= render 'shared/header' %>
@@ -38,7 +35,6 @@
       <% end %>  
     </div>
     
-    <%# フラッシュメッセージの表示 %>
     <div class="flex-grow container mx-auto"> 
       <div id="flash">
         <%= render 'shared/flash_message' %>
@@ -46,7 +42,6 @@
       <%= yield %>
     </div>
     
-    <%# フッターの表示 %>
     <%= render 'shared/footer' %>
   </body>
 </html>

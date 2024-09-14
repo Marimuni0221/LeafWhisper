@@ -1,8 +1,6 @@
 <% content_for :title, t('cafe.search.title') %>
 
 <div class="container">
-  
-  <!-- 検索フォーム -->
   <div class="flex items-center space-x-2">
     <input id="address" type="text" placeholder="<%= t('cafe.search.placeholder') %>" class="border rounded-lg p-2 w-64 focus:outline-none focus:ring-2 focus:to-blue-600">
     <button type="button" onclick="codeAddress()" class="bg-secondary text-white p-2 rounded-lg hover:bg-blue-400">
@@ -11,10 +9,7 @@
       </svg>
     </button>
   </div>
-  
-  <!-- 地図表示 -->
   <div id="map" style="height: 500px; width: 100%;"></div>
 </div>
 
-<!-- Google Maps APIのスクリプトを非同期に読み込む -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap"></script>

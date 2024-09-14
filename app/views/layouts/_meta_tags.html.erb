@@ -1,9 +1,7 @@
-<!-- 標準のHTMLメタタグ  -->
 <title><%= t('meta.title') %></title>
 <meta name="description" content="<%= t('meta.description') %>" />
 <meta name="keywords" content="<%= t('meta.keywords') %>" />
 
-<!-- OGPメタタグ (ソーシャルメディア用) -->
 <meta property="og:title" content="<%= t('meta.og_title') %>" />
 <meta property="og:description" content="<%= t('meta.og_description') %>" />
 <meta property="og:image" content="https://leafwhisper.onrender.com/images/ogp_image.png" />
@@ -11,7 +9,6 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="<%= I18n.locale == :ja ? 'ja_JP' : 'en_US' %>" />
 
-<!-- Xカード用メタタグ (X用) -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="<%= t('meta.twitter_title') %>" />
 <meta name="twitter:description" content="<%= t('meta.twitter_description') %>" />

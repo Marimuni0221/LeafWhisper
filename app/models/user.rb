@@ -46,7 +46,6 @@ class User < ApplicationRecord
 
   private
 
-  # パスワードの検証をスキップするためのメソッド
   def password_required?
     provider.blank? && super
   end

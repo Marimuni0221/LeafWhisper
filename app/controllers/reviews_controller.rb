@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
       @review = @reviewable.reviews.new
       respond_with_review_form
     else
-      redirect_to new_user_session_path # ログインページにリダイレクト
+      redirect_to new_user_session_path
     end
   end
 
