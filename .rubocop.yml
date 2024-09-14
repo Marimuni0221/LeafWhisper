@@ -23,7 +23,7 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'config/environments/development.rb'
     - 'config/environments/production.rb'
-  Max: 25  # ブロックの最大行数を25行に設定
+  Max: 25
 
 Style/Documentation:
   Enabled: false

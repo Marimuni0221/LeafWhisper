@@ -15,7 +15,6 @@
             <% unless I18n.locale == :en %>
               <div class="flex justify-between items-center space-x-4">
                 <%= render 'favorites/favorite_buttons', { favoritable: product } %>
-                <!-- 商品情報のシェアボタン -->
                 <a href="<%= share_on_x_url(product) %>" 
                   target="_blank">             
                   <i class="fa-brands fa-x-twitter"></i>
@@ -33,7 +32,6 @@
           </div>
         <% end %>
       </div>
-      <%# ページネーションを適用 %>
       <div class="mt-4">
         <%= paginate @products %>
       </div>

@@ -1,18 +1,14 @@
 <% content_for :title, t('top.title') %>
 
 <main class="hero text-center bg-base-100">
-  <!-- 画像コンテナ -->
   <div class="w-full relative">
     <%= image_tag 'tea7.jpg', alt: 'image', class: 'object-cover h-screen w-full m-0 p-0 brightness-100' %>
-    <!-- テキストコンテナ -->
     <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-start items-start p-10 bg-black bg-opacity-10 sm:bg-opacity-5 text-shadow-md">
       <h1 class="text-4xl md:text-5xl lg:text-6xl text-white bg-opacity-20 px-4 py-2 rounded-lg"><%= t('top.welcome') %></h1>
       <p class="text-lg md:text-2xl lg:text-3xl text-white mt-4 bg-opacity-20 pl-14 pr-4 py-2 rounded-lg"><%= t('top.subtitle') %></p>
     </div>
 
-    <!-- アコーディオンコンテナ -->
     <div class="max-w-3xl mx-auto mt-10">
-      <!-- アコーディオン 1: アプリの概要 -->
       <div class="collapse collapse-plus bg-green-100 mb-4">
         <input type="checkbox" name="accordion" checked />
         <div class="collapse-title text-xl font-medium">
@@ -23,7 +19,6 @@
         </div>
       </div>
 
-      <!-- アコーディオン 2: 商品検索機能 -->
       <div class="collapse collapse-plus bg-green-100 mb-4">
         <input type="radio" name="accordion" />
         <div class="collapse-title text-xl font-medium">
@@ -34,7 +29,6 @@
         </div>
       </div>
 
-      <!-- アコーディオン 3: カフェ検索機能 -->
       <div class="collapse collapse-plus bg-green-100 mb-4">
         <input type="radio" name="accordion" />
         <div class="collapse-title text-xl font-medium">
@@ -45,7 +39,6 @@
         </div>
       </div>
 
-      <!-- アコーディオン 4: レビュー投稿・シェア機能 -->
       <div class="collapse collapse-plus bg-green-100 mb-10">
         <input type="radio" name="accordion" />
         <div class="collapse-title text-xl font-medium">
@@ -55,8 +48,7 @@
           <p class="text-lg"><%= t('top.accordion.review_and_share_content') %></p>
           <p class="text-sm"><%= t('top.accordion.review_note') %></p>
         </div>
-      </div>
-      
+      </div> 
     </div>  
   </div>
 </main>

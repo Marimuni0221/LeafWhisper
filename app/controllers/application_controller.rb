@@ -19,17 +19,14 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # 元のページのURLを保存するメソッド
   def store_user_location!
     store_location_for(:user, request.fullpath)
   end
 
-  # URLを保存するための条件を定義するメソッド
   def storable_location?
     request.get? && is_navigational_format? && !devise_controller? && !request.xhr? && !user_signed_in?
   end
 
-  # パスワードリセット中かどうかを確認するメソッド
   def password_reset_in_progress?
     params[:controller] == 'devise/passwords' && (params[:action] == 'edit' || params[:action] == 'update')
   end

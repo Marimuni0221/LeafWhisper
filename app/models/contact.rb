@@ -2,8 +2,6 @@
 
 class Contact
   include ActiveModel::Model
-
-  # フォームのフィールドを定義
   attr_accessor :name, :email, :message
 
   validates :name, presence: true

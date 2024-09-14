@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-  /* 「field_with_errors.」にCSSをあてる */
   .field_with_errors {
     @apply contents;
   }
@@ -14,7 +13,7 @@
 }
 
 .menu-horizontal li {
-  @apply mr-4; /* Tailwind CSS で 1rem は 'mr-4' に相当します */
+  @apply mr-4;
 }
 
 .alert-notice {
@@ -25,7 +24,6 @@
   @apply bg-red-100 text-red-800 p-4 rounded-lg shadow-md mb-4;
 }
 
-/* カスタムスタイル */
 .text-4xl {
   font-size: 2.25rem;
 }
@@ -45,7 +43,7 @@ html, body {
 }
 
 .container {
-  max-width: 100%; /* この行が既に存在する場合、追加の調整は不要です */
+  max-width: 100%;
 }
 
 .text-shadow-md {
@@ -61,7 +59,6 @@ details ul {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ラジオボタンを非表示にし、ラベルのクリックを有効にする */
 input[type="radio"].hidden + label {
   color: gray;
 }
@@ -69,14 +66,3 @@ input[type="radio"].hidden + label {
 input[type="radio"].hidden:checked + label {
   color: gold;
 }
-
-
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
-}
-
-*/

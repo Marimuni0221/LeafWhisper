@@ -1,6 +1,4 @@
-<%# ナビゲーションバー(ログイン後) %>
 <header class="navbar bg-primary p-4 flex items-center justify-between relative">
-  <!-- 左側のロゴとリンク -->
   <div class="flex items-center space-x-4">
     <img src="<%= asset_path('favicon.ico') %>" alt="LeafWhisper Logo" class="h-8">
     <%= link_to 'LeafWhisper', root_path, class: "btn btn-ghost md:text-xl sm:text-xs font-bold" %>
@@ -8,8 +6,7 @@
       <%= render 'products/search_form', q: @q, url: search_products_path %>
     </div>
   </div>
-  
-  <!-- デスクトップ用メニュー -->
+
   <div class="hidden lg:flex lg:text-sm xl:text-base space-x-2 items-center">
     <ul class="flex space-x-4 items-center">
       <li><%= link_to t('navbar.search_cafes'), search_cafes_path, class: "text-white" %></li>
@@ -27,7 +24,6 @@
       </li>
     </ul>
 
-    <!-- 言語選択トグル -->
     <div class="relative">
       <details class="group">
         <summary class="cursor-pointer text-white flex items-center">
@@ -50,9 +46,7 @@
     </div>
   </div>
   
-  <!-- モバイル用ハンバーガーメニュー -->
   <div class="lg:hidden flex items-center space-x-2">
-    <!-- 言語選択トグル (モバイル用) -->
     <div class="relative">
       <details class="group">
         <summary class="cursor-pointer text-white flex items-center">
@@ -73,15 +67,13 @@
         </ul>
       </details>
     </div>
-    
-    <!-- ハンバーガーメニュー -->
+
     <button id="menu-toggle" class="text-white focus:outline-none">
       <i class="fas fa-bars fa-lg"></i>
     </button>
   </div>
 </header>
 
-<!-- モバイルメニュー -->
 <div id="mobile-menu" class="hidden lg:hidden bg-primary p-4">
   <ul class="flex flex-col space-y-2">
     <li><%= render 'products/search_form', q: @q, url: search_products_path, class: "w-full" %></li>

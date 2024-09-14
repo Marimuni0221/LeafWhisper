@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# app/services/product_search_service.rb
 class ProductSearchService
   def initialize(params)
     @params = params
@@ -75,7 +74,7 @@ class ProductSearchService
 
   def search_rakuten_items(keyword)
     items = []
-    (1..5).each do |i|
+    (1..4).each do |i|
       result = RakutenWebService::Ichiba::Item.search(keyword:, page: i)
       break if result.count.zero?
 

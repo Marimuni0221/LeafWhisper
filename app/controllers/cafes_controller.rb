@@ -8,7 +8,6 @@ class CafesController < ApplicationController
   def save
     cafe = find_or_initialize_cafe
     update_cafe_attributes(cafe)
-
     if cafe.save
       render_success(cafe)
     else
@@ -22,10 +21,8 @@ class CafesController < ApplicationController
       render plain: 'Cafe not found', status: :not_found
       return
     end
-
     favorite_button_html = render_to_string(partial: 'favorites/favorite_buttons', locals: { favoritable: @cafe })
     share_url = share_on_x_url(@cafe)
-
     render json: { favorite_button_html:, share_url: }
   end
 
