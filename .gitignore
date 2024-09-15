@@ -70,3 +70,5 @@
 
 dump.rdb
 .env
+
+node_modules/
