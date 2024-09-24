@@ -61,4 +61,4 @@ Xでのシェア機能を主に活用し、幅広く抹茶に興味がある方�
 |テスト|RSpec/Rubocop|
 
 ## ER図
-![image](https://github.com/user-attachments/assets/9bceefe4-bd94-4016-9cd5-d407457670d2)
+![image]("https://github.com/user-attachments/assets/33daa00b-124d-42eb-9956-9597ca753ecd">)
